@@ -1,3 +1,4 @@
+import Catagories from "../components/Catagories";
 import DeliveryLocation from "../components/DeliveryLocation";
 import Searchbar from "../components/Searchbar";
 import Topbar from "../components/Topbar";
@@ -8,6 +9,7 @@ const App = () => {
       <Topbar />
       <Searchbar />
       <DeliveryLocation />
+      <Catagories />
     </>
   );
 };
