@@ -1,7 +1,7 @@
 import Link from "next/link";
 const Catagories = () => {
   return (
-    <div className="flex border-2 py-2 px-3">
+    <div className="flex border-b-2 py-2 px-3">
       <div className="rounded-full bg-[#c9e3ff] grid place-items-center p-3">
         <Link href="/catagories">
           <div className="grid grid-cols-2">

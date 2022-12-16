@@ -6,6 +6,7 @@ import { RxCrossCircled } from "react-icons/rx";
 
 const AuthModal = () => {
   const { authType } = useContext(AuthContext);
+
   return (
     <>
       {/* Put this part before </body> tag */}

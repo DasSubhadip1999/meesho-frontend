@@ -1,9 +1,11 @@
 import Image from "next/image";
 import { useContext } from "react";
+import { useSelector } from "react-redux";
 import AuthContext from "../context/authContext";
 
 const Profile = () => {
   const { openModal } = useContext(AuthContext);
+  const { user } = useSelector((state) => state.auth);
   return (
     <div className="flex py-4 px-3 justify-between items-center">
       <Image src="/user.png" alt="user" width={43} height={43} />

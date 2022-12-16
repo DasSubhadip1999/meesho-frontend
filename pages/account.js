@@ -1,9 +1,22 @@
 import { BsCart, BsSearch } from "react-icons/bs";
 import { useState } from "react";
 import Profile from "../components/Profile";
-
+import { useSelector } from "react-redux";
+import HashLoader from "react-spinners/HashLoader";
 const account = () => {
   const [isLogin, setLogin] = useState(true);
+  const { isLoading } = useSelector((state) => state.auth);
+
+  const overrideCss = {
+    position: "absolute",
+    left: "43%",
+    top: "48%",
+  };
+
+  if (isLoading) {
+    return <HashLoader color="#80489C" size={50} cssOverride={overrideCss} />;
+  }
+  //
   return (
     <div>
       <header className="flex justify-between items-center p-3 border-b-[1px] border-[rgba(0,0,0,0.2)]">
