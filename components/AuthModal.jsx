@@ -3,19 +3,35 @@ import { useContext } from "react";
 import SignUp from "./SignUp";
 import SignIn from "./SignIn";
 import { RxCrossCircled } from "react-icons/rx";
+import { useSelector } from "react-redux";
+import HashLoader from "react-spinners/HashLoader";
 
 const AuthModal = () => {
   const { authType } = useContext(AuthContext);
+  const { isLoading } = useSelector((state) => state.auth);
+
+  const overrideCss = {
+    position: "absolute",
+    left: "43%",
+    top: "48%",
+    zIndex: 20,
+  };
 
   return (
     <>
       {/* Put this part before </body> tag */}
       <input type="checkbox" id="my-modal-6" className="modal-toggle" />
-      <div className="modal modal-top sm:modal-middle">
+      <div
+        className={`modal modal-top sm:modal-middle ${
+          isLoading && "pointer-events-none"
+        }`}
+      >
         <div className="modal-box">
           {/* design */}
           {authType === "sign-up" ? <SignUp /> : <SignIn />}
-
+          {isLoading && (
+            <HashLoader color="#80489C" size={50} cssOverride={overrideCss} />
+          )}
           {/* actions */}
           <div className="modal-action absolute right-3 -top-3">
             <label htmlFor="my-modal-6" className="text-2xl">

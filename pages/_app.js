@@ -6,6 +6,7 @@ import AuthModal from "../components/AuthModal";
 import { Provider } from "react-redux";
 import { store } from "../redux/app/store";
 import { ToastContainer } from "react-toastify";
+
 function MyApp({ Component, pageProps }) {
   return (
     <>
