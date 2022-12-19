@@ -22,7 +22,7 @@ const AuthModal = () => {
       {/* Put this part before </body> tag */}
       <input type="checkbox" id="my-modal-6" className="modal-toggle" />
       <div
-        className={`modal modal-top sm:modal-middle ${
+        className={`modal modal-bottom sm:modal-middle ${
           isLoading && "pointer-events-none"
         }`}
       >

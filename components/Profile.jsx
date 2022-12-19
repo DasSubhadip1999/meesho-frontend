@@ -20,7 +20,7 @@ const Profile = () => {
           <p>{user.email}</p>
         </div>
       ) : (
-        <div className="text-white">
+        <div className="text-white ml-4">
           <label
             htmlFor="my-modal-6"
             className="bg-[#80489C] px-4 py-2 rounded-md text-sm mx-2"

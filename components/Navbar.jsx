@@ -27,7 +27,7 @@ const Navbar = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <nav className="fixed bottom-0 w-full">
+      <nav className="fixed bottom-0 z-20 bg-white w-full">
         <ul className="text-[#e65082] flex justify-between items-center px-3 pt-3 pb-2 upper-shadow shadow-[0px_-0px_6px_0px_rgba(0,0,0,0.2)]">
           <li>
             <Link href="/">
