@@ -4,10 +4,39 @@ import Image from "next/image";
 import { v4 as uuidv4 } from "uuid";
 import { sellerPageData } from "../data/sellerPageData";
 import SellerFeedbackCaraousel from "../components/SellerFeedbackCaraousel";
+import HowToSell from "../components/HowToSell";
+import LearningCard from "../components/LearningCard";
+import { learningDocuments } from "../data/sellerPageData";
+import { useState } from "react";
+import { BiArrowToTop } from "react-icons/bi";
 const Supplier = () => {
+  const [isScrolling, setIsScrolling] = useState(false);
+  const [height, setHeight] = useState(false);
+
+  if (typeof document !== "undefined") {
+    document.addEventListener("scroll", () => {
+      if (scrollY > 0 || scrollY < 0) {
+        setIsScrolling(true);
+      } else {
+        setIsScrolling(false);
+      }
+
+      if (scrollY > 90) {
+        setHeight(true);
+      } else {
+        setHeight(false);
+      }
+    });
+  }
+
+  const goToTop = () => {
+    if (typeof window !== "undefined") {
+      window.scrollTo(0, 0);
+    }
+  };
   return (
-    <div>
-      <header className="fixed top-0 flex items-center py-4 px-3 w-full bg-white border-b-[1px] border-[rgba(0,0,0,0.1)] shadow-sm">
+    <div className="scroll-smooth">
+      <header className="fixed top-0 z-20 flex items-center py-4 px-3 w-full bg-white border-b-[1px] border-[rgba(0,0,0,0.1)] shadow-sm">
         <Link href="/account">
           <MdOutlineArrowBackIosNew />
         </Link>
@@ -60,10 +89,26 @@ const Supplier = () => {
           <h1 className="text-center py-8 text-3xl font-bold">
             Why Suppliers sell <br /> on Meesho?
           </h1>
-          <div className="border-2">
-            <SellerFeedbackCaraousel />
+          <SellerFeedbackCaraousel />
+        </div>
+        <div className="mt-2">
+          <h1 className="text-center py-8 text-3xl font-bold">
+            How to Sell <br /> Products Online on <br /> Meesho?
+          </h1>
+          <HowToSell />
+        </div>
+        <div className="">
+          <h1 className="text-center py-8 text-3xl font-bold">
+            Learn how to Sell <br /> on Meesho
+          </h1>
+          <div className="grid grid-cols-1">
+            {learningDocuments.map((document) => (
+              <LearningCard {...document} key={uuidv4()} />
+            ))}
           </div>
         </div>
+
+        {/*  */}
         <div>
           <p>some</p>
           <p>some</p>
@@ -77,6 +122,21 @@ const Supplier = () => {
           <p>some</p>
         </div>
       </main>
+      {isScrolling && (
+        <footer className="fixed w-full bottom-0 z-40 bg-white justify-center items-center flex py-3 border-none outline-none">
+          <button className="btn w-[95%] border-none outline-none bg-[#f43397]">
+            Start Selling
+          </button>
+        </footer>
+      )}
+      {height && (
+        <div
+          onClick={goToTop}
+          className="w-10 h-10 rounded-md bg-[#f43397] text-white fixed right-4 bottom-24 text-3xl flex justify-center items-center "
+        >
+          <BiArrowToTop />
+        </div>
+      )}
     </div>
   );
 };
