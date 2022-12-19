@@ -20,12 +20,3 @@ export const sellerPageData = [
     para: "Sell your products online at 0% commission and enjoy a hassle-free selling experience on Meesho",
   },
 ];
-
-export const supplierFeedback = [
-  {
-    video: "",
-    name: "",
-    location: "",
-    feedback: "",
-  },
-];

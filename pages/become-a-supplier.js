@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { v4 as uuidv4 } from "uuid";
 import { sellerPageData } from "../data/sellerPageData";
+import SellerFeedbackCaraousel from "../components/SellerFeedbackCaraousel";
 const Supplier = () => {
   return (
     <div>
@@ -59,6 +60,21 @@ const Supplier = () => {
           <h1 className="text-center py-8 text-3xl font-bold">
             Why Suppliers sell <br /> on Meesho?
           </h1>
+          <div className="border-2">
+            <SellerFeedbackCaraousel />
+          </div>
+        </div>
+        <div>
+          <p>some</p>
+          <p>some</p>
+          <p>some</p>
+          <p>some</p>
+          <p>some</p>
+          <p>some</p>
+          <p>some</p>
+          <p>some</p>
+          <p>some</p>
+          <p>some</p>
         </div>
       </main>
     </div>
