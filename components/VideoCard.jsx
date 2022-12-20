@@ -10,7 +10,7 @@ const VideoCard = ({ video, feedback, location, seller }) => {
       </figure>
       <div className="card-body">
         <h2 className="card-title">
-          {seller.name}
+          {seller?.name}
           <div className="badge badge-secondary capitalize">{location}</div>
         </h2>
         <p>{feedback}</p>

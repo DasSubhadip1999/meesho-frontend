@@ -1,15 +1,33 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdOutlineArrowBackIosNew } from "react-icons/Md";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { registerSeller, reset } from "../../../redux/feature/auth/authSlice";
 
-const account = () => {
+const SignIn = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
   const { email, password } = formData;
+  const { seller, isError, isSuccess, isLoading, message } = useSelector(
+    (state) => state.auth
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess && seller) {
+      toast.success("Seller account created");
+    }
+
+    dispatch(reset());
+  }, [isError, isSuccess, message, dispatch]);
 
   const onChange = (e) =>
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -22,7 +40,12 @@ const account = () => {
     if (!email || !password) {
       toast.error("Please fill all details");
     } else if (strongPassword.test(password)) {
-      console.log(formData);
+      dispatch(registerSeller(formData));
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+      });
     } else {
       toast.error("Password error");
     }
@@ -36,7 +59,14 @@ const account = () => {
         </Link>
       </div>
       <header className="px-5 py-1 font-bold">
-        Login / Signup to Supplier Hub
+        <Link className="text-[#f43397]" href="/supplier/account/sign-in">
+          Login
+        </Link>{" "}
+        /{" "}
+        <Link className="text-[#f43397]" href="/supplier/account/sign-up">
+          Sign up
+        </Link>{" "}
+        to Supplier Hub
       </header>
       {/*  */}
       <form className="px-4" onSubmit={onSubmit}>
@@ -72,7 +102,7 @@ const account = () => {
             />
           </label>
         </div>
-        <ul className="text-sm list-disc px-6 my-7">
+        <ul className="text-sm list-disc px-6 my-5">
           <li>Password should have at least on special character.</li>
           <li>Password should have at least on digit [0-9]</li>
           <li>Password should have at least one uppercase letter.</li>
@@ -82,10 +112,10 @@ const account = () => {
           type="submit"
           className="btn w-full bg-[#f43397] outline-none border-none my-3"
         >
-          Sign Up
+          Sign In
         </button>
       </form>
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col justify-center items-center pb-20">
         <span className="text-sm">By continuing you agree to Meesho's</span>
         <Link href="/terms-service" className="text-sm my-1">
           <span className="text-blue-700 mr-[2px]">Terms & Conditions</span>and
@@ -96,4 +126,4 @@ const account = () => {
   );
 };
 
-export default account;
+export default SignIn;

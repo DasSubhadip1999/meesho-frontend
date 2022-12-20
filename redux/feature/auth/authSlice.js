@@ -1,11 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { registerService, loginService } from "./authService";
+import {
+  registerService,
+  loginService,
+  registerSellerService,
+} from "./authService";
 import { getItemFromStorage } from "../../../assets/localstorage";
 
 const LC_USER = getItemFromStorage("user");
+const LC_SELLER = getItemFromStorage("seller");
 
 const initialState = {
   user: LC_USER ? LC_USER : null,
+  seller: LC_SELLER ? LC_SELLER : null,
   isLoading: false,
   isError: false,
   isSuccess: false,
@@ -17,6 +23,24 @@ export const registerUser = createAsyncThunk(
   async (user, thunkAPI) => {
     try {
       return await registerService(user);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const registerSeller = createAsyncThunk(
+  "auth/registerSeller",
+  async (seller, thunkAPI) => {
+    try {
+      return await registerSellerService(seller);
     } catch (error) {
       const message =
         (error.response &&
@@ -83,6 +107,19 @@ export const authSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(loginUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(registerSeller.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(registerSeller.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.seller = action.payload;
+      })
+      .addCase(registerSeller.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

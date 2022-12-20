@@ -4,10 +4,23 @@ import { setItemToStorage } from "../../../assets/localstorage";
 const REGISTER_URL = "http://localhost:5000/api/users/register";
 const LOGIN_URL = "http://localhost:5000/api/users/login";
 
+const SELLER_REGISTER_URL = "http://localhost:5000/api/sellers/register";
+const SELLER_LOGIN_URL = "http://localhost:5000/api/sellers/login";
+
 export const registerService = async (user) => {
   const res = await axios.post(REGISTER_URL, user);
 
   setItemToStorage("user", res.data);
+  return res.data;
+};
+
+export const registerSellerService = async (seller) => {
+  const res = await axios.post(SELLER_REGISTER_URL, seller);
+
+  if (res.data) {
+    setItemToStorage("seller", JSON.stringify(res.data));
+  }
+
   return res.data;
 };
 

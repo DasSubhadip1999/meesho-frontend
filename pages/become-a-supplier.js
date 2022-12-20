@@ -161,7 +161,7 @@ const Supplier = () => {
       {isScrolling && (
         <footer className="fixed w-full bottom-0 z-40 bg-white justify-center items-center flex py-3 border-none outline-none">
           <Link
-            href="/supplier/account"
+            href="/supplier/account/sign-up"
             className="btn w-[95%] border-none outline-none bg-[#f43397]"
           >
             Start Selling
