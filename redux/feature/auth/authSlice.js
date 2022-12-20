@@ -3,6 +3,7 @@ import {
   registerService,
   loginService,
   registerSellerService,
+  loginSellerService,
 } from "./authService";
 import { getItemFromStorage } from "../../../assets/localstorage";
 
@@ -72,6 +73,24 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+export const loginSeller = createAsyncThunk(
+  "auth/loginSeller",
+  async (seller, thunkAPI) => {
+    try {
+      return await loginSellerService(seller);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -120,6 +139,19 @@ export const authSlice = createSlice({
         state.seller = action.payload;
       })
       .addCase(registerSeller.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(loginSeller.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(loginSeller.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.seller = action.payload;
+      })
+      .addCase(loginSeller.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

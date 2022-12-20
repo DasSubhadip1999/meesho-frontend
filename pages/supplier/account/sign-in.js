@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { MdOutlineArrowBackIosNew } from "react-icons/Md";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { registerSeller, reset } from "../../../redux/feature/auth/authSlice";
+import { loginSeller, reset } from "../../../redux/feature/auth/authSlice";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({
@@ -23,7 +23,7 @@ const SignIn = () => {
     }
 
     if (isSuccess && seller) {
-      toast.success("Seller account created");
+      toast.success("Logged In");
     }
 
     dispatch(reset());
@@ -40,7 +40,7 @@ const SignIn = () => {
     if (!email || !password) {
       toast.error("Please fill all details");
     } else if (strongPassword.test(password)) {
-      dispatch(registerSeller(formData));
+      dispatch(loginSeller(formData));
       setFormData({
         name: "",
         email: "",

@@ -18,7 +18,17 @@ export const registerSellerService = async (seller) => {
   const res = await axios.post(SELLER_REGISTER_URL, seller);
 
   if (res.data) {
-    setItemToStorage("seller", JSON.stringify(res.data));
+    setItemToStorage("seller", res.data);
+  }
+
+  return res.data;
+};
+
+export const loginSellerService = async (seller) => {
+  const res = await axios.post(SELLER_LOGIN_URL, seller);
+
+  if (res.data) {
+    setItemToStorage("seller", res.data);
   }
 
   return res.data;
