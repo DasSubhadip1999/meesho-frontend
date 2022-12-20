@@ -11,7 +11,7 @@ const Topbar = () => {
       <div className="flex justify-between items-center w-[40%]">
         <Image src="/user.png" width={38} height={38} alt="avatar" />
         <p className="text-[13px] font-bold capitalize">
-          {user ? user.name : <p>User name</p>}
+          {user ? user?.name : "User name"}
         </p>
       </div>
       <ul className="flex justify-between items-center w-[30%]">

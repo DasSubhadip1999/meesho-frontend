@@ -1,6 +1,10 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { MdOutlineArrowBackIosNew } from "react-icons/Md";
+import {
+  MdOutlineArrowBackIosNew,
+  MdOutlineRemoveRedEye,
+} from "react-icons/Md";
+import { AiOutlineEyeInvisible } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { registerSeller, reset } from "../../../redux/feature/auth/authSlice";
@@ -11,6 +15,8 @@ const SignUp = () => {
     email: "",
     password: "",
   });
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const { name, email, password } = formData;
   const { seller, isError, isSuccess, isLoading, message } = useSelector(
@@ -110,13 +116,26 @@ const SignUp = () => {
           <label className="input-group">
             <span>Password</span>
             <input
-              type="password"
+              type={!showPassword ? "password" : "text"}
               name="password"
               value={password}
               placeholder="Enter your password"
               className="input input-bordered"
               onChange={onChange}
             />
+            {!showPassword ? (
+              <MdOutlineRemoveRedEye
+                size={24}
+                className="absolute right-3 top-[3rem] text-[#f43397]"
+                onClick={() => setShowPassword(true)}
+              />
+            ) : (
+              <AiOutlineEyeInvisible
+                size={24}
+                className="absolute right-3 top-[3rem] text-[#f43397]"
+                onClick={() => setShowPassword(false)}
+              />
+            )}
           </label>
         </div>
         <ul className="text-sm list-disc px-6 my-5">

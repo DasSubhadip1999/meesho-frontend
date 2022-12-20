@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import HashLoader from "react-spinners/HashLoader";
+import SellerAccount from "../../components/SellerAccount";
 import useAuthStatus from "../../hooks/useAuthStatus";
 
 const account = () => {
@@ -24,7 +25,7 @@ const account = () => {
   }
 
   if (isLoggedIn) {
-    return <div> Seller account</div>;
+    return <SellerAccount />;
   }
 };
 

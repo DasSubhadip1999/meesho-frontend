@@ -9,6 +9,12 @@ const nextConfig = {
         port: "",
         pathname: "/images/**",
       },
+      {
+        protocol: "https",
+        hostname: "images.meeshosupplyassets.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };
