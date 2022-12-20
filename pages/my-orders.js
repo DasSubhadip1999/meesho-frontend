@@ -3,9 +3,11 @@ import Loading from "../assets/Loading";
 import { useRouter } from "next/router";
 import { BsCart, BsSearch } from "react-icons/bs";
 import Searchbar from "../components/Searchbar";
+import { useSelector } from "react-redux";
 
 const myOders = () => {
-  const { checking, isLoggedIn } = useAuthStatus();
+  const { user } = useSelector((state) => state.auth);
+  const { checking, isLoggedIn } = useAuthStatus(user);
 
   const router = useRouter();
 

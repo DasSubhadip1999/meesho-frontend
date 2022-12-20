@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Router, useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { MdOutlineArrowBackIosNew } from "react-icons/Md";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,6 +17,7 @@ const SignIn = () => {
     (state) => state.auth
   );
   const dispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     if (isError) {
@@ -24,6 +26,9 @@ const SignIn = () => {
 
     if (isSuccess && seller) {
       toast.success("Logged In");
+      setTimeout(() => {
+        router.push("/supplier/account");
+      }, 1500);
     }
 
     dispatch(reset());

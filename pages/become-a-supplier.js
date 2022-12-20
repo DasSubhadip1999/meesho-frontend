@@ -10,10 +10,12 @@ import { learningDocuments } from "../data/sellerPageData";
 import { useState } from "react";
 import { BiArrowToTop } from "react-icons/bi";
 import { sellingTips } from "../data/sellerPageData";
+import { useSelector } from "react-redux";
 
 const Supplier = () => {
   const [isScrolling, setIsScrolling] = useState(false);
   const [height, setHeight] = useState(false);
+  const { seller } = useSelector((state) => state.auth);
 
   if (typeof document !== "undefined") {
     document.addEventListener("scroll", () => {
@@ -161,7 +163,7 @@ const Supplier = () => {
       {isScrolling && (
         <footer className="fixed w-full bottom-0 z-40 bg-white justify-center items-center flex py-3 border-none outline-none">
           <Link
-            href="/supplier/account/sign-up"
+            href={seller ? "/supplier/account" : "/supplier/account/sign-in"}
             className="btn w-[95%] border-none outline-none bg-[#f43397]"
           >
             Start Selling
