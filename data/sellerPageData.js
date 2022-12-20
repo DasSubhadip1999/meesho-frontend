@@ -38,3 +38,26 @@ export const learningDocuments = [
     sub: "Learn how to help make your online business successful on Meesho with the right tools and solutions",
   },
 ];
+
+export const sellingTips = [
+  {
+    icon: "https://supplier.meesho.com/images/icon-1.svg",
+    heading: "Advertisements",
+    sub: "You can promote your products catalog to reach more customers and increase your sales using Meesho Ads",
+  },
+  {
+    icon: "https://supplier.meesho.com/images/icon-1.svg",
+    heading: "Price Recommendation",
+    sub: "Sell online and set the Meesho recommended competitive price to increase your sales and visibility by getting and edge over sellers across online platforms",
+  },
+  {
+    icon: "https://supplier.meesho.com/images/icon-1.svg",
+    heading: "Product Recommendations",
+    sub: "Grow your business by selling the products recommended by Meesho. These recommendations are made using customer demand data from across the internet",
+  },
+  {
+    icon: "https://supplier.meesho.com/images/icon-1.svg",
+    heading: "Quality Dashboard",
+    sub: "You can reduce returns with Quality Dashboard. It provides detailed insights into why customers are returning your products",
+  },
+];

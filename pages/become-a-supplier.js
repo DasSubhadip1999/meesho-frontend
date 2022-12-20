@@ -9,6 +9,8 @@ import LearningCard from "../components/LearningCard";
 import { learningDocuments } from "../data/sellerPageData";
 import { useState } from "react";
 import { BiArrowToTop } from "react-icons/bi";
+import { sellingTips } from "../data/sellerPageData";
+
 const Supplier = () => {
   const [isScrolling, setIsScrolling] = useState(false);
   const [height, setHeight] = useState(false);
@@ -42,7 +44,7 @@ const Supplier = () => {
         </Link>
         <span className="ml-4 text-sm font-semibold">SUPPLIER HUB</span>
       </header>
-      <main className="mt-12">
+      <main className="mt-12 pb-16">
         <div className="bg-[#8EC5FC] bg-gradient-['62deg, #8EC5FC 0%, #E0C3FC 99%'] w-full h-54 pt-4">
           <Image
             src="https://supplier.meesho.com/images/Desktop_Pic.png"
@@ -97,7 +99,7 @@ const Supplier = () => {
           </h1>
           <HowToSell />
         </div>
-        <div className="">
+        <div>
           <h1 className="text-center py-8 text-3xl font-bold">
             Learn how to Sell <br /> on Meesho
           </h1>
@@ -107,32 +109,69 @@ const Supplier = () => {
             ))}
           </div>
         </div>
+        <div className="bg-[#f6f7f9] px-6 pb-2">
+          <h1 className="text-left py-8 text-3xl font-bold">
+            How to Grow Your <br /> Online Selling on Meesho?
+          </h1>
+          <p>
+            After you get your first ordr, it is time to start growing your
+            online selling business! Some factors that help you building your
+            online business are:
+          </p>
 
-        {/*  */}
-        <div>
-          <p>some</p>
-          <p>some</p>
-          <p>some</p>
-          <p>some</p>
-          <p>some</p>
-          <p>some</p>
-          <p>some</p>
-          <p>some</p>
-          <p>some</p>
-          <p>some</p>
+          {sellingTips.map(({ icon, heading, sub }) => (
+            <div
+              className="card bg-base-100 shadow-md my-6 relative pt-10"
+              key={uuidv4()}
+            >
+              <Image
+                src={icon}
+                width={40}
+                height={40}
+                alt="icon"
+                className="absolute left-7 top-6"
+              />
+              <div className="card-body my-2">
+                <h2 className="card-title">{heading}</h2>
+                <p>{sub}</p>
+              </div>
+            </div>
+          ))}
+
+          {/*  */}
+
+          <h1 className="font-bold text-3xl mt-4">
+            Meesho Supplier <br /> Support Available 24/7
+          </h1>
+          <p className="my-3">
+            Meesho supplier support is available to solve your doubts and issues
+            before and after you start your online selling business
+          </p>
+          <div className="my-4">
+            <p className="text-sm">You can reach out</p>
+            <a
+              href="mailto:sell@meesho.com"
+              className="btn lowercase bg-[#f43397] my-1"
+            >
+              sell@meesho.com
+            </a>
+          </div>
         </div>
       </main>
       {isScrolling && (
         <footer className="fixed w-full bottom-0 z-40 bg-white justify-center items-center flex py-3 border-none outline-none">
-          <button className="btn w-[95%] border-none outline-none bg-[#f43397]">
+          <Link
+            href="/supplier/account"
+            className="btn w-[95%] border-none outline-none bg-[#f43397]"
+          >
             Start Selling
-          </button>
+          </Link>
         </footer>
       )}
       {height && (
         <div
           onClick={goToTop}
-          className="w-10 h-10 rounded-md bg-[#f43397] text-white fixed right-4 bottom-24 text-3xl flex justify-center items-center "
+          className="w-10 h-10 rounded-md bg-[#f43397] text-white fixed right-4 bottom-24 text-3xl flex justify-center items-center"
         >
           <BiArrowToTop />
         </div>
