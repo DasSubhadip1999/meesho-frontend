@@ -17,8 +17,12 @@ const ProductForm = () => {
     discount: null,
   });
 
+  const onMutate = (e) => {
+    let bool = null;
+  };
+
   const input =
-    "border-[1px] border-[rgba(0,0,0,0.2)] rounded-md p-2 my-1 outline-[#f43397]";
+    "border-[1px] border-[rgba(0,0,0,0.2)] rounded-md p-2 my-1 outline-[#f000b8]";
   const inputGroup = "flex flex-col my-2";
   return (
     <>
@@ -88,27 +92,31 @@ const ProductForm = () => {
               type="radio"
               value="Male"
               name="gender"
-              placeholder="Enter gender suitable for"
+              className="radio radio-secondary"
             />
             <label>Female</label>
             <input
               type="radio"
               value="Female"
               name="gender"
-              placeholder="Enter gender suitable for"
+              className="radio radio-secondary"
             />
             <label>Others</label>
             <input
               type="radio"
               value="others"
               name="gender"
-              placeholder="Enter gender suitable for"
+              className="radio radio-secondary"
             />
           </div>
         </div>
         <div className={`${input} flex items-center gap-4`}>
           <label>For Kids</label>
-          <input type="checkbox" />
+          <div className="form-control w-52">
+            <label className="cursor-pointer label">
+              <input type="checkbox" className="toggle toggle-secondary" />
+            </label>
+          </div>
         </div>
         <div className={inputGroup}>
           <label>Colors Available*</label>
@@ -124,7 +132,7 @@ const ProductForm = () => {
             type="file"
             multiple
             accept="image/png,image/jpg,image/jpeg"
-            className={input}
+            className="file-input file-input-bordered file-input-secondary w-full my-2"
           />
         </div>
         <div className={inputGroup}>
@@ -133,17 +141,37 @@ const ProductForm = () => {
         </div>
         <div className={inputGroup}>
           <label>Choose available sizes</label>
-          <div className={`${input} flex gap-4`}>
+          <div className={`${input} flex gap-3`}>
             <label>S</label>
-            <input type="checkbox" value="S" />
+            <input
+              type="checkbox"
+              value="S"
+              className="checkbox checkbox-secondary"
+            />
             <label>M</label>
-            <input type="checkbox" value="M" />
+            <input
+              type="checkbox"
+              value="M"
+              className="checkbox checkbox-secondary"
+            />
             <label>L</label>
-            <input type="checkbox" value="L" />
+            <input
+              type="checkbox"
+              value="L"
+              className="checkbox checkbox-secondary"
+            />
             <label>XL</label>
-            <input type="checkbox" value="XL" />
+            <input
+              type="checkbox"
+              value="XL"
+              className="checkbox checkbox-secondary"
+            />
             <label>XXL</label>
-            <input type="checkbox" value="XXL" />
+            <input
+              type="checkbox"
+              value="XXL"
+              className="checkbox checkbox-secondary"
+            />
           </div>
         </div>
         <div className={inputGroup}>
@@ -154,7 +182,7 @@ const ProductForm = () => {
             className={input}
           />
         </div>
-        <button className="btn bg-[#f43397] w-full outline-none border-none">
+        <button className="btn bg-[#f000b8] w-full outline-none border-none">
           Add Product
         </button>
       </form>
