@@ -79,7 +79,7 @@ const SignUp = () => {
       <form className="px-4" onSubmit={onSubmit}>
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Your Name</span>
+            <span className="label-text">Company Name</span>
           </label>
           <label className="input-group">
             <span>Name</span>

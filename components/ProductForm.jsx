@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 
 const ProductForm = () => {
   const [sizeString, setSizeString] = useState([]);
+  const [productImages, setProductImages] = useState({});
   const [formData, setFormData] = useState({
     manufacturer: "",
     importer: "",
@@ -21,6 +22,9 @@ const ProductForm = () => {
   });
   const [warning, setWarning] = useState(false);
 
+  //
+  //console.log(productImages);
+
   const {
     manufacturer,
     importer,
@@ -28,12 +32,9 @@ const ProductForm = () => {
     contact,
     name,
     type,
-    gender,
     isKids,
     colors,
-    images,
     price,
-    size,
     discount,
     discountedPrice,
   } = formData;
@@ -223,6 +224,7 @@ const ProductForm = () => {
           <input
             type="file"
             multiple
+            onChange={(e) => setProductImages(e.target.files)}
             accept="image/png,image/jpg,image/jpeg"
             className="file-input file-input-bordered file-input-secondary w-full my-2"
           />
