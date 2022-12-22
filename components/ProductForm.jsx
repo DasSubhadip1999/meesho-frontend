@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { addProduct, reset } from "../redux/feature/product/productSlice";
+import _ from "lodash";
 
 const ProductForm = () => {
   const [sizeString, setSizeString] = useState([]);
-  const [productImages, setProductImages] = useState({});
+  const [productImages, setProductImages] = useState([]);
   const [formData, setFormData] = useState({
     manufacturer: "",
     importer: "",
@@ -13,17 +16,13 @@ const ProductForm = () => {
     type: "",
     gender: "",
     isKids: false,
-    colors: "",
-    images: [],
+    color: "",
     price: 0,
     size: "",
     discount: "",
     discountedPrice: 0,
   });
   const [warning, setWarning] = useState(false);
-
-  //
-  //console.log(productImages);
 
   const {
     manufacturer,
@@ -33,11 +32,26 @@ const ProductForm = () => {
     name,
     type,
     isKids,
-    colors,
+    color,
     price,
     discount,
     discountedPrice,
   } = formData;
+
+  const { product, isError, isSuccess, isLoading, message } = useSelector(
+    (state) => state.product
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+    if (isSuccess && product) {
+      toast.success("Product added successfully");
+    }
+    dispatch(reset());
+  }, [isError, isSuccess, message, dispatch, product]);
 
   useEffect(() => {
     setFormData((prev) => ({ ...prev, size: sizeString.join(",") }));
@@ -88,6 +102,20 @@ const ProductForm = () => {
     }
   }, [price]);
 
+  //submission
+  const onSubmit = (e) => {
+    e.preventDefault();
+    let uploadForm = new FormData();
+    for (let key in formData) {
+      uploadForm.append(key, formData[key]);
+    }
+    _.forEach(productImages, (file) => {
+      uploadForm.append("images", file);
+    });
+
+    dispatch(addProduct(uploadForm));
+  };
+
   const input =
     "border-[1px] border-[rgba(0,0,0,0.2)] rounded-md p-2 my-1 outline-[#f000b8]";
   const warningInput =
@@ -98,7 +126,7 @@ const ProductForm = () => {
       <h1 className="text-xl font-bold text-center my-2">
         Fill the Product Form
       </h1>
-      <form className="mx-5 my-2">
+      <form className="mx-5 my-2" onSubmit={onSubmit}>
         <div className={inputGroup}>
           <label>Manufacturer*</label>
           <input
@@ -146,10 +174,10 @@ const ProductForm = () => {
         <div className={inputGroup}>
           <label>Product Name</label>
           <input
-            type="email"
+            type="text"
             name="name"
             value={name}
-            placeholder="Enter contact email"
+            placeholder="Enter product name"
             className={input}
             onChange={onMutate}
           />
@@ -171,7 +199,7 @@ const ProductForm = () => {
             <label>Male</label>
             <input
               type="radio"
-              value="Male"
+              value="male"
               name="gender"
               className="radio radio-secondary"
               onChange={onMutate}
@@ -179,7 +207,7 @@ const ProductForm = () => {
             <label>Female</label>
             <input
               type="radio"
-              value="Female"
+              value="female"
               name="gender"
               className="radio radio-secondary"
               onChange={onMutate}
@@ -212,8 +240,8 @@ const ProductForm = () => {
           <label>Colors Available*</label>
           <input
             type="text"
-            value={colors}
-            name="colors"
+            value={color}
+            name="color"
             placeholder="Enter comma(,) separated color(red,blue)"
             className={input}
             onChange={onMutate}
