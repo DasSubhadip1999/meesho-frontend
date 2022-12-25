@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import AuthContext from "../context/authContext";
 import { loginUser, reset } from "../redux/feature/auth/authSlice";
 
 const SignIn = () => {
@@ -13,6 +14,7 @@ const SignIn = () => {
   );
   const { email, password } = formData;
   const dispatch = useDispatch();
+  const { modelAutoClose } = useContext(AuthContext);
 
   useEffect(() => {
     if (isError) {
@@ -21,6 +23,7 @@ const SignIn = () => {
 
     if (isSuccess && user) {
       toast.success("Login successfull");
+      modelAutoClose.current.checked = false;
     }
 
     dispatch(reset());

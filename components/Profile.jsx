@@ -1,15 +1,16 @@
 import Image from "next/image";
 import { useContext } from "react";
 import { MdOutlineLogout } from "react-icons/md";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import AuthContext from "../context/authContext";
 import { removeItemFromStorage } from "../assets/localstorage";
-import { useRouter } from "next/router";
+import { userLogout } from "../redux/feature/auth/authSlice";
 
 const Profile = () => {
   const { openModal } = useContext(AuthContext);
   const { user } = useSelector((state) => state.auth);
-  const router = useRouter();
+
+  const dispatch = useDispatch();
   return (
     <div className="flex py-4 px-3 items-center mt-12">
       <div className="avatar">
@@ -25,7 +26,7 @@ const Profile = () => {
           <button
             onClick={() => {
               removeItemFromStorage("user");
-              router.push("/");
+              dispatch(userLogout());
             }}
             className="flex absolute right-0 -top-1 items-center bg-[#f000b8] text-white px-2 py-1 rounded-md"
           >

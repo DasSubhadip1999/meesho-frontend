@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import HashLoader from "react-spinners/HashLoader";
 
 const AuthModal = () => {
-  const { authType } = useContext(AuthContext);
+  const { authType, modelAutoClose } = useContext(AuthContext);
   const { isLoading } = useSelector((state) => state.auth);
 
   const overrideCss = {
@@ -20,7 +20,12 @@ const AuthModal = () => {
   return (
     <>
       {/* Put this part before </body> tag */}
-      <input type="checkbox" id="my-modal-6" className="modal-toggle" />
+      <input
+        type="checkbox"
+        id="my-modal-6"
+        className="modal-toggle"
+        ref={modelAutoClose}
+      />
       <div
         className={`modal modal-bottom sm:modal-middle ${
           isLoading && "pointer-events-none"

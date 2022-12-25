@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import AuthContext from "../context/authContext";
 import { registerUser, reset } from "../redux/feature/auth/authSlice";
 
 const SignUp = () => {
@@ -19,14 +21,17 @@ const SignUp = () => {
   // console.log(user);
 
   const dispatch = useDispatch();
+  const router = useRouter();
+  const { modelAutoClose } = useContext(AuthContext);
 
   useEffect(() => {
     if (isError) {
       toast.error(message);
     }
 
-    if (isSuccess && user && !seller) {
+    if (isSuccess && user && router.pathname === "/account") {
       toast.success("User account created successfully");
+      modelAutoClose.current.checked = false;
     }
 
     dispatch(reset());
