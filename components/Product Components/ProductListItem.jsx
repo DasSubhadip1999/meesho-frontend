@@ -5,7 +5,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 const ProductListItem = ({ item }) => {
   const imagePrefix = "http://localhost:5000/";
   return (
-    <Link href="/products/1234" className="border-2 relative pb-3">
+    <Link href={`/products/${item._id}`} className="border-2 relative pb-3">
       <div className="absolute right-2 top-2 p-2 rounded-full bg-white">
         <AiOutlineHeart />
       </div>

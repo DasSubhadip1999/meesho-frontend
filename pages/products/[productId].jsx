@@ -1,52 +1,32 @@
 import Image from "next/image";
-import Link from "next/link";
-import { MdOutlineArrowBackIosNew } from "react-icons/md";
-import { BsHeart, BsCart } from "react-icons/bs";
-import { IoMdNotificationsOutline } from "react-icons/io";
+import Size from "../../components/Product Components/Size";
+import DeliveryLocation from "../../components/DeliveryLocation";
+import ProductTopbar from "../../components/Product Components/ProductTopbar";
+import axios from "axios";
 
-const Product = () => {
+const Product = ({ product }) => {
   return (
     <div>
-      <div className="flex justify-between items-center p-3 w-full fixed top-0 bg-white z-20">
-        <Link href="/">
-          <MdOutlineArrowBackIosNew />
-        </Link>
-        <ul className="flex justify-between items-center w-[30%]">
-          <li>
-            <BsHeart size={19} />
-          </li>
-          <li>
-            <IoMdNotificationsOutline size={23} />
-          </li>
-          <li>
-            <BsCart size={20} />
-          </li>
-        </ul>
-      </div>
-      <div className="pt-14">Deliver Location</div>
+      <ProductTopbar />
+      <div className="pt-14"></div>
+      <DeliveryLocation />
       <div>
         <Image
-          src={`http:localhost:5000/uploads/1671517979817.jpg`}
+          src={`http:localhost:5000/` + product.images[0]}
           alt="single product image"
-          width={300}
-          height={500}
+          width={250}
+          height={300}
+          className="h-80 mx-auto"
         />
       </div>
       <div>Colors</div>
-      <p>Product Name</p>
+      <p>{product.name}</p>
       <div className="flex">
         <h2>Product Price</h2>{" "}
       </div>
       <div>Officer & Old Price</div>
       <div>
-        <div>
-          <h1>Select Size</h1>
-          <ul>
-            <li>S</li>
-            <li>M</li>
-            <li>L</li>
-          </ul>
-        </div>
+        <Size />
         {/* sold by */}
       </div>
       <section className="fixed bottom-0 z-20 bg-white w-full flex">
@@ -57,6 +37,20 @@ const Product = () => {
       </section>
     </div>
   );
+};
+
+export const getServerSideProps = async (context) => {
+  const res = await axios.get(
+    `http://localhost:5000/api/products/get/${context.params.productId}`
+  );
+
+  const product = res.data;
+
+  return {
+    props: {
+      product,
+    },
+  };
 };
 
 export default Product;
