@@ -1,11 +1,15 @@
 import Image from "next/image";
 import { useContext } from "react";
+import { MdOutlineLogout } from "react-icons/md";
 import { useSelector } from "react-redux";
 import AuthContext from "../context/authContext";
+import { removeItemFromStorage } from "../assets/localstorage";
+import { useRouter } from "next/router";
 
 const Profile = () => {
   const { openModal } = useContext(AuthContext);
   const { user } = useSelector((state) => state.auth);
+  const router = useRouter();
   return (
     <div className="flex py-4 px-3 items-center mt-12">
       <div className="avatar">
@@ -15,9 +19,18 @@ const Profile = () => {
       </div>
 
       {user ? (
-        <div className="border-l-2 border-[rgba(0,0,0,0.2)] ml-4 p-2">
+        <div className="border-l-2 border-[rgba(0,0,0,0.2)] ml-4 p-2 relative">
           <p className="font-semibold">{user.name}</p>
           <p>{user.email}</p>
+          <button
+            onClick={() => {
+              removeItemFromStorage("user");
+              router.push("/");
+            }}
+            className="flex absolute right-0 -top-1 items-center bg-[#f000b8] text-white px-2 py-1 rounded-md"
+          >
+            Logout <MdOutlineLogout className="ml-1" />
+          </button>
         </div>
       ) : (
         <div className="text-white ml-4">

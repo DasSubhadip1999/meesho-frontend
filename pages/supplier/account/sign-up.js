@@ -34,7 +34,7 @@ const SignUp = () => {
     }
 
     dispatch(reset());
-  }, [isError, isSuccess, message, dispatch]);
+  }, [isError, isSuccess, message, dispatch, seller]);
 
   const onChange = (e) =>
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -57,6 +57,17 @@ const SignUp = () => {
       toast.error("Password error");
     }
   };
+
+  const overrideCss = {
+    position: "absolute",
+    left: "43%",
+    top: "48%",
+    zIndex: 20,
+  };
+
+  if (isLoading) {
+    return <HashLoader cssOverride={overrideCss} />;
+  }
 
   return (
     <>

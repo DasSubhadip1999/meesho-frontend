@@ -12,7 +12,7 @@ const SignUp = () => {
   });
 
   const { name, email, password, password2 } = formData;
-  const { user, isError, isLoading, isSuccess, message } = useSelector(
+  const { user, isError, isLoading, isSuccess, message, seller } = useSelector(
     (state) => state.auth
   );
 
@@ -25,8 +25,8 @@ const SignUp = () => {
       toast.error(message);
     }
 
-    if (isSuccess && user) {
-      toast.success("Account created successfully");
+    if (isSuccess && user && !seller) {
+      toast.success("User account created successfully");
     }
 
     dispatch(reset());

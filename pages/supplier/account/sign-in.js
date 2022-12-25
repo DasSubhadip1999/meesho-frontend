@@ -29,15 +29,12 @@ const SignIn = () => {
       toast.error(message);
     }
 
-    if (isSuccess && seller) {
-      // toast.success("Logged In");
-      setTimeout(() => {
-        router.push("/supplier/account");
-      }, 1500);
+    if (isSuccess && seller && router.pathname !== "/account") {
+      router.push("/supplier/account");
     }
 
     dispatch(reset());
-  }, [isError, isSuccess, message, dispatch]);
+  }, [seller, isError, isSuccess, message, dispatch]);
 
   const onChange = (e) =>
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -52,7 +49,6 @@ const SignIn = () => {
     } else if (strongPassword.test(password)) {
       dispatch(loginSeller(formData));
       setFormData({
-        name: "",
         email: "",
         password: "",
       });

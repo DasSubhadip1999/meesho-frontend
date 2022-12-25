@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { addProduct, reset } from "../redux/feature/product/productSlice";
@@ -23,6 +23,11 @@ const ProductForm = () => {
     discountedPrice: 0,
   });
   const [warning, setWarning] = useState(false);
+  const checkboxRef1 = useRef(null);
+  const checkboxRef2 = useRef(null);
+  const checkboxRef3 = useRef(null);
+  const checkboxRef4 = useRef(null);
+  const checkboxRef5 = useRef(null);
 
   const {
     manufacturer,
@@ -31,6 +36,7 @@ const ProductForm = () => {
     contact,
     name,
     type,
+    gender,
     isKids,
     color,
     price,
@@ -78,7 +84,10 @@ const ProductForm = () => {
 
     if (discount <= price) {
       setWarning(false);
-      setFormData((prev) => ({ ...prev, discountedPrice: price - discount }));
+      setFormData((prev) => ({
+        ...prev,
+        discountedPrice: price - Number(discount),
+      }));
     } else {
       if (!warning) {
         toast.error("Please check discount");
@@ -92,7 +101,7 @@ const ProductForm = () => {
       setWarning(false);
       setFormData((prev) => ({
         ...prev,
-        discountedPrice: (price - discount).toFixed(2),
+        discountedPrice: (price - Number(discount)).toFixed(2),
       }));
     } else {
       if (!warning) {
@@ -113,7 +122,42 @@ const ProductForm = () => {
       uploadForm.append("images", file);
     });
 
-    dispatch(addProduct(uploadForm));
+    if (
+      !manufacturer ||
+      !packer ||
+      !name ||
+      !type ||
+      !gender ||
+      !color ||
+      !productImages ||
+      !price
+    ) {
+      toast.error("Please fill * details");
+    } else {
+      dispatch(addProduct(uploadForm));
+      setFormData({
+        manufacturer: "",
+        importer: "",
+        packer: "",
+        contact: "",
+        name: "",
+        type: "",
+        gender: "",
+        isKids: false,
+        color: "",
+        price: 0,
+        size: "",
+        discount: "",
+        discountedPrice: 0,
+      });
+      setProductImages([]);
+      setSizeString([]);
+      checkboxRef2.current.checked = false;
+      checkboxRef3.current.checked = false;
+      checkboxRef1.current.checked = false;
+      checkboxRef4.current.checked = false;
+      checkboxRef5.current.checked = false;
+    }
   };
 
   const input =
@@ -300,6 +344,7 @@ const ProductForm = () => {
               value="S"
               className="checkbox checkbox-secondary"
               onChange={sizeSelect}
+              ref={checkboxRef1}
             />
             <label>M</label>
             <input
@@ -307,6 +352,7 @@ const ProductForm = () => {
               value="M"
               className="checkbox checkbox-secondary"
               onChange={sizeSelect}
+              ref={checkboxRef2}
             />
             <label>L</label>
             <input
@@ -314,6 +360,7 @@ const ProductForm = () => {
               value="L"
               className="checkbox checkbox-secondary"
               onChange={sizeSelect}
+              ref={checkboxRef3}
             />
             <label>XL</label>
             <input
@@ -321,6 +368,7 @@ const ProductForm = () => {
               value="XL"
               className="checkbox checkbox-secondary"
               onChange={sizeSelect}
+              ref={checkboxRef4}
             />
             <label>XXL</label>
             <input
@@ -328,6 +376,7 @@ const ProductForm = () => {
               value="XXL"
               className="checkbox checkbox-secondary"
               onChange={sizeSelect}
+              ref={checkboxRef5}
             />
           </div>
         </div>

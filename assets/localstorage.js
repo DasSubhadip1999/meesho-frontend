@@ -9,3 +9,9 @@ export const getItemFromStorage = (key) => {
     return JSON.parse(window.localStorage.getItem(key));
   }
 };
+
+export const removeItemFromStorage = (key) => {
+  if (typeof window !== "undefined") {
+    window.localStorage.removeItem(key);
+  }
+};
