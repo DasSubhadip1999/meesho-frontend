@@ -7,7 +7,7 @@ const HashLoaderComponent = () => {
     top: "48%",
     zIndex: 20,
   };
-  return <HashLoader cssOverride={overrideCss} />;
+  return <HashLoader cssOverride={overrideCss} color={`#f43397`} />;
 };
 
 export default HashLoaderComponent;

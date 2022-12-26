@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BsHeart, BsCart } from "react-icons/bs";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { useSelector } from "react-redux";
+import CartLogo from "../assets/CartLogo";
 
 const Topbar = () => {
   const { user } = useSelector((state) => state.auth);
@@ -23,9 +24,7 @@ const Topbar = () => {
           <IoMdNotificationsOutline size={23} />
         </li>
         <li>
-          <Link href="/cart">
-            <BsCart size={20} />
-          </Link>
+          <CartLogo />
         </li>
       </ul>
     </div>

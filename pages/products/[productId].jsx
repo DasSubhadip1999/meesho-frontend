@@ -21,7 +21,7 @@ const Product = ({ product }) => {
   //console.log(product);
 
   useEffect(() => {
-    if (isSuccess && cart?.product) {
+    if (isSuccess && Object.keys(cart).length) {
       toast.success("Product added to cart");
     }
 

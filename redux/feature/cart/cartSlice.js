@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { addToCartService } from "./cartService";
+import { addToCartService, getCartItemsService } from "./cartService";
 
 const initialState = {
-  allCartItem: [],
+  allCartItems: [],
   cart: {},
   isSuccess: false,
   isError: false,
@@ -14,6 +14,7 @@ export const getCartItems = createAsyncThunk(
   "cart/get",
   async (_, thunkAPI) => {
     let token = thunkAPI.getState().auth.user.token;
+    //console.log("thunk", token);
     try {
       return await getCartItemsService(token);
     } catch (error) {
@@ -79,7 +80,8 @@ export const cartSlice = createSlice({
       .addCase(getCartItems.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.allCartItem = action.payload;
+        //console.log("slice", action.payload);
+        state.allCartItems = action.payload;
       })
       .addCase(getCartItems.rejected, (state, action) => {
         state.isLoading = false;

@@ -1,4 +1,5 @@
 import { BsCart, BsSearch } from "react-icons/bs";
+import CartLogo from "../assets/CartLogo";
 import Menu from "../components/Menu";
 import Profile from "../components/Profile";
 
@@ -10,7 +11,7 @@ const account = () => {
         <span className="text-md font-semibold">ACCOUNT</span>
         <div className="w-[18%] flex justify-between items-center">
           <BsSearch size={20} />
-          <BsCart size={20} />
+          <CartLogo />
         </div>
       </header>
       <Profile />

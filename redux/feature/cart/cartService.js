@@ -23,6 +23,7 @@ export const addToCartService = async (productId, token) => {
 
 //@route api/products/cart-products
 export const getCartItemsService = async (token) => {
+  //console.log("service token", token);
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -31,7 +32,7 @@ export const getCartItemsService = async (token) => {
 
   const res = await axios.get(PROXY + `api/products/cart-products`, config);
 
-  console.log("service get", res.data);
+  //console.log("service get", res);
 
   return res.data;
 };
