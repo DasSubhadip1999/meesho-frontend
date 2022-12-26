@@ -7,9 +7,35 @@ import { BsCart2 } from "react-icons/bs";
 import { RxCaretRight } from "react-icons/rx";
 import Pricing from "../../components/Product Components/Pricing";
 import SellerInformation from "../../components/Product Components/SellerInformation";
+import { addToCart } from "../../redux/feature/cart/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { reset } from "../../redux/feature/cart/cartSlice";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const Product = ({ product }) => {
+  const { isSuccess, isError, message, cart } = useSelector(
+    (state) => state.cart
+  );
+  const dispatch = useDispatch();
   //console.log(product);
+
+  useEffect(() => {
+    if (isSuccess && cart?.product) {
+      toast.success("Product added to cart");
+    }
+
+    if (isError) {
+      toast.error(message);
+    }
+
+    dispatch(reset());
+  }, [isSuccess, isError, cart, dispatch]);
+
+  //add products to cart
+  const handleAddToCart = () => {
+    dispatch(addToCart(product._id));
+  };
   const button =
     "px-3 py-2 w-[48%] mb-1 rounded-md flex items-center justify-center";
   return (
@@ -36,7 +62,10 @@ const Product = ({ product }) => {
       <div className="pb-16">gap</div>
       <section className="fixed bottom-0 z-20 bg-white w-full flex">
         <ul className="text-[#e65082] flex w-full justify-between items-center px-3 pt-3 pb-2">
-          <li className={`${button} border-[1px] border-black`}>
+          <li
+            className={`${button} border-[1px] border-black text-black`}
+            onClick={handleAddToCart}
+          >
             <BsCart2 size={23} className="mr-1" />
             Add to cart
           </li>

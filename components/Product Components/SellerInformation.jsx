@@ -5,8 +5,8 @@ const SellerInformation = ({ seller }) => {
   return (
     <div className="p-3 bg-white">
       <h1 className="font-bold text-lg mb-3">Sold By</h1>
-      <div className="flex gap-6 py-1 items-center">
-        <div className="bg-[#ece1e7] p-3 rounded-full">
+      <div className="flex justify-between py-1 items-center">
+        <div className="bg-[#ece1e7] p-3 rounded-full text-[#f43397]">
           <AiOutlineShop size={21} />
         </div>
         <h1 className="text-lg uppercase font-bold">{seller.name}</h1>

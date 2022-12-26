@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { BsHeart, BsCart } from "react-icons/bs";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { useSelector } from "react-redux";
@@ -22,7 +23,9 @@ const Topbar = () => {
           <IoMdNotificationsOutline size={23} />
         </li>
         <li>
-          <BsCart size={20} />
+          <Link href="/cart">
+            <BsCart size={20} />
+          </Link>
         </li>
       </ul>
     </div>
