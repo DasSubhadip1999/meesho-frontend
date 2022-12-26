@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { addToCartService, getCartItemsService } from "./cartService";
+import { deleteCartItemService } from "../cart/cartService";
 
 const initialState = {
   allCartItems: [],
@@ -35,6 +36,24 @@ export const addToCart = createAsyncThunk(
     let token = thunkAPI.getState().auth.user.token;
     try {
       return await addToCartService(productId, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.toString();
+
+      thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const deleteCartItem = createAsyncThunk(
+  "cart/delete",
+  async (cartId, thunkAPI) => {
+    let token = thunkAPI.getState().auth.user.token;
+    try {
+      return await deleteCartItemService(cartId, token);
     } catch (error) {
       const message =
         (error.response &&
@@ -84,6 +103,19 @@ export const cartSlice = createSlice({
         state.allCartItems = action.payload;
       })
       .addCase(getCartItems.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(deleteCartItem.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteCartItem.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message = action.payload;
+      })
+      .addCase(deleteCartItem.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

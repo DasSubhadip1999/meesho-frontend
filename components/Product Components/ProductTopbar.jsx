@@ -2,6 +2,7 @@ import Link from "next/link";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { BsHeart, BsCart } from "react-icons/bs";
 import { IoMdNotificationsOutline } from "react-icons/io";
+import CartLogo from "../../assets/CartLogo";
 
 const ProductTopbar = () => {
   return (
@@ -17,7 +18,7 @@ const ProductTopbar = () => {
           <IoMdNotificationsOutline size={23} />
         </li>
         <li>
-          <BsCart size={20} />
+          <CartLogo />
         </li>
       </ul>
     </div>

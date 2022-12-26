@@ -1,8 +1,36 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 import { RxCross2 } from "react-icons/rx";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { reset } from "../../redux/feature/cart/cartSlice";
+import {
+  deleteCartItem,
+  getCartItems,
+} from "../../redux/feature/cart/cartSlice";
 
-const CartListItem = ({ product }) => {
+const CartListItem = ({ product, cartId }) => {
+  const { isError, isLoading, isSuccess, message } = useSelector(
+    (state) => state.cart
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (message === "Cart item removed successfully") {
+      // toast.success(message);
+      dispatch(getCartItems());
+    }
+
+    dispatch(reset());
+    //dispatch(getCartItems());
+  }, []);
+
+  //remove cart item
+  const handleDeleteCartItem = () => {
+    dispatch(deleteCartItem(cartId));
+  };
+
   return (
     <div className="bg-white mb-3">
       <div className="flex px-4 py-3 border-b-[1px]">
@@ -25,7 +53,10 @@ const CartListItem = ({ product }) => {
             <span>Size: M</span>
             <span>Qty: 1</span>
           </div>
-          <h2 className="my-2 flex items-center font-semibold">
+          <h2
+            className="my-2 flex items-center font-semibold"
+            onClick={handleDeleteCartItem}
+          >
             <RxCross2 size={17} className="mr-1" /> Remove
           </h2>
         </div>

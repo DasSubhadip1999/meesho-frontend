@@ -32,7 +32,11 @@ const CartList = () => {
       <div className="bg-[#e6ebf8]">
         {allCartItems.length &&
           allCartItems.map((cartItem) => (
-            <CartListItem key={uuidv4()} product={cartItem?.product} />
+            <CartListItem
+              key={uuidv4()}
+              product={cartItem?.product}
+              cartId={cartItem._id}
+            />
           ))}
       </div>
     );
