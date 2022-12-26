@@ -3,8 +3,15 @@ import Size from "../../components/Product Components/Size";
 import DeliveryLocation from "../../components/DeliveryLocation";
 import ProductTopbar from "../../components/Product Components/ProductTopbar";
 import axios from "axios";
+import { BsCart2 } from "react-icons/bs";
+import { RxCaretRight } from "react-icons/rx";
+import Pricing from "../../components/Product Components/Pricing";
+import SellerInformation from "../../components/Product Components/SellerInformation";
 
 const Product = ({ product }) => {
+  //console.log(product);
+  const button =
+    "px-3 py-2 w-[48%] mb-1 rounded-md flex items-center justify-center";
   return (
     <div>
       <ProductTopbar />
@@ -19,20 +26,25 @@ const Product = ({ product }) => {
           className="h-80 mx-auto"
         />
       </div>
-      <div>Colors</div>
-      <p>{product.name}</p>
-      <div className="flex">
-        <h2>Product Price</h2>{" "}
-      </div>
-      <div>Officer & Old Price</div>
-      <div>
-        <Size />
+      <Pricing product={product} />
+      <div className="bg-[#e6ebf8] py-2">
+        <Size sizes={product.sizes} />
+        <SellerInformation seller={product.seller} />
         {/* sold by */}
       </div>
+      {/*  */}
+      <div className="pb-16">gap</div>
       <section className="fixed bottom-0 z-20 bg-white w-full flex">
         <ul className="text-[#e65082] flex w-full justify-between items-center px-3 pt-3 pb-2">
-          <li className="px-3 py-2 border-2 w-[47%] mb-1">Add to cart</li>
-          <li className="px-3 py-2 border-2 w-[47%] mb-1">Add to cart</li>
+          <li className={`${button} border-[1px] border-black`}>
+            <BsCart2 size={23} className="mr-1" />
+            Add to cart
+          </li>
+          <li className={`${button} bg-[#f43397] text-white`}>
+            {" "}
+            <RxCaretRight size={25} />
+            Buy Now
+          </li>
         </ul>
       </section>
     </div>
