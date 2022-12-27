@@ -1,4 +1,5 @@
 import axios from "axios";
+import { setItemToStorage } from "../../../assets/localstorage";
 
 const PROXY = "http://localhost:5000/";
 
@@ -34,6 +35,7 @@ export const getCartItemsService = async (token) => {
   const res = await axios.get(PROXY + `api/products/cart-products`, config);
 
   //console.log("service get", res);
+  setItemToStorage("cart", res.data);
 
   return res.data;
 };

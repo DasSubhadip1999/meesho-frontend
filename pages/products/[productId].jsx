@@ -9,15 +9,21 @@ import Pricing from "../../components/Product Components/Pricing";
 import SellerInformation from "../../components/Product Components/SellerInformation";
 import { addToCart } from "../../redux/feature/cart/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
+import useAuthStatus from "../../hooks/useAuthStatus";
 import { reset } from "../../redux/feature/cart/cartSlice";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
+import { getCartItems } from "../../redux/feature/cart/cartSlice";
 
 const Product = ({ product }) => {
+  const { user } = useSelector((state) => state.auth);
+  const { checking, isLoggedIn } = useAuthStatus(user);
   const { isSuccess, isError, message, cart } = useSelector(
     (state) => state.cart
   );
   const dispatch = useDispatch();
+  const router = useRouter();
   //console.log(product);
 
   useEffect(() => {
@@ -34,7 +40,14 @@ const Product = ({ product }) => {
 
   //add products to cart
   const handleAddToCart = () => {
-    dispatch(addToCart(product._id));
+    if (isLoggedIn) {
+      dispatch(addToCart(product._id));
+      setTimeout(() => {
+        dispatch(getCartItems());
+      }, 1500);
+    } else {
+      router.push("/account");
+    }
   };
   const button =
     "px-3 py-2 w-[48%] mb-1 rounded-md flex items-center justify-center";

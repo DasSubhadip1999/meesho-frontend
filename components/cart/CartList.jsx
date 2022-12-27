@@ -5,6 +5,8 @@ import { v4 as uuidv4 } from "uuid";
 import HashLoaderComponent from "../../assets/HashLoaderComponent";
 import { getCartItems, reset } from "../../redux/feature/cart/cartSlice";
 import CartListItem from "./CartListItem";
+import CartPricing from "./CartPricing";
+import WishList from "./WishList";
 
 const CartList = () => {
   const { allCartItems, isSuccess, isLoading, isError, message } = useSelector(
@@ -38,6 +40,8 @@ const CartList = () => {
               cartId={cartItem._id}
             />
           ))}
+        <WishList />
+        <CartPricing />
       </div>
     );
   }

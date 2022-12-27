@@ -26,6 +26,7 @@ const Profile = () => {
           <button
             onClick={() => {
               removeItemFromStorage("user");
+              removeItemFromStorage("cart");
               dispatch(userLogout());
             }}
             className="flex absolute right-0 -top-1 items-center bg-[#f000b8] text-white px-2 py-1 rounded-md"

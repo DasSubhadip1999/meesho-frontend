@@ -102,9 +102,11 @@ export const authSlice = createSlice({
       state.message = "";
     },
     userLogout: (state) => {
+      //console.log("user", 123);
       state.user = null;
     },
-    userLogout: (state) => {
+    sellerLogout: (state) => {
+      //console.log("seller", 123);
       state.seller = null;
     },
   },

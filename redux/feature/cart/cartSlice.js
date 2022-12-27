@@ -1,9 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { addToCartService, getCartItemsService } from "./cartService";
 import { deleteCartItemService } from "../cart/cartService";
+import { getItemFromStorage } from "../../../assets/localstorage";
+
+const LC_CART = getItemFromStorage("cart");
 
 const initialState = {
-  allCartItems: [],
+  allCartItems: LC_CART ? LC_CART : [],
   cart: {},
   isSuccess: false,
   isError: false,

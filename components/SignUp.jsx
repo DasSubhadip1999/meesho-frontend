@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import AuthContext from "../context/authContext";
 import { registerUser, reset } from "../redux/feature/auth/authSlice";
+import { getCartItems } from "../redux/feature/cart/cartSlice";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -55,6 +56,7 @@ const SignUp = () => {
         password: "",
         password2: "",
       });
+      dispatch(getCartItems());
     }
   };
 

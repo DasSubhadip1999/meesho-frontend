@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { removeItemFromStorage } from "../../assets/localstorage";
 import { reset } from "../../redux/feature/cart/cartSlice";
 import {
   deleteCartItem,
@@ -29,6 +30,7 @@ const CartListItem = ({ product, cartId }) => {
   //remove cart item
   const handleDeleteCartItem = () => {
     dispatch(deleteCartItem(cartId));
+    removeItemFromStorage("cart");
   };
 
   return (
