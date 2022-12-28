@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import "../styles/globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthProvider } from "../context/authContext";
+import { ProgressStepsProvider } from "../context/progressStepsContext";
 import AuthModal from "../components/AuthModal";
 import { Provider } from "react-redux";
 import { store } from "../redux/app/store";
@@ -13,7 +14,9 @@ function MyApp({ Component, pageProps }) {
       <Provider store={store}>
         <AuthProvider>
           <Navbar />
-          <Component {...pageProps} />
+          <ProgressStepsProvider>
+            <Component {...pageProps} />
+          </ProgressStepsProvider>
           <AuthModal />
           <ToastContainer />
         </AuthProvider>

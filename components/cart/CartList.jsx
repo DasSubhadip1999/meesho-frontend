@@ -41,7 +41,7 @@ const CartList = () => {
             />
           ))}
         <WishList />
-        <CartPricing />
+        <CartPricing carts={allCartItems} />
       </div>
     );
   }

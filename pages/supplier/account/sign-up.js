@@ -8,6 +8,7 @@ import { AiOutlineEyeInvisible } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { registerSeller, reset } from "../../../redux/feature/auth/authSlice";
+import HashLoaderComponent from "../../../assets/HashLoaderComponent";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -58,15 +59,8 @@ const SignUp = () => {
     }
   };
 
-  const overrideCss = {
-    position: "absolute",
-    left: "43%",
-    top: "48%",
-    zIndex: 20,
-  };
-
   if (isLoading) {
-    return <HashLoader cssOverride={overrideCss} />;
+    return <HashLoaderComponent />;
   }
 
   return (
