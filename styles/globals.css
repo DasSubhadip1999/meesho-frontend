@@ -2,6 +2,33 @@
 body {
     font-family: 'Open Sans', sans-serif;
 }
+
+.address-input + label {
+    transition: all 0.15s ease-out 0s;
+}
+
+.address-input:focus{
+    border-bottom: 2px solid #f43397;
+}
+.address-input:focus + label {
+    bottom: 1.7rem;
+    font-size: 14px;
+    color: #3A75BC;
+}
+.address-input.hasValue + label {
+    bottom: 1.7rem;
+}
+
+.address-input.error {
+    border-bottom: 2px solid red;
+}
+.address-input.error + label {
+    color: red;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
