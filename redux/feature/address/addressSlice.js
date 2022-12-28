@@ -2,7 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { addAddressService, getAddressService } from "./addressService";
 
 const initialState = {
-  address: [],
+  address: {},
+  addresses: [],
   isSuccess: false,
   isError: false,
   isLoading: false,
@@ -12,7 +13,9 @@ const initialState = {
 export const addAddress = createAsyncThunk(
   "address/add",
   async (address, thunkAPI) => {
-    let token = thunkAPI.getState.auth.user.token;
+    //console.log(123);
+    let token = thunkAPI.getState().auth.user.token;
+    console.log("slice", address, token);
     try {
       return await addAddressService(address, token);
     } catch (error) {
@@ -75,3 +78,6 @@ export const addressSlice = createSlice({
       });
   },
 });
+
+export const { reset } = addressSlice.actions;
+export default addressSlice.reducer;

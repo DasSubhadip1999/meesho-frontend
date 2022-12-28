@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FiPhoneCall } from "react-icons/fi";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { RxCrossCircled } from "react-icons/rx";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { addAddress } from "../redux/feature/address/addressSlice";
+import { reset } from "../redux/feature/address/addressSlice";
 
 const AddressFormModal = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +19,8 @@ const AddressFormModal = () => {
     nearByLocation: "",
   });
 
+  const formModalRef = useRef(null);
+
   const {
     addressName,
     phoneNumber,
@@ -25,6 +31,24 @@ const AddressFormModal = () => {
     state,
     nearByLocation,
   } = formData;
+
+  const { address, isError, isLoading, isSuccess, message } = useSelector(
+    (state) => state.address
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess && address) {
+      toast.success("Delivery added");
+      formModalRef.current.checked = false;
+    }
+
+    dispatch(reset());
+  }, [isError, isSuccess, address, dispatch]);
 
   const onChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -44,6 +68,34 @@ const AddressFormModal = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    if (
+      !addressName ||
+      !phoneNumber ||
+      !houseNo ||
+      !area ||
+      !pincode ||
+      !city ||
+      !state
+    ) {
+      toast.error("Fill all the details");
+    } else if (phoneNumber.length !== 10) {
+      toast.error("Enter a valid phone number");
+    } else if (pincode.length !== 6) {
+      toast.error("Pleae enter a valid Pin Code");
+    } else {
+      //console.log(formData);
+      dispatch(addAddress(formData));
+      setFormData({
+        addressName: "",
+        phoneNumber: "",
+        houseNo: "",
+        area: "",
+        pincode: "",
+        city: "",
+        state: "",
+        nearByLocation: "",
+      });
+    }
   };
 
   const inputGroup = "my-6 flex flex-col relative address-form-group";
@@ -56,7 +108,12 @@ const AddressFormModal = () => {
   return (
     <>
       {/* Put this part before </body> tag */}
-      <input type="checkbox" id="address-form" className="modal-toggle" />
+      <input
+        type="checkbox"
+        id="address-form"
+        className="modal-toggle"
+        ref={formModalRef}
+      />
       <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           {/* main content */}
