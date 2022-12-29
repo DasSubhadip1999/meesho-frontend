@@ -34,7 +34,8 @@ export const addAddress = createAsyncThunk(
 export const getAddress = createAsyncThunk(
   "address/get",
   async (_, thunkAPI) => {
-    let token = thunkAPI.getState.auth.user.token;
+    let token = thunkAPI.getState().auth.user.token;
+    //console.log("token", token);
     try {
       return await getAddressService(token);
     } catch (error) {
@@ -72,6 +73,19 @@ export const addressSlice = createSlice({
         state.address = action.payload;
       })
       .addCase(addAddress.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(getAddress.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getAddress.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.addresses = action.payload;
+        state.isSuccess = true;
+      })
+      .addCase(getAddress.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

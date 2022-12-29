@@ -1,7 +1,7 @@
-import AuthContext from "../context/authContext";
+import AuthContext from "../../context/authContext";
 import { useContext } from "react";
-import SignUp from "./SignUp";
-import SignIn from "./SignIn";
+import SignUp from "../SignUp";
+import SignIn from "../SignIn";
 import { RxCrossCircled } from "react-icons/rx";
 import { useSelector } from "react-redux";
 import HashLoader from "react-spinners/HashLoader";
