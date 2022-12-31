@@ -43,10 +43,31 @@ export const ProgressStepsProvider = ({ children }) => {
     }));
   };
 
+  const backToAddress = () => {
+    setProgress({
+      cart: {
+        pending: false,
+        completed: true,
+      },
+      address: {
+        pending: true,
+        completed: false,
+      },
+      payment: {
+        pending: false,
+        completed: false,
+      },
+      summary: {
+        pending: false,
+        completed: false,
+      },
+    });
+  };
+
   //////
   return (
     <ProgressStepsContext.Provider
-      value={{ progress, setProgress, backToCart }}
+      value={{ progress, setProgress, backToCart, backToAddress }}
     >
       {children}
     </ProgressStepsContext.Provider>

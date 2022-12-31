@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { getAddress, reset } from "../../redux/feature/address/addressSlice";
 import HashLoaderComponent from "../../assets/HashLoaderComponent";
+import AddressList from "../address/AddressList";
 
 const AddressPage = () => {
   const { addresses, isLoading, isSuccess, isError, message } = useSelector(
@@ -21,7 +22,7 @@ const AddressPage = () => {
     }
 
     dispatch(reset());
-  }, [isError, isSuccess]);
+  }, [isError]);
 
   useEffect(() => {
     dispatch(getAddress());
@@ -29,19 +30,19 @@ const AddressPage = () => {
 
   if (isLoading) {
     return <HashLoaderComponent />;
+  } else {
+    return (
+      <>
+        <div className="flex gap-1 items-center px-5 py-2 border-b-[1px] border-[rgba(0,0,0,0.2)] text-sm font-bold text-[#f43397]">
+          <BiPlus size={20} />
+          <label htmlFor="address-form">
+            <span>ADD NEW ADDRESS</span>
+          </label>
+        </div>
+        {addresses.length && <AddressList addresses={addresses} />}
+      </>
+    );
   }
-
-  return (
-    <>
-      <div className="flex gap-1 items-center px-5 py-2 border-b-[1px] text-sm font-bold text-[#f43397]">
-        <BiPlus size={20} />
-        <label htmlFor="address-form">
-          <span>ADD NEW ADDRESS</span>
-        </label>
-      </div>
-      <div>Ok</div>
-    </>
-  );
 };
 
 export default AddressPage;

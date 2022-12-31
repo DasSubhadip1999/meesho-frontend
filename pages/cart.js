@@ -9,13 +9,14 @@ import CartTopbar from "../components/cart/CartTopbar";
 import { useContext } from "react";
 import ProgressStepsContext from "../context/progressStepsContext";
 import AddressPage from "../components/cart/AddressPage";
+import PaymentPage from "../components/payment/PaymentPage";
 
 const cart = () => {
   const { user } = useSelector((state) => state.auth);
   const { allCartItems } = useSelector((state) => state.cart);
   const { checking, isLoggedIn } = useAuthStatus(user);
   const {
-    progress: { cart, address },
+    progress: { cart, address, payment },
   } = useContext(ProgressStepsContext);
   const router = useRouter();
 
@@ -36,6 +37,7 @@ const cart = () => {
             <ProgressSteps />
             {cart.pending && <CartList />}
             {address.pending && <AddressPage />}
+            {payment.pending && <PaymentPage />}
           </>
         ) : (
           <EmptyCart />

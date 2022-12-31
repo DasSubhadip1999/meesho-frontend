@@ -7,6 +7,7 @@ const CartTopbar = () => {
   const {
     progress: { cart, address, payment, summary },
     backToCart,
+    backToAddress,
   } = useContext(ProgressStepsContext);
 
   let headingText = "";
@@ -32,9 +33,19 @@ const CartTopbar = () => {
       break;
     case payment.pending:
       headingText = "PAYMENT";
+      navigate = (
+        <span onClick={backToAddress}>
+          <MdOutlineArrowBackIosNew size={22} />
+        </span>
+      );
       break;
     case summary.pending:
       headingText = "SUMMARY";
+      navigate = (
+        <span onClick={backToCart}>
+          <MdOutlineArrowBackIosNew size={22} />
+        </span>
+      );
       break;
     default:
       "No Data";
@@ -42,10 +53,10 @@ const CartTopbar = () => {
 
   ////
   return (
-    <div className="flex items-center gap-3 border-2 p-3">
+    <header className="flex items-center gap-3 border-2 p-3">
       {navigate}
       <span className="text-sm font-semibold">{headingText}</span>
-    </div>
+    </header>
   );
 };
 

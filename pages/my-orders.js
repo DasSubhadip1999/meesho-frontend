@@ -1,9 +1,10 @@
 import useAuthStatus from "../hooks/useAuthStatus";
 import Loading from "../assets/Loading";
 import { useRouter } from "next/router";
-import { BsCart, BsSearch } from "react-icons/bs";
+import { BsSearch } from "react-icons/bs";
 import Searchbar from "../components/Searchbar";
 import { useSelector } from "react-redux";
+import CartLogo from "../assets/CartLogo";
 
 const myOders = () => {
   const { user } = useSelector((state) => state.auth);
@@ -26,7 +27,7 @@ const myOders = () => {
           <span className="text-md font-semibold">MY ORDERS</span>
           <div className="w-[18%] flex justify-between items-center">
             <BsSearch size={20} />
-            <BsCart size={20} />
+            <CartLogo />
           </div>
         </header>
         <h1 className="mt-16 px-3">Your Orders</h1>

@@ -30,7 +30,7 @@ export const getAddressService = async (token) => {
 
   const res = await axios.get(PROXY + "api/users/delivery-address/get", config);
 
-  console.log(res.status);
+  //console.log(res.statusText);
 
   return res.data;
 };
