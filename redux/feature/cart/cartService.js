@@ -1,5 +1,8 @@
 import axios from "axios";
-import { setItemToStorage } from "../../../assets/localstorage";
+import {
+  removeItemFromStorage,
+  setItemToStorage,
+} from "../../../assets/localstorage";
 
 const PROXY = "http://localhost:5000/";
 
@@ -56,4 +59,26 @@ export const deleteCartItemService = async (cartId, token) => {
   //console.log("service", res);
 
   return res.data.message;
+};
+
+//@route api/products/cart-products/delete-all
+export const deleteAllCartItemsService = async (token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const res = await axios.delete(
+    PROXY + "api/products/cart-products/delete-all",
+    config
+  );
+
+  if (res.status == 200) {
+    removeItemFromStorage("cart");
+  }
+
+  console.log(res.data);
+
+  return res.data;
 };

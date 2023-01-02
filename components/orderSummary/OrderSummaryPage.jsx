@@ -2,15 +2,25 @@ import { BsTruck } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import CartListItem from "../cart/CartListItem";
 import { v4 as uuidv4 } from "uuid";
+import PaymentMode from "./PaymentMode";
+import PriceConfirm from "../payment/PriceConfirm";
+import HashLoaderComponent from "../../assets/HashLoaderComponent";
 
 const OrderSummaryPage = () => {
-  const { allCartItems } = useSelector((state) => state.cart);
+  const { allCartItems, isLoading } = useSelector((state) => state.cart);
+
+  if (isLoading) {
+    return <HashLoaderComponent />;
+  }
 
   return (
-    <div>
+    <div className="pb-16">
       {allCartItems.length &&
         allCartItems.map((cartItem) => (
-          <div className="border-b-[1px] border-[rgba(0,0,0,0.1)]">
+          <div
+            key={uuidv4()}
+            className="border-b-[1px] border-[rgba(0,0,0,0.1)]"
+          >
             <div className="flex gap-3 items-center px-4 py-3 border-b-[1px] border-[rgba(0,0,0,0.1)]">
               <BsTruck size={25} />
               <p className="text-sm font-semibold">
@@ -24,6 +34,8 @@ const OrderSummaryPage = () => {
             />
           </div>
         ))}
+      <PaymentMode />
+      <PriceConfirm />
     </div>
   );
 };

@@ -1,6 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { addToCartService, getCartItemsService } from "./cartService";
-import { deleteCartItemService } from "../cart/cartService";
+import {
+  addToCartService,
+  getCartItemsService,
+  deleteAllCartItemsService,
+  deleteCartItemService,
+} from "./cartService";
 import { getItemFromStorage } from "../../../assets/localstorage";
 
 const LC_CART = getItemFromStorage("cart");
@@ -9,6 +13,7 @@ const initialState = {
   allCartItems: LC_CART ? LC_CART : [],
   cart: {},
   isSuccess: false,
+  type: "",
   isError: false,
   isLoading: false,
   message: "",
@@ -69,6 +74,24 @@ export const deleteCartItem = createAsyncThunk(
   }
 );
 
+export const deleteAllCartItems = createAsyncThunk(
+  "cart/delete-all",
+  async (_, thunkAPI) => {
+    let token = thunkAPI.getState().auth.user.token;
+    try {
+      return await deleteAllCartItemsService(token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.toString();
+
+      thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -78,6 +101,7 @@ export const cartSlice = createSlice({
       state.isSuccess = false;
       state.isLoading = false;
       state.message = "";
+      state.type = "";
     },
   },
   extraReducers: (builder) => {
@@ -90,6 +114,7 @@ export const cartSlice = createSlice({
         state.isSuccess = true;
         // console.log("slice", action.payload);
         state.cart = action.payload;
+        state.type = "addToCart";
       })
       .addCase(addToCart.rejected, (state, action) => {
         state.isLoading = false;
@@ -119,6 +144,19 @@ export const cartSlice = createSlice({
         state.message = action.payload;
       })
       .addCase(deleteCartItem.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(deleteAllCartItems.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteAllCartItems.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message = action.payload;
+      })
+      .addCase(deleteAllCartItems.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

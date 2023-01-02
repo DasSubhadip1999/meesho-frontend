@@ -1,10 +1,22 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { toast } from "react-toastify";
 import CartContext from "../../context/cartPriceContext";
 import ProgressStepsContext from "../../context/progressStepsContext";
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteAllCartItems } from "../../redux/feature/cart/cartSlice";
 
 const PriceConfirm = () => {
+  const { message, isLoading, isSuccess } = useSelector((state) => state.cart);
   const { totalPrice, items } = useContext(CartContext);
-  const { setProgress } = useContext(ProgressStepsContext);
+  const {
+    setProgress,
+    progress: { summary },
+    backToCart,
+  } = useContext(ProgressStepsContext);
+
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   const goToSummary = () => {
     setProgress((prev) => ({
@@ -18,6 +30,13 @@ const PriceConfirm = () => {
         completed: false,
       },
     }));
+  };
+
+  const placeOrder = () => {
+    toast.success("Order Placed");
+    dispatch(deleteAllCartItems());
+    backToCart();
+    router.push("/my-orders");
   };
 
   return (
@@ -41,10 +60,10 @@ const PriceConfirm = () => {
       <div className="fixed bottom-0 z-20 bg-white w-[93%] flex justify-between items-center p-3">
         <h1 className="text-xl font-bold">₹{totalPrice}</h1>
         <button
-          onClick={goToSummary}
+          onClick={summary.pending ? placeOrder : goToSummary}
           className="bg-[#f43397] text-white px-3 py-2 w-[48%] mb-1 rounded-md flex items-center justify-center"
         >
-          Continute
+          {summary.pending ? "Place Order" : "Continue"}
         </button>
       </div>
     </div>

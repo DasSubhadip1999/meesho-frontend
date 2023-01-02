@@ -2,6 +2,7 @@ import Image from "next/image";
 import Size from "../../components/Product Components/Size";
 import DeliveryLocation from "../../components/DeliveryLocation";
 import ProductTopbar from "../../components/Product Components/ProductTopbar";
+import HashLoaderComponent from "../../assets/HashLoaderComponent";
 import axios from "axios";
 import { BsCart2 } from "react-icons/bs";
 import { RxCaretRight } from "react-icons/rx";
@@ -12,22 +13,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import useAuthStatus from "../../hooks/useAuthStatus";
 import { reset } from "../../redux/feature/cart/cartSlice";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { toast } from "react-toastify";
 import { getCartItems } from "../../redux/feature/cart/cartSlice";
+import CartContext from "../../context/cartPriceContext";
 
 const Product = ({ product }) => {
   const { user } = useSelector((state) => state.auth);
   const { checking, isLoggedIn } = useAuthStatus(user);
-  const { isSuccess, isError, message, cart } = useSelector(
+  const { isSuccess, isError, message, cart, type, isLoading } = useSelector(
     (state) => state.cart
   );
+  const { cartModalRef, confirmCart } = useContext(CartContext);
   const dispatch = useDispatch();
   const router = useRouter();
   //console.log(product);
 
+  const { size, returnType } = confirmCart;
+
   useEffect(() => {
-    if (isSuccess && Object.keys(cart).length) {
+    if (isSuccess && Object.keys(cart).length && type == "addToCart") {
+      console.log(type);
       toast.success("Product added to cart");
     }
 
@@ -35,22 +41,32 @@ const Product = ({ product }) => {
       toast.error(message);
     }
 
+    //console.log(router.pathname);
+
     dispatch(reset());
-  }, [isSuccess, isError, cart, dispatch]);
+  }, [isSuccess, cart, dispatch]);
 
   //add products to cart
   const handleAddToCart = () => {
     if (isLoggedIn) {
-      dispatch(addToCart(product._id));
-      setTimeout(() => {
-        dispatch(getCartItems());
-      }, 1500);
+      if (!size) {
+        cartModalRef.current.checked = true;
+      } else {
+        dispatch(addToCart(product._id));
+        setTimeout(() => {
+          dispatch(getCartItems());
+        }, 500);
+      }
     } else {
       router.push("/account");
     }
   };
   const button =
     "px-3 py-2 w-[48%] mb-1 rounded-md flex items-center justify-center";
+
+  if (isLoading || checking) {
+    return <HashLoaderComponent />;
+  }
   return (
     <div>
       <ProductTopbar />
