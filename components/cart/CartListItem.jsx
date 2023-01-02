@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import ProgressStepsContext from "../../context/progressStepsContext";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -15,6 +16,9 @@ const CartListItem = ({ product, cartId }) => {
   const { isError, isLoading, isSuccess, message } = useSelector(
     (state) => state.cart
   );
+  const {
+    progress: { summary },
+  } = useContext(ProgressStepsContext);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -55,12 +59,14 @@ const CartListItem = ({ product, cartId }) => {
             <span>Size: M</span>
             <span>Qty: 1</span>
           </div>
-          <h2
-            className="my-2 flex items-center font-semibold"
-            onClick={handleDeleteCartItem}
-          >
-            <RxCross2 size={17} className="mr-1" /> Remove
-          </h2>
+          {!summary.pending && (
+            <h2
+              className="my-2 flex items-center font-semibold"
+              onClick={handleDeleteCartItem}
+            >
+              <RxCross2 size={17} className="mr-1" /> Remove
+            </h2>
+          )}
         </div>
       </div>
       <div className="flex justify-between items-center px-3 py-3 text-[13px]">

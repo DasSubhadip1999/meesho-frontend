@@ -1,9 +1,12 @@
 import { MdVerifiedUser } from "react-icons/md";
+import CashPayment from "./CashPayment";
+import OnlinePayment from "./OnlinePayment";
 import SwiperComponent from "../../assets/SwiperComponent";
+import PriceConfirm from "./PriceConfirm";
 
 const PaymentPage = () => {
   return (
-    <div>
+    <div className="pb-20">
       <div className="flex justify-between items-center p-3">
         <h1 className="font-bold">Select payment method</h1>
         <div className="flex gap-1 items-center">
@@ -20,6 +23,9 @@ const PaymentPage = () => {
           Pay online and get EXTRA $25 off
         </span>
       </div>
+      <OnlinePayment />
+      <CashPayment />
+      <PriceConfirm />
     </div>
   );
 };

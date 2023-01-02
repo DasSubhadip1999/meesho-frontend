@@ -8,6 +8,7 @@ const CartTopbar = () => {
     progress: { cart, address, payment, summary },
     backToCart,
     backToAddress,
+    backToPayment,
   } = useContext(ProgressStepsContext);
 
   let headingText = "";
@@ -42,7 +43,7 @@ const CartTopbar = () => {
     case summary.pending:
       headingText = "SUMMARY";
       navigate = (
-        <span onClick={backToCart}>
+        <span onClick={backToPayment}>
           <MdOutlineArrowBackIosNew size={22} />
         </span>
       );

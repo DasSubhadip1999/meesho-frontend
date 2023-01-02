@@ -3,6 +3,7 @@ import "../styles/globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthProvider } from "../context/authContext";
 import { ProgressStepsProvider } from "../context/progressStepsContext";
+import { CartProvider } from "../context/cartPriceContext";
 import AuthModal from "../components/modal/AuthModal";
 import AddressFormModal from "../components/modal/AddressFormModal";
 import { Provider } from "react-redux";
@@ -16,7 +17,9 @@ function MyApp({ Component, pageProps }) {
         <AuthProvider>
           <Navbar />
           <ProgressStepsProvider>
-            <Component {...pageProps} />
+            <CartProvider>
+              <Component {...pageProps} />
+            </CartProvider>
           </ProgressStepsProvider>
           <AddressFormModal />
           <AuthModal />
