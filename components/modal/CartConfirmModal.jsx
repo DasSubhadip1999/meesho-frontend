@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { RxCrossCircled } from "react-icons/rx";
 import { BsCart } from "react-icons/bs";
 import { MdDone } from "react-icons/md";
@@ -39,14 +39,20 @@ const CartConfirmModal = () => {
           <div className="border-b-2 pb-2">
             <h2 className="font-bold my-1">Select Size</h2>
             <ul className="flex items-center gap-4 my-3">
-              {currentProduct?.sizes?.map((size) => (
-                <li
-                  key={uuidv4()}
-                  className="rounded-2xl px-4 py-1 border-[1px] border-black font-bold"
-                >
-                  {size}
+              {currentProduct?.sizes?.length == 0 ? (
+                <li className="border-[1px] border-[#f43397] bg-[#fce5f1] text-[#f43397] text-sm rounded-2xl px-2 py-1 font-bold">
+                  Free Size
                 </li>
-              ))}
+              ) : (
+                currentProduct?.sizes?.map((size) => (
+                  <li
+                    key={uuidv4()}
+                    className="rounded-2xl px-4 py-1 border-[1px] border-black font-bold"
+                  >
+                    {size}
+                  </li>
+                ))
+              )}
             </ul>
           </div>
 
