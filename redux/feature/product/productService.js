@@ -21,3 +21,17 @@ export const getProductService = async () => {
 
   return res.data;
 };
+
+const GET_SELLER_PRODUCTS = "http://localhost:5000/api/sellers/get-products";
+
+export const getSellerProductsService = async (token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const res = await axios.get(GET_SELLER_PRODUCTS, config);
+
+  return res.data;
+};

@@ -1,6 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { getProductService, addProductService } from "./productService";
+import {
+  getProductService,
+  addProductService,
+  getSellerProductsService,
+} from "./productService";
 
 const initialState = {
   products: [],
@@ -9,6 +13,7 @@ const initialState = {
   isError: false,
   isSuccess: false,
   message: "",
+  type: "",
 };
 
 export const getProduct = createAsyncThunk(
@@ -47,6 +52,25 @@ export const addProduct = createAsyncThunk(
   }
 );
 
+export const getSellerProducts = createAsyncThunk(
+  "sellerProduct/get",
+  async (_, thunkAPI) => {
+    let token = thunkAPI.getState().auth.seller.token;
+
+    try {
+      return await getSellerProductsService(token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.toString();
+
+      thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const productSlice = createSlice({
   name: "product",
   initialState,
@@ -56,6 +80,7 @@ export const productSlice = createSlice({
       state.isSuccess = false;
       state.isLoading = false;
       state.message = "";
+      state.type = "";
     },
   },
   extraReducers: (builder) => {
@@ -85,6 +110,21 @@ export const productSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
+      })
+      .addCase(getSellerProducts.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getSellerProducts.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.products = action.payload;
+        state.type = "seller";
+      })
+      .addCase(getSellerProducts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        state.type = "seller";
       });
   },
 });

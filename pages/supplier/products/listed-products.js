@@ -1,6 +1,7 @@
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
 import Link from "next/link";
+import SellerProductList from "../../../components/seller/SellerProductList";
 
 const ListedProducts = () => {
   return (
@@ -24,6 +25,7 @@ const ListedProducts = () => {
           </div>
         </div>
       </div>
+      <SellerProductList />
     </div>
   );
 };
