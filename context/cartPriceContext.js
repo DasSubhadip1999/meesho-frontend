@@ -8,12 +8,18 @@ export const CartProvider = ({ children }) => {
     size: "",
     returnType: "",
   });
+  const [currentProduct, setCurrentProduct] = useState({});
+
   const { allCartItems } = useSelector((state) => state.cart);
   const cartModalRef = useRef(null);
 
   const totalPrice = allCartItems.reduce((total, { product }) => {
     return (total += product.discountedPrice);
   }, 0);
+
+  const sendCurrentProduct = (product) => {
+    setCurrentProduct(product);
+  };
 
   return (
     <CartContext.Provider
@@ -22,6 +28,8 @@ export const CartProvider = ({ children }) => {
         items: allCartItems.length,
         cartModalRef,
         confirmCart,
+        sendCurrentProduct,
+        currentProduct,
       }}
     >
       {children}

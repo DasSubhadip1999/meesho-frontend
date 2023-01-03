@@ -24,7 +24,8 @@ const Product = ({ product }) => {
   const { isSuccess, isError, message, cart, type, isLoading } = useSelector(
     (state) => state.cart
   );
-  const { cartModalRef, confirmCart } = useContext(CartContext);
+  const { cartModalRef, confirmCart, sendCurrentProduct } =
+    useContext(CartContext);
   const dispatch = useDispatch();
   const router = useRouter();
   //console.log(product);
@@ -51,6 +52,7 @@ const Product = ({ product }) => {
     if (isLoggedIn) {
       if (!size) {
         cartModalRef.current.checked = true;
+        sendCurrentProduct(product);
       } else {
         dispatch(addToCart(product._id));
         setTimeout(() => {
