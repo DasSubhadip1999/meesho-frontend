@@ -53,6 +53,12 @@ const SellerAccount = () => {
         <div className="card-body">
           <h2 className="card-title">{seller.name}</h2>
           <p>{seller.email}</p>{" "}
+          <Link
+            href="/supplier/products/listed-products"
+            className="btn bg-[#f43397]"
+          >
+            View Listings
+          </Link>
         </div>
       </div>
       {/* form goes here */}
