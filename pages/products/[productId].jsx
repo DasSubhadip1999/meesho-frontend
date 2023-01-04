@@ -24,13 +24,17 @@ const Product = ({ product }) => {
   const { isSuccess, isError, message, cart, type, isLoading } = useSelector(
     (state) => state.cart
   );
-  const { cartModalRef, confirmCart, sendCurrentProduct } =
+  const { cartModalRef, confirmCart, sendCurrentProduct, setSellerId } =
     useContext(CartContext);
   const dispatch = useDispatch();
   const router = useRouter();
   //console.log(product);
 
   const { size, returnType } = confirmCart;
+
+  useEffect(() => {
+    setSellerId(product.seller._id);
+  }, []);
 
   useEffect(() => {
     if (isSuccess && Object.keys(cart).length && type == "addToCart") {

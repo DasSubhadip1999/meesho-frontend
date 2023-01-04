@@ -10,6 +10,10 @@ export const CartProvider = ({ children }) => {
   });
   const [currentProduct, setCurrentProduct] = useState({});
 
+  const [sellerId, setSellerId] = useState("");
+
+  //console.log("sellerId", sellerId);
+
   const { allCartItems } = useSelector((state) => state.cart);
   const cartModalRef = useRef(null);
 
@@ -28,7 +32,9 @@ export const CartProvider = ({ children }) => {
         items: allCartItems.length,
         cartModalRef,
         confirmCart,
+        sellerId,
         sendCurrentProduct,
+        setSellerId,
         currentProduct,
       }}
     >
