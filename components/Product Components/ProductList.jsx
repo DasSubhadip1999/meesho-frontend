@@ -22,7 +22,7 @@ const ProductList = () => {
         <div className="">
           sort & filter
           {/* main products */}
-          <div className="grid grid-cols-2">
+          <div className="grid grid-cols-2 px-1">
             {products &&
               products.map((item) => (
                 <ProductListItem item={item} key={uuidv4()} />

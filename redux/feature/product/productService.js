@@ -35,3 +35,17 @@ export const getSellerProductsService = async (token) => {
 
   return res.data;
 };
+
+const DELETE_SELLER_PRODUCT = "http://localhost:5000/api/products/delete/";
+
+export const deleteProductService = async (token, id) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const res = await axios.delete(DELETE_SELLER_PRODUCT + id, config);
+
+  return res.data;
+};

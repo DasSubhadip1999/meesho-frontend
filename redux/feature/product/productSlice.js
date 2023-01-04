@@ -4,6 +4,7 @@ import {
   getProductService,
   addProductService,
   getSellerProductsService,
+  deleteProductService,
 } from "./productService";
 
 const initialState = {
@@ -71,6 +72,25 @@ export const getSellerProducts = createAsyncThunk(
   }
 );
 
+export const deleteProduct = createAsyncThunk(
+  "product/delete",
+  async (id, thunkAPI) => {
+    let token = thunkAPI.getState().auth.seller.token;
+
+    try {
+      return await deleteProductService(token, id);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.toString();
+
+      thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const productSlice = createSlice({
   name: "product",
   initialState,
@@ -125,6 +145,21 @@ export const productSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
         state.type = "seller";
+      })
+      .addCase(deleteProduct.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteProduct.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message = action.payload;
+        state.type = "seller/delete";
+      })
+      .addCase(deleteProduct.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        state.type = "seller/delete";
       });
   },
 });

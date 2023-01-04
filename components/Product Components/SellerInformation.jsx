@@ -12,7 +12,7 @@ const SellerInformation = ({ seller }) => {
         <h1 className="text-lg uppercase font-bold">{seller.name}</h1>
         <Link
           className="border-[1px] border-[#f43397] text-[14px] px-2 py-1 rounded-md font-bold text-[#f43397]"
-          href="#"
+          href="/supplier/shop"
         >
           View Shop
         </Link>

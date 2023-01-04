@@ -1,9 +1,39 @@
 import Image from "next/image";
 import { BiEditAlt } from "react-icons/bi";
 import { RiDeleteBin7Line } from "react-icons/ri";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  deleteProduct,
+  getSellerProducts,
+  reset,
+} from "../../redux/feature/product/productSlice";
+import HashLoaderComponent from "../../assets/HashLoaderComponent";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const ProductListItem = ({ product }) => {
+  const { isLoading, isError, isSuccess, message, type } = useSelector(
+    (state) => state.product
+  );
   const date = new Date(product.createdAt);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isError && type == "seller/delete") {
+      toast.error(message);
+    }
+
+    if (isSuccess && type == "seller/delete") {
+      dispatch(getSellerProducts());
+    }
+
+    dispatch(reset());
+  }, [isError, isSuccess, dispatch]);
+
+  if (isLoading) {
+    return <HashLoaderComponent />;
+  }
 
   return (
     <div className="mb-2 bg-white">
@@ -30,7 +60,10 @@ const ProductListItem = ({ product }) => {
               {" "}
               <BiEditAlt /> Edit
             </button>
-            <button className="flex items-center btn-error text-white px-3 py-1 rounded-md border-none">
+            <button
+              className="flex items-center btn-error text-white px-3 py-1 rounded-md border-none"
+              onClick={() => dispatch(deleteProduct(product._id))}
+            >
               {" "}
               <RiDeleteBin7Line /> Delete
             </button>

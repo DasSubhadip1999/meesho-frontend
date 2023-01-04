@@ -21,6 +21,12 @@ const nextConfig = {
         port: "5000",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "images.meesho.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };
