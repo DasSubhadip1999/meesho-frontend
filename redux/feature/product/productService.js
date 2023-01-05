@@ -49,3 +49,12 @@ export const deleteProductService = async (token, id) => {
 
   return res.data;
 };
+
+export const getProductsBySearchService = async (searchText) => {
+  console.log("search", searchText);
+  const res = await axios.get(GET_PRODUCT_URL, {
+    params: { search: searchText },
+  });
+
+  return res.data;
+};

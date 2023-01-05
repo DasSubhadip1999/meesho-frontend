@@ -33,7 +33,7 @@ const Product = ({ product }) => {
   const { size, returnType } = confirmCart;
 
   useEffect(() => {
-    setSellerId(product.seller._id);
+    setSellerId(product?.seller?._id);
   }, []);
 
   useEffect(() => {
@@ -80,7 +80,7 @@ const Product = ({ product }) => {
       <DeliveryLocation />
       <div>
         <Image
-          src={`http:localhost:5000/` + product.images[0]}
+          src={`http:localhost:5000/` + product?.images[0]}
           alt="single product image"
           width={250}
           height={300}

@@ -5,10 +5,12 @@ import {
   addProductService,
   getSellerProductsService,
   deleteProductService,
+  getProductsBySearchService,
 } from "./productService";
 
 const initialState = {
   products: [],
+  searchProducts: [],
   product: null,
   isLoading: false,
   isError: false,
@@ -41,6 +43,23 @@ export const addProduct = createAsyncThunk(
     let token = thunkAPI.getState().auth.seller.token;
     try {
       return await addProductService(product, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.toString();
+
+      thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const getProductsBySearch = createAsyncThunk(
+  "products/search",
+  async (searchText) => {
+    try {
+      return await getProductsBySearchService(searchText);
     } catch (error) {
       const message =
         (error.response &&
@@ -160,6 +179,21 @@ export const productSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
         state.type = "seller/delete";
+      })
+      .addCase(getProductsBySearch.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getProductsBySearch.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.searchProducts = action.payload;
+        state.isSuccess = true;
+        state.type = "products/search";
+      })
+      .addCase(getProductsBySearch.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        state.type = "products/search";
       });
   },
 });

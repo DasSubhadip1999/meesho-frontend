@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BsHeart, BsCart } from "react-icons/bs";
+import { BsHeart } from "react-icons/bs";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { useSelector } from "react-redux";
 import CartLogo from "../assets/CartLogo";
