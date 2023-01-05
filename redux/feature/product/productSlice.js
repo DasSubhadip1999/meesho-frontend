@@ -31,7 +31,7 @@ export const getProduct = createAsyncThunk(
           error.response.data.message) ||
         error.toString();
 
-      thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue(message);
     }
   }
 );
@@ -50,24 +50,27 @@ export const addProduct = createAsyncThunk(
           error.response.data.message) ||
         error.toString();
 
-      thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue(message);
     }
   }
 );
 
 export const getProductsBySearch = createAsyncThunk(
   "products/search",
-  async (searchText) => {
+  async (searchText, thunkAPI) => {
     try {
       return await getProductsBySearchService(searchText);
     } catch (error) {
+      //console.log("slice error", error);
       const message =
         (error.response &&
           error.response.data &&
           error.response.data.message) ||
         error.toString();
 
-      thunkAPI.rejectWithValue(message);
+      console.log(message);
+
+      return thunkAPI.rejectWithValue(message);
     }
   }
 );
@@ -86,7 +89,7 @@ export const getSellerProducts = createAsyncThunk(
           error.response.data.message) ||
         error.toString();
 
-      thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue(message);
     }
   }
 );
@@ -105,7 +108,7 @@ export const deleteProduct = createAsyncThunk(
           error.response.data.message) ||
         error.toString();
 
-      thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue(message);
     }
   }
 );
@@ -185,6 +188,7 @@ export const productSlice = createSlice({
       })
       .addCase(getProductsBySearch.fulfilled, (state, action) => {
         state.isLoading = false;
+        // console.log("slice", action.payload);
         state.searchProducts = action.payload;
         state.isSuccess = true;
         state.type = "products/search";
@@ -192,6 +196,7 @@ export const productSlice = createSlice({
       .addCase(getProductsBySearch.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
+        console.log("error payload", action.payload);
         state.message = action.payload;
         state.type = "products/search";
       });

@@ -6,6 +6,15 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import CartLogo from "../../assets/CartLogo";
 
 const SearchTopbar = ({ searchText }) => {
+  let text;
+  // console.log(searchText);
+  if (searchText !== undefined) {
+    if (Number(searchText[0]) % 2 === 0) {
+      text = "id search";
+    } else {
+      text = searchText;
+    }
+  }
   return (
     <header className="fixed justify-between top-0 z-20 flex items-center py-4 px-3 w-full bg-white border-b-[1px] border-[rgba(0,0,0,0.1)] shadow-sm">
       <div className="flex items-center">
@@ -13,7 +22,7 @@ const SearchTopbar = ({ searchText }) => {
           <MdOutlineArrowBackIosNew />
         </Link>
         <span className="ml-2 mt-[2px] text-sm font-bold uppercase">
-          {searchText}
+          {text}
         </span>
       </div>
       <ul className="flex gap-3 items-center">

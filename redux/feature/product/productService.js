@@ -51,7 +51,6 @@ export const deleteProductService = async (token, id) => {
 };
 
 export const getProductsBySearchService = async (searchText) => {
-  console.log("search", searchText);
   const res = await axios.get(GET_PRODUCT_URL, {
     params: { search: searchText },
   });

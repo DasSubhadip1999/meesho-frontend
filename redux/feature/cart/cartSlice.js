@@ -33,7 +33,7 @@ export const getCartItems = createAsyncThunk(
           error.response.data.message) ||
         error.toString();
 
-      thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue(message);
     }
   }
 );
@@ -51,7 +51,7 @@ export const addToCart = createAsyncThunk(
           error.response.data.message) ||
         error.toString();
 
-      thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue(message);
     }
   }
 );
@@ -69,7 +69,7 @@ export const deleteCartItem = createAsyncThunk(
           error.response.data.message) ||
         error.toString();
 
-      thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue(message);
     }
   }
 );
@@ -87,7 +87,7 @@ export const deleteAllCartItems = createAsyncThunk(
           error.response.data.message) ||
         error.toString();
 
-      thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue(message);
     }
   }
 );

@@ -10,16 +10,24 @@ import {
 
 const Searchbar = () => {
   const [searchKeyword, setSearchKeyword] = useState("");
-  const { products, message, isLoading, isError, isSuccess } = useSelector(
-    (state) => state.product
-  );
+  const { searchProducts, message, isLoading, isError, isSuccess, type } =
+    useSelector((state) => state.product);
 
   const dispatch = useDispatch();
   const router = useRouter();
 
   useEffect(() => {
+    //console.log(type);
     if (isError && type === "products/search") {
       toast.error(message);
+    }
+
+    if (
+      isSuccess &&
+      type === "products/search" &&
+      searchProducts?.length !== 0
+    ) {
+      router.push(`/${searchKeyword}`);
     }
 
     dispatch(reset());
@@ -29,9 +37,10 @@ const Searchbar = () => {
     e.preventDefault();
 
     if (searchKeyword.length >= 3) {
-      router.push(`/products/search/${searchKeyword}`);
-
       dispatch(getProductsBySearch(searchKeyword));
+    } else if (searchKeyword.length > 0) {
+      toast.error("Please enter valid keyword");
+      setSearchKeyword("");
     }
 
     //console.log(searchKeyword);
