@@ -5,7 +5,12 @@ import { MdDone } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import CartContext from "../../context/cartPriceContext";
 import useAuthStatus from "../../hooks/useAuthStatus";
-import { addToCart, reset } from "../../redux/feature/cart/cartSlice";
+import {
+  addToCart,
+  reset,
+  getCartItems,
+} from "../../redux/feature/cart/cartSlice";
+import { toast } from "react-toastify";
 
 const ReturnTypeComp = () => {
   const { user } = useSelector((state) => state.auth);
@@ -48,7 +53,7 @@ const ReturnTypeComp = () => {
   //for reacting on error or success
   useEffect(() => {
     if (isSuccess && Object.keys(cart).length && type == "addToCart") {
-      toast.success("Product added to cart");
+      //toast.success("Product added to cart");
     }
 
     if (isError) {
@@ -68,6 +73,9 @@ const ReturnTypeComp = () => {
         dispatch(
           addToCart({ productId: currentProduct._id, userCart: confirmCart })
         );
+        setTimeout(() => {
+          dispatch(getCartItems());
+        }, 500);
       }
     } else {
       router.push("/account");
