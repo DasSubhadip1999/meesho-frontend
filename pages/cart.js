@@ -15,13 +15,14 @@ import OrderSummaryPage from "../components/orderSummary/OrderSummaryPage";
 const cart = () => {
   const { user } = useSelector((state) => state.auth);
   const { allCartItems } = useSelector((state) => state.cart);
+  const { isLoading } = useSelector((state) => state.order);
   const { checking, isLoggedIn } = useAuthStatus(user);
   const {
     progress: { cart, address, payment, summary },
   } = useContext(ProgressStepsContext);
   const router = useRouter();
 
-  if (checking) {
+  if (checking || isLoading) {
     return <HashLoaderComponent />;
   }
 
