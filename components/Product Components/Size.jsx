@@ -1,6 +1,19 @@
+import { useContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import CartContext from "../../context/cartPriceContext";
+import SizeItem from "./SizeItem";
 
 const Size = ({ sizes }) => {
+  const { setConfirmCart } = useContext(CartContext);
+
+  const handleClick = (eachSize) => {
+    setConfirmCart((prev) => ({ ...prev, size: eachSize }));
+  };
+
+  useEffect(() => {
+    setConfirmCart((prev) => ({ ...prev, size: "" }));
+  }, []);
+
   return (
     <div className="p-3 mb-2 bg-white shadow-sm">
       <h1 className="font-bold text-lg">Select Size</h1>
@@ -11,12 +24,11 @@ const Size = ({ sizes }) => {
           </li>
         ) : (
           sizes.map((size) => (
-            <li
+            <SizeItem
               key={uuidv4()}
-              className="border-[1px] border-black px-3 rounded-2xl"
-            >
-              {size}
-            </li>
+              sizeProp={size}
+              handleClick={handleClick}
+            />
           ))
         )}
       </ul>

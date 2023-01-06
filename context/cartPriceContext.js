@@ -7,6 +7,7 @@ export const CartProvider = ({ children }) => {
   const [confirmCart, setConfirmCart] = useState({
     size: "",
     returnType: "",
+    buyingPrice: "",
   });
   const [currentProduct, setCurrentProduct] = useState({});
 
@@ -42,6 +43,7 @@ export const CartProvider = ({ children }) => {
         sellerProducts,
         sendCurrentProduct,
         setSellerId,
+        setConfirmCart,
         currentProduct,
       }}
     >

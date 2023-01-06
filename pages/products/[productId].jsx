@@ -30,7 +30,7 @@ const Product = ({ product }) => {
   const router = useRouter();
   //console.log(product);
 
-  const { size, returnType } = confirmCart;
+  const { size, buyingPrice, returnType } = confirmCart;
 
   useEffect(() => {
     setSellerId(product?.seller?._id);
@@ -54,7 +54,7 @@ const Product = ({ product }) => {
   //add products to cart
   const handleAddToCart = () => {
     if (isLoggedIn) {
-      if (!size) {
+      if (!size || !buyingPrice) {
         cartModalRef.current.checked = true;
         sendCurrentProduct(product);
       } else {
