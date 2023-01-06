@@ -11,12 +11,7 @@ import CartContext from "../../context/cartPriceContext";
 import { v4 as uuidv4 } from "uuid";
 
 const Shop = () => {
-  const { sellerId } = useContext(CartContext);
-  const { products } = useSelector((state) => state.product);
-
-  const sellerProducts = products.filter(
-    (item) => item.seller._id === sellerId
-  );
+  const { sellerProducts } = useContext(CartContext);
 
   //console.log(sellerProducts);
 

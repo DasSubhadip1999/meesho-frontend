@@ -12,6 +12,12 @@ export const CartProvider = ({ children }) => {
 
   const [sellerId, setSellerId] = useState("");
 
+  const { products } = useSelector((state) => state.product);
+
+  const sellerProducts = products.filter(
+    (item) => item.seller._id === sellerId
+  );
+
   //console.log("sellerId", sellerId);
 
   const { allCartItems } = useSelector((state) => state.cart);
@@ -33,6 +39,7 @@ export const CartProvider = ({ children }) => {
         cartModalRef,
         confirmCart,
         sellerId,
+        sellerProducts,
         sendCurrentProduct,
         setSellerId,
         currentProduct,

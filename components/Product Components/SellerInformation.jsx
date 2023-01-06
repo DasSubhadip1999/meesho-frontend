@@ -1,7 +1,11 @@
 import Link from "next/link";
+import { useContext } from "react";
 import { AiOutlineShop } from "react-icons/ai";
+import CartContext from "../../context/cartPriceContext";
 
 const SellerInformation = ({ seller }) => {
+  const { sellerProducts } = useContext(CartContext);
+
   return (
     <div className="p-3 bg-white">
       <h1 className="font-bold text-lg mb-3">Sold By</h1>
@@ -27,7 +31,7 @@ const SellerInformation = ({ seller }) => {
           <span className="text-[13px]">Followers</span>
         </div>
         <div className="flex flex-col">
-          <span className="font-semibold">73</span>
+          <span className="font-semibold">{sellerProducts?.length}</span>
           <span className="text-[13px]">Products</span>
         </div>
       </div>
