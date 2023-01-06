@@ -1,12 +1,29 @@
+import { useRouter } from "next/router";
 import { useState, useContext, useEffect } from "react";
 import { BsCart } from "react-icons/bs";
 import { MdDone } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
 import CartContext from "../../context/cartPriceContext";
+import useAuthStatus from "../../hooks/useAuthStatus";
+import { addToCart, reset } from "../../redux/feature/cart/cartSlice";
 
 const ReturnTypeComp = () => {
+  const { user } = useSelector((state) => state.auth);
+  const { isLoggedIn } = useAuthStatus(user);
+
+  const { isSuccess, isError, message, cart, type, isLoading } = useSelector(
+    (state) => state.cart
+  );
+
   const [selectReturnType, setSelectReturnType] = useState(true);
 
-  const { currentProduct, setConfirmCart } = useContext(CartContext);
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const { currentProduct, setConfirmCart, confirmCart } =
+    useContext(CartContext);
+
+  const { size, buyingPrice: confirmBuyingPrice } = confirmCart;
 
   const offerPrice = Math.floor(
     currentProduct?.discountedPrice - currentProduct?.discountedPrice * 0.05
@@ -19,18 +36,49 @@ const ReturnTypeComp = () => {
     let buyingPrice = selectReturnType
       ? currentProduct?.discountedPrice
       : offerPrice;
+
     if (buyingPrice == undefined) {
       buyingPrice = "";
     }
 
-    //console.log(buyingPrice);
-
+    //setting the buying price and return type according to the selectReturnType state
     setConfirmCart((prev) => ({ ...prev, returnType, buyingPrice }));
   }, [selectReturnType, currentProduct]);
 
+  //for reacting on error or success
+  useEffect(() => {
+    if (isSuccess && Object.keys(cart).length && type == "addToCart") {
+      toast.success("Product added to cart");
+    }
+
+    if (isError) {
+      toast.error(message);
+    }
+
+    dispatch(reset());
+  }, [isSuccess, cart, dispatch]);
+
+  const handleAddToCart = () => {
+    //console.log(size, confirmBuyingPrice);
+
+    if (isLoggedIn) {
+      if (!size || !confirmBuyingPrice) {
+        console.log("Size or price error");
+      } else {
+        dispatch(
+          addToCart({ productId: currentProduct._id, userCart: confirmCart })
+        );
+      }
+    } else {
+      router.push("/account");
+    }
+  };
+
+  //styles
   const tickIcon =
     "absolute -right-2 -top-2 bg-[#f43397] text-white text-[1.2rem] font-bold rounded-full p-1";
   const chooseBox = "w-[48%] min-h-[8rem] relative border-[1px] rounded-md";
+
   return (
     <div>
       <h2 className="my-2 font-bold text-sm">Select Return Type</h2>
@@ -76,7 +124,10 @@ const ReturnTypeComp = () => {
           </div>
         </label>
       </div>
-      <button className="w-full bg-[#f43397] flex items-center justify-center  text-white rounded-md py-2">
+      <button
+        onClick={handleAddToCart}
+        className="w-full bg-[#f43397] flex items-center justify-center  text-white rounded-md py-2"
+      >
         <BsCart /> <span className="ml-1">Add to Cart</span>
       </button>
     </div>

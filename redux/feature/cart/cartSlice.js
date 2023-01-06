@@ -40,10 +40,11 @@ export const getCartItems = createAsyncThunk(
 
 export const addToCart = createAsyncThunk(
   "cart/add",
-  async (productId, thunkAPI) => {
+  async (cartData, thunkAPI) => {
+    const { productId, userCart } = cartData;
     let token = thunkAPI.getState().auth.user.token;
     try {
-      return await addToCartService(productId, token);
+      return await addToCartService(productId, userCart, token);
     } catch (error) {
       const message =
         (error.response &&

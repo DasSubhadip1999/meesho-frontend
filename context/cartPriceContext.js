@@ -26,9 +26,12 @@ export const CartProvider = ({ children }) => {
   const { allCartItems } = useSelector((state) => state.cart);
   const cartModalRef = useRef(null);
 
-  const totalPrice = allCartItems.reduce((total, { product }) => {
-    return (total += product?.discountedPrice);
-  }, 0);
+  const totalPrice = allCartItems.reduce(
+    (total, { product, userSelection }) => {
+      return (total += userSelection?.buyingPrice);
+    },
+    0
+  );
 
   const sendCurrentProduct = (product) => {
     setCurrentProduct(product);

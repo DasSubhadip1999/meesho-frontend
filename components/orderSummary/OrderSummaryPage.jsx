@@ -30,6 +30,7 @@ const OrderSummaryPage = () => {
             <CartListItem
               key={uuidv4()}
               product={cartItem?.product}
+              userCart={cartItem?.userSelection}
               cartId={cartItem._id}
             />
           </div>

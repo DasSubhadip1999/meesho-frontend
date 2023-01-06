@@ -12,7 +12,7 @@ import {
   getCartItems,
 } from "../../redux/feature/cart/cartSlice";
 
-const CartListItem = ({ product, cartId }) => {
+const CartListItem = ({ product, cartId, userCart }) => {
   const { isError, isLoading, isSuccess, message } = useSelector(
     (state) => state.cart
   );
@@ -53,10 +53,10 @@ const CartListItem = ({ product, cartId }) => {
           <h1 className="text-sm font-semibold">
             {product.name.substring(0, 50)}
           </h1>
-          <p className="my-1">₹{product.discountedPrice}</p>
-          <span>All Returns</span>
-          <div>
-            <span>Size: M</span>
+          <p className="my-1">₹{userCart?.buyingPrice}</p>
+          <span className="capitalize">{userCart?.returnType}</span>
+          <div className="flex gap-2">
+            <span>Size: {userCart?.size}</span>
             <span>Qty: 1</span>
           </div>
           {!summary.pending && (

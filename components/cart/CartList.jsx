@@ -19,7 +19,7 @@ const CartList = () => {
       toast.error(message);
     }
     dispatch(reset());
-  }, [isError, message, dispatch]);
+  }, [isError, message]);
 
   useEffect(() => {
     dispatch(getCartItems());
@@ -37,6 +37,7 @@ const CartList = () => {
             <CartListItem
               key={uuidv4()}
               product={cartItem?.product}
+              userCart={cartItem?.userSelection}
               cartId={cartItem._id}
             />
           ))}

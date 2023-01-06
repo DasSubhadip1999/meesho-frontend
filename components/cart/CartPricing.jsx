@@ -4,8 +4,8 @@ import ProgressStepsContext from "../../context/progressStepsContext";
 const CartPricing = ({ carts }) => {
   const { setProgress } = useContext(ProgressStepsContext);
   //console.log(setProgress);
-  const totalPrice = carts.reduce((total, { product }) => {
-    return (total += product.discountedPrice);
+  const totalPrice = carts.reduce((total, { userSelection }) => {
+    return (total += userSelection?.buyingPrice);
   }, 0);
 
   const handleClick = () => {

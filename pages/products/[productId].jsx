@@ -35,8 +35,9 @@ const Product = ({ product }) => {
   const router = useRouter();
   //console.log(product);
 
-  const { size, buyingPrice, returnType } = confirmCart;
+  const { size, buyingPrice } = confirmCart;
 
+  //back default when component loads
   useEffect(() => {
     setSellerId(product?.seller?._id);
     sendCurrentProduct({});
@@ -47,6 +48,7 @@ const Product = ({ product }) => {
     });
   }, []);
 
+  //for reacting on error or success
   useEffect(() => {
     if (isSuccess && Object.keys(cart).length && type == "addToCart") {
       console.log(type);
@@ -56,8 +58,6 @@ const Product = ({ product }) => {
     if (isError) {
       toast.error(message);
     }
-
-    //console.log(router.pathname);
 
     dispatch(reset());
   }, [isSuccess, cart, dispatch]);
@@ -69,7 +69,7 @@ const Product = ({ product }) => {
         cartModalRef.current.checked = true;
         sendCurrentProduct(product);
       } else {
-        dispatch(addToCart(product._id));
+        dispatch(addToCart({ productId: product._id, userCart: confirmCart }));
         setTimeout(() => {
           dispatch(getCartItems());
         }, 500);
@@ -78,6 +78,8 @@ const Product = ({ product }) => {
       router.push("/account");
     }
   };
+
+  //styles
   const button =
     "px-3 py-2 w-[48%] mb-1 rounded-md flex items-center justify-center";
 
