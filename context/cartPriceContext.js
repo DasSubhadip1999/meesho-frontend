@@ -9,6 +9,8 @@ export const CartProvider = ({ children }) => {
     returnType: "",
     buyingPrice: "",
   });
+
+  //to set the current product which user is viewing
   const [currentProduct, setCurrentProduct] = useState({});
 
   const [sellerId, setSellerId] = useState("");
