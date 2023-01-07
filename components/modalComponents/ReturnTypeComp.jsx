@@ -25,7 +25,7 @@ const ReturnTypeComp = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const { currentProduct, setConfirmCart, confirmCart } =
+  const { currentProduct, setConfirmCart, confirmCart, cartModalRef } =
     useContext(CartContext);
 
   const { size, buyingPrice: confirmBuyingPrice } = confirmCart;
@@ -50,14 +50,16 @@ const ReturnTypeComp = () => {
     setConfirmCart((prev) => ({ ...prev, returnType, buyingPrice }));
   }, [selectReturnType, currentProduct]);
 
-  //for reacting on error or success
+  //for reacting on error or success of add to cart
   useEffect(() => {
     if (isSuccess && Object.keys(cart).length && type == "addToCart") {
-      //toast.success("Product added to cart");
+      cartModalRef.current.checked = false;
+      toast.success("Product added to cart");
     }
 
     if (isError) {
       toast.error(message);
+      cartModalRef.current.checked = true;
     }
 
     dispatch(reset());
@@ -79,6 +81,10 @@ const ReturnTypeComp = () => {
       }
     } else {
       router.push("/account");
+    }
+
+    if (isLoading) {
+      cartModalRef.current.checked = false;
     }
   };
 
@@ -134,7 +140,9 @@ const ReturnTypeComp = () => {
       </div>
       <button
         onClick={handleAddToCart}
-        className="w-full bg-[#f43397] flex items-center justify-center  text-white rounded-md py-2"
+        className={`w-full bg-[#f43397] flex items-center justify-center  text-white rounded-md py-2 ${
+          isLoading && "pointer-events-none"
+        }`}
       >
         <BsCart /> <span className="ml-1">Add to Cart</span>
       </button>

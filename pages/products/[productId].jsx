@@ -8,22 +8,16 @@ import { BsCart2 } from "react-icons/bs";
 import { RxCaretRight } from "react-icons/rx";
 import Pricing from "../../components/Product Components/Pricing";
 import SellerInformation from "../../components/Product Components/SellerInformation";
-import { addToCart } from "../../redux/feature/cart/cartSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import useAuthStatus from "../../hooks/useAuthStatus";
-import { reset } from "../../redux/feature/cart/cartSlice";
 import { useContext, useEffect } from "react";
-import { toast } from "react-toastify";
-import { getCartItems } from "../../redux/feature/cart/cartSlice";
 import CartContext from "../../context/cartPriceContext";
 
 const Product = ({ product }) => {
   const { user } = useSelector((state) => state.auth);
   const { checking, isLoggedIn } = useAuthStatus(user);
-  const { isSuccess, isError, message, cart, type, isLoading } = useSelector(
-    (state) => state.cart
-  );
+  const { isLoading } = useSelector((state) => state.cart);
   const {
     cartModalRef,
     confirmCart,
@@ -31,7 +25,7 @@ const Product = ({ product }) => {
     setSellerId,
     setConfirmCart,
   } = useContext(CartContext);
-  const dispatch = useDispatch();
+
   const router = useRouter();
   //console.log(product);
 
@@ -48,32 +42,11 @@ const Product = ({ product }) => {
     });
   }, []);
 
-  //for reacting on error or success
-  useEffect(() => {
-    if (isSuccess && Object.keys(cart).length && type == "addToCart") {
-      console.log(type);
-      toast.success("Product added to cart");
-    }
-
-    if (isError) {
-      toast.error(message);
-    }
-
-    dispatch(reset());
-  }, [isSuccess, cart, dispatch]);
-
   //add products to cart
   const handleAddToCart = () => {
     if (isLoggedIn) {
-      if (!size || !buyingPrice) {
-        cartModalRef.current.checked = true;
-        sendCurrentProduct(product);
-      } else {
-        dispatch(addToCart({ productId: product._id, userCart: confirmCart }));
-        setTimeout(() => {
-          dispatch(getCartItems());
-        }, 500);
-      }
+      cartModalRef.current.checked = true;
+      sendCurrentProduct(product);
     } else {
       router.push("/account");
     }

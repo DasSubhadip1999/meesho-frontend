@@ -7,13 +7,6 @@ import ReturnTypeComp from "../modalComponents/ReturnTypeComp";
 const CartConfirmModal = () => {
   const { cartModalRef, currentProduct } = useContext(CartContext);
 
-  const offerPrice = Math.floor(
-    currentProduct?.discountedPrice - currentProduct?.discountedPrice * 0.05
-  );
-
-  const handleAddToCart = () => {};
-
-  //console.log(currentProduct);
   return (
     <>
       {/* The button to open modal */}
