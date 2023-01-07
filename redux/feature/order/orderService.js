@@ -16,7 +16,7 @@ export const placeOrderService = async (token) => {
 };
 
 //@route api/orders/my-orders
-export const getMyOrders = async (token) => {
+export const getMyOrdersService = async (token) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,

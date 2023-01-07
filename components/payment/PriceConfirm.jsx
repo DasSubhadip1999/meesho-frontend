@@ -46,8 +46,9 @@ const PriceConfirm = () => {
       toast.error(orderMessage);
     }
 
-    if (orderIsSuccess && order) {
+    if (orderIsSuccess && Object.keys(order).length) {
       toast.success("Order Placed");
+
       dispatch(deleteAllCartItems());
 
       backToCart();

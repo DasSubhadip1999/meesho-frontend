@@ -5,6 +5,7 @@ import { BsSearch } from "react-icons/bs";
 import Searchbar from "../components/Searchbar";
 import { useSelector } from "react-redux";
 import CartLogo from "../assets/CartLogo";
+import OrderList from "../components/myOrders/orderList";
 
 const myOders = () => {
   const { user } = useSelector((state) => state.auth);
@@ -32,6 +33,7 @@ const myOders = () => {
         </header>
         <h1 className="mt-16 px-3">Your Orders</h1>
         <Searchbar />
+        <OrderList />
       </div>
     );
   }
