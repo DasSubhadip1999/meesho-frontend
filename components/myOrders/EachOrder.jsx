@@ -1,8 +1,11 @@
 import Image from "next/image";
+import { useContext } from "react";
 import { FaStar } from "react-icons/fa";
 import { v4 as uuidv4 } from "uuid";
+import CartContext from "../../context/cartPriceContext";
 
 const EachOrder = ({ order: { product } }) => {
+  const { imageURL } = useContext(CartContext);
   const starArr = [1, 2, 3, 4, 5];
 
   const handleClick = (num) => {
@@ -20,7 +23,7 @@ const EachOrder = ({ order: { product } }) => {
       </h2>
       <div className="p-3 flex gap-3 items-center">
         <Image
-          src={`http://localhost:5000/${product.images[0]}`}
+          src={imageURL + product.images[0]}
           alt="order image"
           width={100}
           height={100}

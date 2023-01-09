@@ -4,7 +4,7 @@ import {
   setItemToStorage,
 } from "../../../assets/localstorage";
 
-const PROXY = "http://localhost:5000/";
+const PROXY = "https://meesho-backend.onrender.com/";
 
 //@route api/products/get/:id/add-to-cart
 export const addToCartService = async (productId, userCart, token) => {

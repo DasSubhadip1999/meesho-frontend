@@ -1,11 +1,13 @@
 import axios from "axios";
 import { setItemToStorage } from "../../../assets/localstorage";
 
-const REGISTER_URL = "http://localhost:5000/api/users/register";
-const LOGIN_URL = "http://localhost:5000/api/users/login";
+const REGISTER_URL = "https://meesho-backend.onrender.com/api/users/register";
+const LOGIN_URL = "https://meesho-backend.onrender.com/api/users/login";
 
-const SELLER_REGISTER_URL = "http://localhost:5000/api/sellers/register";
-const SELLER_LOGIN_URL = "http://localhost:5000/api/sellers/login";
+const SELLER_REGISTER_URL =
+  "https://meesho-backend.onrender.com/api/sellers/register";
+const SELLER_LOGIN_URL =
+  "https://meesho-backend.onrender.com/api/sellers/login";
 
 export const registerService = async (user) => {
   const res = await axios.post(REGISTER_URL, user);

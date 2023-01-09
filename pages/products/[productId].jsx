@@ -24,6 +24,7 @@ const Product = ({ product }) => {
     sendCurrentProduct,
     setSellerId,
     setConfirmCart,
+    imageURL,
   } = useContext(CartContext);
 
   const router = useRouter();
@@ -66,7 +67,7 @@ const Product = ({ product }) => {
       <DeliveryLocation />
       <div>
         <Image
-          src={`http:localhost:5000/` + product?.images[0]}
+          src={imageURL + product?.images[0]}
           alt="single product image"
           width={250}
           height={300}
@@ -103,7 +104,7 @@ const Product = ({ product }) => {
 
 export const getServerSideProps = async (context) => {
   const res = await axios.get(
-    `http://localhost:5000/api/products/get/${context.params.productId}`
+    `https://meesho-backend.onrender.com/api/products/get/${context.params.productId}`
   );
 
   const product = res.data;

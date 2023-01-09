@@ -8,13 +8,15 @@ import {
   reset,
 } from "../../redux/feature/product/productSlice";
 import HashLoaderComponent from "../../assets/HashLoaderComponent";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { toast } from "react-toastify";
+import CartContext from "../../context/cartPriceContext";
 
 const ProductListItem = ({ product }) => {
   const { isLoading, isError, isSuccess, message, type } = useSelector(
     (state) => state.product
   );
+  const { imageURL } = useContext(CartContext);
   const date = new Date(product.createdAt);
 
   const dispatch = useDispatch();
@@ -47,7 +49,7 @@ const ProductListItem = ({ product }) => {
 
       <div className="flex gap-3 p-3">
         <Image
-          src={`http://localhost:5000/${product.images[0]}`}
+          src={imageURL + product.images[0]}
           width={100}
           height={100}
           alt="seller product image"

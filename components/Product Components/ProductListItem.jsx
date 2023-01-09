@@ -1,16 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useContext } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
+import CartContext from "../../context/cartPriceContext";
 
 const ProductListItem = ({ item }) => {
-  const imagePrefix = "http://localhost:5000/";
+  const { imageURL } = useContext(CartContext);
+
   return (
     <Link href={`/products/${item._id}`} className="border-[1px] relative pb-3">
       <div className="absolute right-2 top-2 p-2 rounded-full bg-white">
         <AiOutlineHeart />
       </div>
       <Image
-        src={imagePrefix + item.images[0]}
+        src={imageURL + item.images[0]}
         width={180}
         height={100}
         alt="product image"

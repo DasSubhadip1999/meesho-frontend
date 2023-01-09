@@ -11,6 +11,7 @@ import {
   deleteCartItem,
   getCartItems,
 } from "../../redux/feature/cart/cartSlice";
+import CartContext from "../../context/cartPriceContext";
 
 const CartListItem = ({ product, cartId, userCart }) => {
   const { isError, isLoading, isSuccess, message } = useSelector(
@@ -20,6 +21,8 @@ const CartListItem = ({ product, cartId, userCart }) => {
     progress: { summary },
   } = useContext(ProgressStepsContext);
   const dispatch = useDispatch();
+
+  const { imageURL } = useContext(CartContext);
 
   useEffect(() => {
     if (message === "Cart item removed successfully") {
@@ -42,7 +45,7 @@ const CartListItem = ({ product, cartId, userCart }) => {
       <div className="flex px-4 py-3 border-b-[1px]">
         <Link href={`/products/${product._id}`}>
           <Image
-            src={`http://localhost:5000/${product.images[0]}`}
+            src={imageURL + product.images[0]}
             alt="cart product image"
             width={80}
             height={80}

@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const ADD_PRODUCT_URL = "http://localhost:5000/api/products/add";
-const GET_PRODUCT_URL = "http://localhost:5000/api/products/get";
+const ADD_PRODUCT_URL = "https://meesho-backend.onrender.com/api/products/add";
+const GET_PRODUCT_URL = "https://meesho-backend.onrender.com/api/products/get";
 
 export const addProductService = async (product, token) => {
   console.log("service product", product);
@@ -22,7 +22,8 @@ export const getProductService = async () => {
   return res.data;
 };
 
-const GET_SELLER_PRODUCTS = "http://localhost:5000/api/sellers/get-products";
+const GET_SELLER_PRODUCTS =
+  "https://meesho-backend.onrender.com/api/sellers/get-products";
 
 export const getSellerProductsService = async (token) => {
   const config = {
@@ -36,7 +37,8 @@ export const getSellerProductsService = async (token) => {
   return res.data;
 };
 
-const DELETE_SELLER_PRODUCT = "http://localhost:5000/api/products/delete/";
+const DELETE_SELLER_PRODUCT =
+  "https://meesho-backend.onrender.com/api/products/delete/";
 
 export const deleteProductService = async (token, id) => {
   const config = {

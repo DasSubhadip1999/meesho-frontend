@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const PROXY = "http://localhost:5000/";
+const PROXY = "https://meesho-backend.onrender.com/";
 
 export const addAddressService = async (address, token) => {
   const config = {

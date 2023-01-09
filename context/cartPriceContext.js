@@ -15,6 +15,8 @@ export const CartProvider = ({ children }) => {
 
   const [sellerId, setSellerId] = useState("");
 
+  const imageURL = "https://meesho-backend.onrender.com/";
+
   const { products } = useSelector((state) => state.product);
 
   const sellerProducts = products.filter(
@@ -46,6 +48,7 @@ export const CartProvider = ({ children }) => {
         confirmCart,
         sellerId,
         sellerProducts,
+        imageURL,
         sendCurrentProduct,
         setSellerId,
         setConfirmCart,
