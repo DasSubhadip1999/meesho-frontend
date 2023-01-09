@@ -31,7 +31,7 @@ const Profile = () => {
       </div>
 
       {user ? (
-        <div className="border-l-2 border-[rgba(0,0,0,0.2)] ml-4 p-2 relative">
+        <div className="border-l-2 border-[rgba(0,0,0,0.2)] ml-4 p-2 relative w-full">
           <div className="font-semibold">{user.name}</div>
           <div>{user.email}</div>
           <button

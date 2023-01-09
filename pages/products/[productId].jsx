@@ -8,14 +8,28 @@ import { BsCart2 } from "react-icons/bs";
 import { RxCaretRight } from "react-icons/rx";
 import Pricing from "../../components/Product Components/Pricing";
 import SellerInformation from "../../components/Product Components/SellerInformation";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import useAuthStatus from "../../hooks/useAuthStatus";
 import { useContext, useEffect } from "react";
 import CartContext from "../../context/cartPriceContext";
+import {
+  getSingleProduct,
+  reset,
+} from "../../redux/feature/product/productSlice";
+import { toast } from "react-toastify";
+import ProductImageSlider from "../../components/singleProduct/ProductImageSlider";
 
-const Product = ({ product }) => {
+const Product = () => {
   const { user } = useSelector((state) => state.auth);
+  const {
+    product,
+    isLoading: productIsLoading,
+    isError,
+    message,
+    type,
+    isSuccess,
+  } = useSelector((state) => state.product);
   const { checking, isLoggedIn } = useAuthStatus(user);
   const { isLoading } = useSelector((state) => state.cart);
   const {
@@ -24,17 +38,33 @@ const Product = ({ product }) => {
     sendCurrentProduct,
     setSellerId,
     setConfirmCart,
-    imageURL,
   } = useContext(CartContext);
 
   const router = useRouter();
+  const dispatch = useDispatch();
   //console.log(product);
 
   const { size, buyingPrice } = confirmCart;
 
+  useEffect(() => {
+    if (isError && type === "product/get/single") {
+      toast.error(message);
+    }
+
+    if (isSuccess && type === "product/get/single") {
+      setSellerId(product?.seller?._id);
+    }
+
+    dispatch(reset());
+  }, [isError, isSuccess]);
+
+  //get the single product
+  useEffect(() => {
+    dispatch(getSingleProduct(router.query.productId));
+  }, [router.query]);
+
   //back default when component loads
   useEffect(() => {
-    setSellerId(product?.seller?._id);
     sendCurrentProduct({});
     setConfirmCart({
       size: "",
@@ -57,7 +87,11 @@ const Product = ({ product }) => {
   const button =
     "px-3 py-2 w-[48%] mb-1 rounded-md flex items-center justify-center";
 
-  if (isLoading || checking) {
+  if (
+    isLoading ||
+    checking ||
+    (productIsLoading && type === "product/get/single")
+  ) {
     return <HashLoaderComponent />;
   }
   return (
@@ -66,18 +100,12 @@ const Product = ({ product }) => {
       <div className="pt-14"></div>
       <DeliveryLocation />
       <div>
-        <Image
-          src={imageURL + product?.images[0]}
-          alt="single product image"
-          width={250}
-          height={300}
-          className="h-80 mx-auto"
-        />
+        <ProductImageSlider images={product?.images} />
       </div>
       <Pricing product={product} />
       <div className="bg-[#e6ebf8] py-2">
-        <Size sizes={product.sizes} />
-        <SellerInformation seller={product.seller} />
+        <Size sizes={product?.sizes} />
+        <SellerInformation seller={product?.seller} />
         {/* sold by */}
       </div>
       {/*  */}
@@ -100,20 +128,6 @@ const Product = ({ product }) => {
       </section>
     </div>
   );
-};
-
-export const getServerSideProps = async (context) => {
-  const res = await axios.get(
-    `https://meesho-backend.onrender.com/api/products/get/${context.params.productId}`
-  );
-
-  const product = res.data;
-
-  return {
-    props: {
-      product,
-    },
-  };
 };
 
 export default Product;

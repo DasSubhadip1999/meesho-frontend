@@ -14,7 +14,9 @@ import OrderSummaryPage from "../components/orderSummary/OrderSummaryPage";
 
 const cart = () => {
   const { user } = useSelector((state) => state.auth);
-  const { allCartItems } = useSelector((state) => state.cart);
+  const { allCartItems, isLoading: cartIsLoading } = useSelector(
+    (state) => state.cart
+  );
   const { isLoading } = useSelector((state) => state.order);
   const { checking, isLoggedIn } = useAuthStatus(user);
   const {
@@ -22,7 +24,7 @@ const cart = () => {
   } = useContext(ProgressStepsContext);
   const router = useRouter();
 
-  if (checking || isLoading) {
+  if (checking || isLoading || cartIsLoading) {
     return <HashLoaderComponent />;
   }
 

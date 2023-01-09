@@ -13,7 +13,7 @@ const SellerInformation = ({ seller }) => {
         <div className="bg-[#ece1e7] p-3 rounded-full text-[#f43397]">
           <AiOutlineShop size={21} />
         </div>
-        <h1 className="text-lg uppercase font-bold">{seller.name}</h1>
+        <h1 className="text-lg uppercase font-bold">{seller?.name}</h1>
         <Link
           className="border-[1px] border-[#f43397] text-[14px] px-2 py-1 rounded-md font-bold text-[#f43397]"
           href="/supplier/shop"

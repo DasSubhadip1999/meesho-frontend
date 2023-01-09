@@ -6,12 +6,13 @@ import {
   getSellerProductsService,
   deleteProductService,
   getProductsBySearchService,
+  getSingleProductService,
 } from "./productService";
 
 const initialState = {
   products: [],
   searchProducts: [],
-  product: null,
+  product: {},
   isLoading: false,
   isError: false,
   isSuccess: false,
@@ -24,6 +25,23 @@ export const getProduct = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       return await getProductService();
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const getSingleProduct = createAsyncThunk(
+  "product/get/single",
+  async (id, thunkAPI) => {
+    try {
+      return await getSingleProductService(id);
     } catch (error) {
       const message =
         (error.response &&
@@ -139,6 +157,22 @@ export const productSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
+      })
+      .addCase(getSingleProduct.pending, (state) => {
+        state.isLoading = true;
+        state.type = "product/get/single";
+      })
+      .addCase(getSingleProduct.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.product = action.payload;
+        state.type = "product/get/single";
+      })
+      .addCase(getSingleProduct.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        state.type = "product/get/single";
       })
       .addCase(addProduct.pending, (state) => {
         state.isLoading = true;

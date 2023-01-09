@@ -5,9 +5,11 @@ const Pricing = ({ product }) => {
     <>
       <div className="flex justify-between items-center px-3 py-1 my-2">
         <div className="flex flex-col">
-          <p className="font-semibold text-[rgba(0,0,0,0.6)]">{product.name}</p>
+          <p className="font-semibold text-[rgba(0,0,0,0.6)]">
+            {product?.name}
+          </p>
           <h1 className="text-xl font-semibold py-1">
-            ₹{product.discountedPrice}
+            ₹{product?.discountedPrice}
           </h1>
         </div>
         <div className="flex gap-5 ml-2">
@@ -24,13 +26,13 @@ const Pricing = ({ product }) => {
       <div className="pb-2">
         <div className="bg-[#f9f9f9] mx-3 py-1 px-2 rounded-md text-[#1e9f63] text-sm font-semibold">
           <span>
-            <span className="mr-1">Origin Price:</span>₹{product.price}
+            <span className="mr-1">Origin Price:</span>₹{product?.price}
           </span>
           <span className="ml-2">
             <span className="mr-1">Discount:</span>
-            {product.discount.includes("%")
-              ? product.discount
-              : `₹${product.discount}`}
+            {product?.discount?.includes("%")
+              ? product?.discount
+              : `₹${product?.discount}`}
           </span>
         </div>
       </div>

@@ -63,7 +63,7 @@ const ReturnTypeComp = () => {
     }
 
     dispatch(reset());
-  }, [isSuccess, cart, dispatch]);
+  }, [isSuccess, cart, dispatch, isError]);
 
   const handleAddToCart = () => {
     //console.log(size, confirmBuyingPrice);

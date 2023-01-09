@@ -22,6 +22,12 @@ export const getProductService = async () => {
   return res.data;
 };
 
+export const getSingleProductService = async (id) => {
+  const res = await axios.get(`${GET_PRODUCT_URL}/${id}`);
+
+  return res.data;
+};
+
 const GET_SELLER_PRODUCTS =
   "https://meesho-backend.onrender.com/api/sellers/get-products";
 

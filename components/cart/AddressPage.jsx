@@ -39,7 +39,13 @@ const AddressPage = () => {
             <span>ADD NEW ADDRESS</span>
           </label>
         </div>
-        {addresses.length && <AddressList addresses={addresses} />}
+        {addresses.length ? (
+          <AddressList addresses={addresses} />
+        ) : (
+          <h1 className="text-center py-2 my-1 text-sm font-semibold">
+            No Address available
+          </h1>
+        )}
       </>
     );
   }
