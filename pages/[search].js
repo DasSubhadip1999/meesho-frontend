@@ -10,7 +10,7 @@ import {
   reset,
 } from "../redux/feature/product/productSlice";
 
-const search = () => {
+const Search = () => {
   const { searchProducts, isLoading } = useSelector((state) => state.product);
   const router = useRouter();
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const search = () => {
     }
 
     dispatch(reset());
-  }, [router.query]);
+  }, [search, dispatch]);
 
   if (isLoading || search === undefined) {
     return <HashLoaderComponent />;
@@ -45,4 +45,4 @@ const search = () => {
   );
 };
 
-export default search;
+export default Search;

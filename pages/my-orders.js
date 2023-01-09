@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import CartLogo from "../assets/CartLogo";
 import OrderList from "../components/myOrders/orderList";
 
-const myOders = () => {
+const MyOders = () => {
   const { user } = useSelector((state) => state.auth);
   const { checking, isLoggedIn } = useAuthStatus(user);
 
@@ -39,4 +39,4 @@ const myOders = () => {
   }
 };
 
-export default myOders;
+export default MyOders;

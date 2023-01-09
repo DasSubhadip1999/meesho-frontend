@@ -19,10 +19,10 @@ const ProductListItem = ({ item }) => {
         alt="product image"
         className="h-52"
       />
-      <p className="text-[13px] font-semibold text-[rgba(0,0,0,0.6)]">
+      <p className="text-[13px] font-semibold text-[rgba(0,0,0,0.6)] px-1 my-1">
         {`${item.name}`.substring(0, 40)}
       </p>
-      <h2 className="my-1 text-xl font-semibold text-[rgba(0,0,0,0.7)]">
+      <h2 className="my-1 text-xl font-semibold text-[rgba(0,0,0,0.7)] px-1">
         ₹{item.discountedPrice}
       </h2>
       <div className="px-3 text-[#23bb75] bg-[rgba(0,0,0,0.1)] mx-4 rounded-3xl">

@@ -3,7 +3,7 @@ import CartLogo from "../assets/CartLogo";
 import Menu from "../components/Menu";
 import Profile from "../components/Profile";
 
-const account = () => {
+const Account = () => {
   //
   return (
     <div>
@@ -20,4 +20,4 @@ const account = () => {
   );
 };
 
-export default account;
+export default Account;

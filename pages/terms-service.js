@@ -1,7 +1,7 @@
 import React from "react";
 
-const termsService = () => {
+const TermsService = () => {
   return <div>terms-service</div>;
 };
 
-export default termsService;
+export default TermsService;

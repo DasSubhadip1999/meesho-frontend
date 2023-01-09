@@ -12,7 +12,7 @@ import AddressPage from "../components/cart/AddressPage";
 import PaymentPage from "../components/payment/PaymentPage";
 import OrderSummaryPage from "../components/orderSummary/OrderSummaryPage";
 
-const cart = () => {
+const Cart = () => {
   const { user } = useSelector((state) => state.auth);
   const { allCartItems, isLoading: cartIsLoading } = useSelector(
     (state) => state.cart
@@ -52,4 +52,4 @@ const cart = () => {
   }
 };
 
-export default cart;
+export default Cart;

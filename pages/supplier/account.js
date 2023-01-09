@@ -4,7 +4,7 @@ import HashLoader from "react-spinners/HashLoader";
 import SellerAccount from "../../components/SellerAccount";
 import useAuthStatus from "../../hooks/useAuthStatus";
 
-const account = () => {
+const Account = () => {
   const { seller } = useSelector((state) => state.auth);
   const { checking, isLoggedIn } = useAuthStatus(seller);
   const router = useRouter();
@@ -29,4 +29,4 @@ const account = () => {
   }
 };
 
-export default account;
+export default Account;
