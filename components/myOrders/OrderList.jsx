@@ -11,6 +11,8 @@ const OrderList = () => {
     (state) => state.order
   );
 
+  //console.log(orders);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,7 +28,7 @@ const OrderList = () => {
   }, []);
 
   if (isLoading) {
-    <HashLoaderComponent />;
+    return <HashLoaderComponent />;
   }
 
   return (

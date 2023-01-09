@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MdOutlineLogout } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import AuthContext from "../context/authContext";
@@ -9,6 +9,17 @@ import { userLogout } from "../redux/feature/auth/authSlice";
 const Profile = () => {
   const { openModal } = useContext(AuthContext);
   const { user } = useSelector((state) => state.auth);
+  // const [userDetails, setUserDetails] = useState({
+  //   name: "user name",
+  //   email: "user email",
+  // });
+
+  // useEffect(() => {
+  //   setUserDetails({
+  //     name: user.name,
+  //     email: user.email,
+  //   });
+  // }, [user]);
 
   const dispatch = useDispatch();
   return (
@@ -21,8 +32,8 @@ const Profile = () => {
 
       {user ? (
         <div className="border-l-2 border-[rgba(0,0,0,0.2)] ml-4 p-2 relative">
-          <p className="font-semibold">{user.name}</p>
-          <p>{user.email}</p>
+          <div className="font-semibold">{user.name}</div>
+          <div>{user.email}</div>
           <button
             onClick={() => {
               removeItemFromStorage("user");

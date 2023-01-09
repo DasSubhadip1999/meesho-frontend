@@ -1,40 +1,35 @@
-import Image from "next/image";
+import EachOrder from "./EachOrder";
+import { v4 as uuidv4 } from "uuid";
 
 const OrderListItem = ({ order }) => {
-  const date = new Date(order.createdAt);
-
-  const orderDate = date.toLocaleDateString();
+  const orderDate = new Date(order.createdAt).toLocaleDateString();
+  const deliveryDate = new Date(order.deliveryDate).toLocaleDateString();
 
   const listStyle =
-    "border-b-[1px] first:border-t-[1px] border-[rgba(0,0,0,0.1)] py-2 px-3";
+    "border-b-[1px] first:border-t-[1px] border-[rgba(0,0,0,0.1)] py-2 px-3 flex items-center text-sm gap-2";
+
+  //console.log("orderlist order", order);
+
   return (
-    <div className="">
-      <h1 className={`text-sm ${listStyle} flex gap-2 items-center`}>
+    <div className="mt-2">
+      <h1 className={`${listStyle}`}>
         <span>Order Date:</span>
         <span className="font-bold">{orderDate}</span>
       </h1>
 
-      <div className={`flex gap-2 text-sm ${listStyle}`}>
+      <div className={`${listStyle}`}>
         <span>Order ID</span>
-        <span className="uppercase">3647</span>
+        <span className="uppercase">{order._id}</span>
       </div>
 
-      <div className={`flex items-center text-sm ${listStyle} gap-2`}>
-        <span>Supplier</span>
-        <span className="font-bold text-xs">Supplier name</span>
+      <div className={`${listStyle}`}>
+        <span>Expected delivery date:</span>
+        <span className="font-semibold">{deliveryDate}</span>
       </div>
 
-      <div className={`${listStyle} flex`}>
-        <Image src="" width={100} height={100} alt="order product image" />
-        <div>
-          <span>Prepaid Order</span>
-          <h1>Product Name</h1>
-          <div className="flex">
-            <span>Delievery Date</span>
-            <span>12/12/12</span>
-          </div>
-        </div>
-      </div>
+      {order.orders.map((eachOrder) => {
+        return <EachOrder key={uuidv4()} order={eachOrder} />;
+      })}
     </div>
   );
 };
