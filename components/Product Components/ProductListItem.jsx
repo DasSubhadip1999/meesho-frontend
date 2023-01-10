@@ -13,6 +13,7 @@ const ProductListItem = ({ item }) => {
         <AiOutlineHeart />
       </div>
       <Image
+        priority
         src={imageURL + item.images[0]}
         width={180}
         height={100}
