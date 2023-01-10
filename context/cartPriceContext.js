@@ -39,6 +39,8 @@ export const CartProvider = ({ children }) => {
     setCurrentProduct(product);
   };
 
+  const imageLoader = () => {};
+
   return (
     <CartContext.Provider
       value={{
