@@ -5,7 +5,7 @@ import { BsSearch } from "react-icons/bs";
 import Searchbar from "../components/Searchbar";
 import { useSelector } from "react-redux";
 import CartLogo from "../assets/CartLogo";
-import OrderList from "../components/myOrders/orderList";
+import OrderList from "../components/myOrders/OrderList";
 
 const MyOders = () => {
   const { user } = useSelector((state) => state.auth);

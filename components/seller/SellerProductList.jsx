@@ -18,15 +18,15 @@ const SellerProductList = () => {
       toast.error(message);
     }
 
-    if (isSuccess && type === "seller") {
-      //console.log(products);
-    }
-
     dispatch(reset());
-  }, [isError, isSuccess, dispatch]);
+
+    // eslint-disable-next-line
+  }, [isError, isSuccess, dispatch, type]);
 
   useEffect(() => {
     dispatch(getSellerProducts());
+
+    // eslint-disable-next-line
   }, []);
 
   if (isLoading) {

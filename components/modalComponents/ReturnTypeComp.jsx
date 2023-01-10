@@ -48,6 +48,8 @@ const ReturnTypeComp = () => {
 
     //setting the buying price and return type according to the selectReturnType state
     setConfirmCart((prev) => ({ ...prev, returnType, buyingPrice }));
+
+    // eslint-disable-next-line
   }, [selectReturnType, currentProduct]);
 
   //for reacting on error or success of add to cart
