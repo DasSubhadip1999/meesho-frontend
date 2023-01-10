@@ -1,7 +1,6 @@
 {
   "name": "meesho-frontend",
   "version": "0.1.0",
-  "proxy": "https://meesho-backend.onrender.com/",
   "private": true,
   "scripts": {
     "dev": "next dev",
