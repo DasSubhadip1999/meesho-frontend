@@ -56,11 +56,14 @@ const Product = () => {
     }
 
     dispatch(reset());
-  }, [isError, isSuccess]);
+    // eslint-disable-next-line
+  }, [isError, isSuccess, dispatch]);
 
   //get the single product
   useEffect(() => {
     dispatch(getSingleProduct(router.query.productId));
+
+    // eslint-disable-next-line
   }, [router.query]);
 
   //back default when component loads
@@ -71,6 +74,8 @@ const Product = () => {
       returnType: "",
       buyingPrice: "",
     });
+
+    // eslint-disable-next-line
   }, []);
 
   //add products to cart

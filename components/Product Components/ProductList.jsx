@@ -11,7 +11,7 @@ const ProductList = () => {
 
   useEffect(() => {
     dispatch(getProduct());
-  }, [getProduct, dispatch]);
+  }, [dispatch]);
 
   if (isLoading) {
     return <HashLoaderComponent />;

@@ -11,6 +11,7 @@ import { Pagination } from "swiper";
 import { useContext } from "react";
 import CartContext from "../../context/cartPriceContext";
 import Image from "next/image";
+import { v4 as uuidv4 } from "uuid";
 
 export default function ProductImageSlider({ images }) {
   const { imageURL } = useContext(CartContext);
@@ -23,7 +24,7 @@ export default function ProductImageSlider({ images }) {
         modules={[Pagination]}
       >
         {images?.map((image) => (
-          <SwiperSlide>
+          <SwiperSlide key={uuidv4()}>
             <Image
               src={imageURL + image}
               alt="single product image"

@@ -34,6 +34,8 @@ const SignIn = () => {
     }
 
     dispatch(reset());
+
+    // eslint-disable-next-line
   }, [seller, isError, isSuccess, message, dispatch]);
 
   const onChange = (e) =>
@@ -135,7 +137,9 @@ const SignIn = () => {
         </button>
       </form>
       <div className="flex flex-col justify-center items-center pb-20">
-        <span className="text-sm">By continuing you agree to Meesho's</span>
+        <span className="text-sm">
+          By continuing you agree to Meesho&apos;s
+        </span>
         <Link href="/terms-service" className="text-sm my-1">
           <span className="text-blue-700 mr-[2px]">Terms & Conditions</span>and
           <span className="text-blue-700 ml-[2px]">Privacy Policy</span>
