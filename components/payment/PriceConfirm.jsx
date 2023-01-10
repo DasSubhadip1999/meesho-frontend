@@ -56,6 +56,8 @@ const PriceConfirm = () => {
     }
 
     dispatch(reset());
+
+    // eslint-disable-next-line
   }, [orderIsSuccess, orderIsError]);
 
   const handlePlaceOrder = () => {

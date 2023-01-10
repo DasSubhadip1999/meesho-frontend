@@ -20,6 +20,8 @@ const SellerFeedbackCaraousel = () => {
     }
     dispatch(getFeedback());
     dispatch(reset());
+
+    // eslint-disable-next-line
   }, []);
 
   const overrideCss = {

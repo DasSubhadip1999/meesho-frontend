@@ -1,6 +1,6 @@
 import { CiWallet } from "react-icons/ci";
 import { MdPayment } from "react-icons/md";
-import { BsCreditCard, BsBank } from "react-icons/Bs";
+import { BsCreditCard, BsBank } from "react-icons/bs";
 import { FaGooglePay } from "react-icons/fa";
 import { SiPaytm, SiPhonepe, SiSimpleicons } from "react-icons/si";
 

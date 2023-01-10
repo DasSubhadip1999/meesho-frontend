@@ -47,6 +47,8 @@ const AddressFormModal = () => {
     }
 
     dispatch(reset());
+
+    // eslint-disable-next-line
   }, [isError, isSuccess, address]);
 
   const onChange = (e) => {

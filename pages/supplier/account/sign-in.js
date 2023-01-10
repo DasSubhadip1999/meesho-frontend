@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import {
   MdOutlineArrowBackIosNew,
   MdOutlineRemoveRedEye,
-} from "react-icons/Md";
+} from "react-icons/md";
 import { AiOutlineEyeInvisible } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";

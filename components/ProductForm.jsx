@@ -61,6 +61,8 @@ const ProductForm = () => {
 
   useEffect(() => {
     setFormData((prev) => ({ ...prev, size: sizeString.join(",") }));
+
+    // eslint-disable-next-line
   }, [sizeString]);
 
   const onMutate = (e) => {
@@ -109,6 +111,7 @@ const ProductForm = () => {
       }
       setWarning(true);
     }
+    // eslint-disable-next-line
   }, [price]);
 
   //submission

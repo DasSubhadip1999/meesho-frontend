@@ -21,6 +21,8 @@ const OrderList = () => {
     }
 
     dispatch(reset());
+
+    // eslint-disable-next-line
   }, [isError, isSuccess]);
 
   useEffect(() => {

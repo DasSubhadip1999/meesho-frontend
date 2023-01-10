@@ -31,6 +31,8 @@ const ProductListItem = ({ product }) => {
     }
 
     dispatch(reset());
+
+    // eslint-disable-next-line
   }, [isError, isSuccess, dispatch]);
 
   if (isLoading) {

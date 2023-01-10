@@ -31,7 +31,8 @@ const CartListItem = ({ product, cartId, userCart }) => {
     }
 
     dispatch(reset());
-    //dispatch(getCartItems());
+
+    // eslint-disable-next-line
   }, []);
 
   //remove cart item

@@ -19,10 +19,14 @@ const CartList = () => {
       toast.error(message);
     }
     dispatch(reset());
+
+    // eslint-disable-next-line
   }, [isError, message]);
 
   useEffect(() => {
     dispatch(getCartItems());
+
+    // eslint-disable-next-line
   }, []);
 
   if (isLoading) {

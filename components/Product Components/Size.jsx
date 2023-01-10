@@ -12,6 +12,7 @@ const Size = ({ sizes }) => {
 
   useEffect(() => {
     setConfirmCart((prev) => ({ ...prev, size: "" }));
+    // eslint-disable-next-line
   }, []);
 
   return (

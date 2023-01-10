@@ -31,6 +31,8 @@ const Searchbar = () => {
     }
 
     dispatch(reset());
+
+    // eslint-disable-next-line
   }, [isSuccess, isError, message, dispatch]);
 
   const onSubmit = (e) => {

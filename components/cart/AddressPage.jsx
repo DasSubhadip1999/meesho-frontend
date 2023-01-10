@@ -22,10 +22,14 @@ const AddressPage = () => {
     }
 
     dispatch(reset());
+
+    // eslint-disable-next-line
   }, [isError]);
 
   useEffect(() => {
     dispatch(getAddress());
+
+    // eslint-disable-next-line
   }, []);
 
   if (isLoading) {
