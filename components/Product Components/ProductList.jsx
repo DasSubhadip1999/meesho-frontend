@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import ProductListItem from "./ProductListItem";
 import HashLoaderComponent from "../../assets/HashLoaderComponent";
-import Sorting from "./Sorting";
 
 const ProductList = () => {
   const { products, isLoading } = useSelector((state) => state.product);
@@ -21,11 +20,7 @@ const ProductList = () => {
   } else {
     return (
       <>
-        <h1 className="px-4 py-2 text-lg font-bold border-b-[1px] border-[rgba(0,0,0,0.1)]">
-          Products For You
-        </h1>
         <div className="">
-          <Sorting />
           {/* main products */}
           <div className="grid grid-cols-2 px-1 pb-10">
             {products &&

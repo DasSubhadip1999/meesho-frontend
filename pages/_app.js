@@ -10,6 +10,8 @@ import CartConfirmModal from "../components/modal/CartConfirmModal";
 import { Provider } from "react-redux";
 import { store } from "../redux/app/store";
 import { ToastContainer } from "react-toastify";
+import { SortProvider } from "../context/sortContext";
+import SortModal from "../components/modal/SortModal";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -19,7 +21,10 @@ function MyApp({ Component, pageProps }) {
           <Navbar />
           <ProgressStepsProvider>
             <CartProvider>
-              <Component {...pageProps} />
+              <SortProvider>
+                <Component {...pageProps} />
+                <SortModal />
+              </SortProvider>
               <CartConfirmModal />
             </CartProvider>
           </ProgressStepsProvider>

@@ -4,6 +4,7 @@ import ProductList from "../components/Product Components/ProductList";
 import Searchbar from "../components/Searchbar";
 import Topbar from "../components/Topbar";
 import HashLoaderComponent from "../assets/HashLoaderComponent";
+import Sorting from "../components/Product Components/Sorting";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <Searchbar />
       <DeliveryLocation />
       <Catagories />
+      <Sorting />
       <ProductList />
     </>
   );
