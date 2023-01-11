@@ -21,13 +21,12 @@ const CartList = () => {
     dispatch(reset());
 
     // eslint-disable-next-line
-  }, [isError, message]);
+  }, [isError]);
 
-  useEffect(() => {
-    dispatch(getCartItems());
-
-    // eslint-disable-next-line
-  }, []);
+  // useEffect(() => {
+  //   //console.log("use effect occurring");
+  //   dispatch(getCartItems());
+  // }, []);
 
   if (isLoading) {
     return <HashLoaderComponent />;

@@ -61,13 +61,15 @@ const ReturnTypeComp = () => {
 
     if (isError) {
       toast.error(message);
-      cartModalRef.current.checked = true;
+      if (isLoggedIn) {
+        cartModalRef.current.checked = true;
+      }
     }
 
     dispatch(reset());
 
     // eslint-disable-next-line
-  }, [isSuccess, cart, dispatch, isError]);
+  }, [isSuccess, cart, isError]);
 
   const handleAddToCart = () => {
     //console.log(size, confirmBuyingPrice);
