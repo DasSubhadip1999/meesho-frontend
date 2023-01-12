@@ -65,3 +65,11 @@ export const getProductsBySearchService = async (searchText) => {
 
   return res.data;
 };
+
+export const getProductsBySortService = async (sortType) => {
+  const res = await axios.get(GET_PRODUCT_URL, {
+    params: { sort: sortType },
+  });
+
+  return res.data;
+};

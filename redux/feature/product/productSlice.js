@@ -7,6 +7,7 @@ import {
   deleteProductService,
   getProductsBySearchService,
   getSingleProductService,
+  getProductsBySortService,
 } from "./productService";
 
 const initialState = {
@@ -87,6 +88,25 @@ export const getProductsBySearch = createAsyncThunk(
         error.toString();
 
       console.log(message);
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const getProductsBySort = createAsyncThunk(
+  "products/sort",
+  async (sortType, thunkAPI) => {
+    try {
+      return await getProductsBySortService(sortType);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.toString();
+
+      //console.log(message);
 
       return thunkAPI.rejectWithValue(message);
     }
@@ -233,6 +253,22 @@ export const productSlice = createSlice({
         console.log("error payload", action.payload);
         state.message = action.payload;
         state.type = "products/search";
+      })
+      .addCase(getProductsBySort.pending, (state) => {
+        state.isLoading = true;
+        state.type = "products/sort";
+      })
+      .addCase(getProductsBySort.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.products = action.payload;
+        state.type = "products/sort";
+      })
+      .addCase(getProductsBySort.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        state.type = "products/sort";
       });
   },
 });

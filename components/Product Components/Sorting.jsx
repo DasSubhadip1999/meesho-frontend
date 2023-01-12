@@ -1,8 +1,10 @@
 import { TbArrowsSort } from "react-icons/tb";
 import { RxCaretDown } from "react-icons/rx";
 import { BsFilter } from "react-icons/bs";
+
 const Sorting = () => {
-  const style = "border-r-[1px] last:border-none px-2 py-2 flex items-center";
+  const style =
+    "border-r-[1px] last:border-none px-[0.6rem] font-semibold py-2 flex items-center text-sm";
 
   return (
     <>
