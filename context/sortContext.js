@@ -11,6 +11,7 @@ const SortContext = createContext();
 export const SortProvider = ({ children }) => {
   const [sort, setSort] = useState("");
   const sortModalRef = useRef(null);
+  const genderModalRef = useRef(null);
   const { isSuccess, isError, products, message, type } = useSelector(
     (state) => state.product
   );
@@ -24,6 +25,7 @@ export const SortProvider = ({ children }) => {
 
     if (isSuccess && type === "products/sort") {
       sortModalRef.current.checked = false;
+      genderModalRef.current.checked = false;
     }
 
     dispatch(reset());
@@ -38,7 +40,7 @@ export const SortProvider = ({ children }) => {
   }, [sort]);
 
   return (
-    <SortContext.Provider value={{ setSort, sortModalRef }}>
+    <SortContext.Provider value={{ setSort, sortModalRef, genderModalRef }}>
       {children}
     </SortContext.Provider>
   );

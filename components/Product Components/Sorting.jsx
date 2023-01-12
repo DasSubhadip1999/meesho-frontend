@@ -20,10 +20,10 @@ const Sorting = () => {
           <RxCaretDown size={23} />
           <span className="ml-1">Category</span>
         </div>
-        <div className={style}>
+        <label htmlFor="gender-modal" className={style}>
           <RxCaretDown size={23} />
           <span className="ml-1">Gender</span>
-        </div>
+        </label>
         <div className={style}>
           <BsFilter size={20} />
           <span className="ml-1">Filter</span>

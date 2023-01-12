@@ -12,6 +12,7 @@ import { store } from "../redux/app/store";
 import { ToastContainer } from "react-toastify";
 import { SortProvider } from "../context/sortContext";
 import SortModal from "../components/modal/SortModal";
+import GenderSortModal from "../components/modal/GenderSortModal";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -23,6 +24,7 @@ function MyApp({ Component, pageProps }) {
             <CartProvider>
               <SortProvider>
                 <Component {...pageProps} />
+                <GenderSortModal />
                 <SortModal />
               </SortProvider>
               <CartConfirmModal />

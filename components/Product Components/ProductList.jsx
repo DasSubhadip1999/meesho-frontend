@@ -22,7 +22,7 @@ const ProductList = () => {
       <>
         <div className="">
           {/* main products */}
-          <div className="grid grid-cols-2 px-1 pb-10">
+          <div className="grid grid-cols-2 px-1 pb-16">
             {products &&
               products.map((item) => (
                 <ProductListItem item={item} key={uuidv4()} />
