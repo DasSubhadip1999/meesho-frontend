@@ -8,9 +8,11 @@ const CartLogo = () => {
   return (
     <Link href="/cart">
       <BsCart size={22} />
-      <span className="absolute top-2 right-2 rounded-full bg-[#f43397] text-white text-sm">
-        {allCartItems.length}
-      </span>
+      {allCartItems.length !== 0 && (
+        <span className="absolute top-2 right-2 rounded-full bg-[#f43397] text-white text-sm">
+          {allCartItems.length}
+        </span>
+      )}
     </Link>
   );
 };

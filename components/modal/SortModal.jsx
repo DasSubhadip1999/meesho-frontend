@@ -5,7 +5,7 @@ import SortContext from "../../context/sortContext";
 const SortModal = () => {
   const { setSort, sortModalRef } = useContext(SortContext);
 
-  const style = "flex justify-between my-5 text-xs items-center";
+  const style = "flex justify-between my-5 text-sm items-center";
   return (
     <div>
       <input
