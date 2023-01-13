@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { reset, getProduct } from "../redux/feature/product/productSlice";
 import HashLoaderComponent from "../assets/HashLoaderComponent";
+import BannerSwiper from "../components/Product Components/BannerSwiper";
 
 const App = () => {
   const { isSuccess, message, isError, type, isLoading } = useSelector(
@@ -44,6 +45,7 @@ const App = () => {
       <Searchbar />
       <DeliveryLocation />
       <Catagories />
+      <BannerSwiper />
       <Sorting />
       <ProductList />
     </>
