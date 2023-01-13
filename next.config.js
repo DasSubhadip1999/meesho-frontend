@@ -4,6 +4,7 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     domains: [
+      "meesho-frontend.vercel.app",
       "supplier.meesho.com",
       "images.meeshosupplyassets.com",
       "meesho-backend.onrender.com",
