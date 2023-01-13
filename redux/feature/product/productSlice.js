@@ -167,16 +167,19 @@ export const productSlice = createSlice({
     builder
       .addCase(getProduct.pending, (state) => {
         state.isLoading = true;
+        state.type = "products/getAll";
       })
       .addCase(getProduct.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
         state.products = action.payload;
+        state.type = "products/getAll";
       })
       .addCase(getProduct.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
+        state.type = "products/getAll";
       })
       .addCase(getSingleProduct.pending, (state) => {
         state.isLoading = true;
