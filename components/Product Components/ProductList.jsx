@@ -6,7 +6,7 @@ import HashLoaderComponent from "../../assets/HashLoaderComponent";
 const ProductList = () => {
   const { isLoading, products, type } = useSelector((state) => state.product);
 
-  if (isLoading && type === "products/getAll") {
+  if (isLoading) {
     return <HashLoaderComponent />;
   }
   return (
