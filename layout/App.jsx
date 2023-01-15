@@ -9,6 +9,10 @@ import { useEffect } from "react";
 import { reset, getProduct } from "../redux/feature/product/productSlice";
 import HashLoaderComponent from "../assets/HashLoaderComponent";
 import BannerSwiper from "../components/Product Components/BannerSwiper";
+import { toast } from "react-toastify";
+import Sidebar from "../components/sidebar/Sidebar";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const App = () => {
   const { isSuccess, message, isError, type, isLoading } = useSelector(
@@ -32,6 +36,10 @@ const App = () => {
   useEffect(() => {
     dispatch(getProduct());
 
+    AOS.init({
+      duration: 800,
+    });
+
     // eslint-disable-next-line
   }, []);
 
@@ -41,6 +49,7 @@ const App = () => {
 
   return (
     <>
+      <Sidebar />
       <Topbar />
       <Searchbar />
       <DeliveryLocation />

@@ -5,7 +5,7 @@ import SortContext from "../../context/sortContext";
 const SortModal = () => {
   const { setSort, sortModalRef } = useContext(SortContext);
 
-  const style = "flex justify-between my-5 text-sm items-center";
+  const style = "flex justify-between my-5 text-sm md:text-xl items-center";
   return (
     <div>
       <input
@@ -15,13 +15,13 @@ const SortModal = () => {
         className="modal-toggle"
       />
       <div className="modal modal-bottom sm:modal-middle">
-        <div className="modal-box">
+        <div className="modal-box md:w-[65%]">
           {/* content */}
           <div>
             <div className="flex justify-between items-center border-b-[1px] pb-3 py-2 mb-3">
-              <h1 className="text-sm font-bold">SORT</h1>
+              <h1 className="text-sm md:text-xl font-bold">SORT</h1>
               <div className="modal-action mt-0">
-                <label htmlFor="sort-modal" className="text-2xl">
+                <label htmlFor="sort-modal" className="text-2xl md:text-3xl">
                   <RxCrossCircled />
                 </label>
               </div>

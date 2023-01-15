@@ -18,17 +18,17 @@ const ProductListItem = ({ item }) => {
         width={180}
         height={100}
         alt="product image"
-        className="h-52"
+        className="h-52 md:h-80 md:w-72"
       />
-      <p className="text-[13px] font-semibold text-[rgba(0,0,0,0.6)] px-1 my-1">
+      <p className="text-[13px] md:text-xl font-semibold text-[rgba(0,0,0,0.6)] px-1 my-1 md:my-3">
         {`${item.name}`.substring(0, 40)}
       </p>
-      <h2 className="my-1 text-xl font-semibold text-[rgba(0,0,0,0.7)] px-1">
+      <h2 className="my-1 text-xl md:text-2xl font-semibold text-[rgba(0,0,0,0.7)] px-1">
         ₹{item.discountedPrice}
       </h2>
-      <div className="px-3 text-[#23bb75] bg-[rgba(0,0,0,0.1)] mx-4 rounded-3xl">
-        <span className="font-bold text-sm">₹{item.price}</span>
-        <span className="ml-2 text-[13px]">{item.discount}</span>
+      <div className="px-3 md:py-1 text-[#23bb75] bg-[rgba(0,0,0,0.1)] mx-4 rounded-3xl">
+        <span className="font-bold text-sm md:text-lg">₹{item.price}</span>
+        <span className="ml-2 text-[13px] md:text-sm">{item.discount}</span>
       </div>
     </Link>
   );

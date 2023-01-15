@@ -13,27 +13,30 @@ import { ToastContainer } from "react-toastify";
 import { SortProvider } from "../context/sortContext";
 import SortModal from "../components/modal/SortModal";
 import GenderSortModal from "../components/modal/GenderSortModal";
+import { ResponsiveProvider } from "../context/responsiveContext";
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
       <Provider store={store}>
-        <AuthProvider>
-          <Navbar />
-          <ProgressStepsProvider>
-            <CartProvider>
-              <SortProvider>
-                <Component {...pageProps} />
-                <GenderSortModal />
-                <SortModal />
-              </SortProvider>
-              <CartConfirmModal />
-            </CartProvider>
-          </ProgressStepsProvider>
-          <AddressFormModal />
-          <AuthModal />
-          <ToastContainer />
-        </AuthProvider>
+        <ResponsiveProvider>
+          <AuthProvider>
+            <Navbar />
+            <ProgressStepsProvider>
+              <CartProvider>
+                <SortProvider>
+                  <Component {...pageProps} />
+                  <GenderSortModal />
+                  <SortModal />
+                </SortProvider>
+                <CartConfirmModal />
+              </CartProvider>
+            </ProgressStepsProvider>
+            <AddressFormModal />
+            <AuthModal />
+            <ToastContainer />
+          </AuthProvider>
+        </ResponsiveProvider>
       </Provider>
     </>
   );

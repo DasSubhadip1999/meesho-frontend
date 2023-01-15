@@ -28,12 +28,12 @@ const Navbar = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <nav className="fixed bottom-0 z-20 bg-white w-full">
-        <ul className="text-[#e65082] flex justify-between items-center px-3 pt-3 pb-2 upper-shadow shadow-[0px_-0px_6px_0px_rgba(0,0,0,0.2)]">
+        <ul className="text-[#e65082] flex justify-between items-center px-3 md:px-[10rem] md:pt-5 md:pb-3 pt-3 pb-2 upper-shadow shadow-[0px_-0px_6px_0px_rgba(0,0,0,0.2)]">
           <li>
             <Link href="/">
               {router.pathname === "/" ? (
                 <Image
-                  className="pb-2"
+                  className="pb-2 md:h-16 md:w-16"
                   src={homeLogo}
                   width={40}
                   height={40}
@@ -41,7 +41,7 @@ const Navbar = () => {
                 />
               ) : (
                 <Image
-                  className="pb-2 opacity-70"
+                  className="pb-2 opacity-70 md:h-16 md:w-16"
                   src={homeLogo}
                   width={40}
                   height={40}
@@ -55,12 +55,12 @@ const Navbar = () => {
               {router.pathname === "/catagories" ? (
                 <CgMenuGridR
                   size={25}
-                  className="text-[#863d56] transition-colors"
+                  className="text-[#863d56] transition-colors md:text-3xl text-lg"
                 />
               ) : (
                 <MdOutlineBorderAll size={25} />
               )}
-              <p className="text-[11px] my-1">Catagories</p>
+              <p className="text-[11px] md:text-sm my-1">Catagories</p>
             </li>
           </Link>
           <Link href="/my-orders">
@@ -73,7 +73,7 @@ const Navbar = () => {
               ) : (
                 <BsBag size={25} className="transition-colors" />
               )}
-              <p className="text-[11px] my-1">My Orders</p>
+              <p className="text-[11px] md:text-sm  my-1">My Orders</p>
             </li>
           </Link>
           <Link href="/community">
@@ -83,7 +83,7 @@ const Navbar = () => {
               ) : (
                 <TbUsers size={25} />
               )}
-              <p className="text-[11px] my-1">Community</p>
+              <p className="text-[11px] md:text-sm  my-1">Community</p>
             </li>
           </Link>
           <Link href="/account">
@@ -96,7 +96,7 @@ const Navbar = () => {
               ) : (
                 <AiOutlineUser size={25} className="transition-colors" />
               )}
-              <p className="text-[11px] my-1">Account</p>
+              <p className="text-[11px] md:text-sm  my-1">Account</p>
             </li>
           </Link>
         </ul>

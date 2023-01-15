@@ -4,11 +4,11 @@ import { BsFilter } from "react-icons/bs";
 
 const Sorting = () => {
   const style =
-    "border-r-[1px] last:border-none px-[0.6rem] font-semibold py-2 flex items-center text-sm";
+    "border-r-[1px] last:border-none px-[0.6rem] md:px-14 font-semibold py-2 md:py-5 flex items-center text-sm md:text-xl";
 
   return (
     <>
-      <h1 className="px-4 py-2 text-lg font-bold border-b-[1px] border-[rgba(0,0,0,0.1)]">
+      <h1 className="px-4 py-2 md:py-4 text-lg md:text-2xl font-bold border-b-[1px] border-[rgba(0,0,0,0.1)]">
         Products For You
       </h1>
       <div className="flex mb-1 shadow-md px-[2px] sticky top-[55px] z-20 bg-white border-b-[1px] border-[rgba(0,0,0,0.1)]">

@@ -33,7 +33,7 @@ export default function BannerSwiper() {
               width={300}
               height={200}
               alt="banner image 1"
-              className="w-full h-40 rounded-md"
+              className="w-full h-40 md:h-64   rounded-md"
             />
           </div>
         </SwiperSlide>
@@ -44,7 +44,7 @@ export default function BannerSwiper() {
               width={300}
               height={200}
               alt="banner image 2"
-              className="w-full h-40 rounded-md"
+              className="w-full h-40 md:h-64 rounded-md"
             />
           </div>
         </SwiperSlide>
@@ -55,7 +55,7 @@ export default function BannerSwiper() {
               width={300}
               height={200}
               alt="banner image 2"
-              className="w-full h-40 rounded-md"
+              className="w-full h-40 md:h-64 rounded-md"
             />
           </div>
         </SwiperSlide>
@@ -66,7 +66,7 @@ export default function BannerSwiper() {
               width={300}
               height={200}
               alt="banner image 2"
-              className="w-full h-40 rounded-md"
+              className="w-full h-40 md:h-64 rounded-md"
             />
           </div>
         </SwiperSlide>
