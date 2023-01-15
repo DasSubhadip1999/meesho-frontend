@@ -7,7 +7,7 @@ export const ResponsiveProvider = ({ children }) => {
   const [width, setWidth] = useState(0);
   const [sidebar, showSidebar] = useState(false);
   const { user } = useSelector((state) => state.auth);
-  const [userName, setUserName] = useState("Not Loggedin");
+  const [userName, setUserName] = useState("");
 
   useEffect(() => {
     if (user) {

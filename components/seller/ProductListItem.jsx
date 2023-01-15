@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { BiEditAlt } from "react-icons/bi";
 import { RiDeleteBin7Line } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
@@ -50,10 +49,8 @@ const ProductListItem = ({ product }) => {
       </div>
 
       <div className="flex gap-3 p-3">
-        <Image
+        <img
           src={imageURL + product.images[0]}
-          width={100}
-          height={100}
           alt="seller product image"
           className="w-20 h-20 rounded-lg border-[1px] border-[rgba(0,0,0,0.2)]"
         />

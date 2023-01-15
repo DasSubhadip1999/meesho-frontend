@@ -19,19 +19,17 @@ const EachOrder = ({ order: { product } }) => {
     <div className="py-2 bg-white">
       <h2 className={`${listStyle} text-xs flex gap-2 items-center`}>
         <span>Supplier</span>
-        <span>{product.packer}</span>
+        <span>{product?.packer}</span>
       </h2>
       <div className="p-3 flex gap-3 items-center">
-        <Image
-          src={imageURL + product.images[0]}
+        <img
+          src={imageURL + product?.images[0]}
           alt="order image"
-          width={100}
-          height={100}
           className="h-20 w-20 rounded-lg border-[1px]"
         />
         <div className="text-xs flex flex-col gap-1">
           <span>Order Type</span>
-          <h2 className="font-semibold text-sm">{product.name}</h2>
+          <h2 className="font-semibold text-sm">{product?.name}</h2>
         </div>
       </div>
       <div className="px-3">

@@ -37,8 +37,11 @@ const OrderList = () => {
 
   return (
     <div className="mt-2">
-      {orders?.length &&
-        orders?.map((order) => <OrderListItem order={order} key={uuidv4()} />)}
+      {orders?.length !== 0 ? (
+        orders?.map((order) => <OrderListItem order={order} key={uuidv4()} />)
+      ) : (
+        <h1>No Orders</h1>
+      )}
     </div>
   );
 };

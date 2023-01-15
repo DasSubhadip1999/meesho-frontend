@@ -16,7 +16,7 @@ const Catagories = () => {
   const { width } = useContext(ResponsiveContext);
 
   return (
-    <div className="flex border-b-[1px] py-2 md:py-3 px-3 items-center my-2">
+    <div className="flex border-b-[1px] py-2 md:py-3 px-3 items-center my-2 2xl:hidden">
       <Swiper
         slidesPerView={4}
         spaceBetween={width > 786 && width < 1024 ? 25 : 30}

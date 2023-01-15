@@ -10,7 +10,6 @@ import "swiper/css/navigation";
 import { Pagination } from "swiper";
 import { useContext } from "react";
 import CartContext from "../../context/cartPriceContext";
-import Image from "next/image";
 import { v4 as uuidv4 } from "uuid";
 
 export default function ProductImageSlider({ images }) {
@@ -25,11 +24,9 @@ export default function ProductImageSlider({ images }) {
       >
         {images?.map((image) => (
           <SwiperSlide key={uuidv4()}>
-            <Image
+            <img
               src={imageURL + image}
               alt="single product image"
-              width={250}
-              height={300}
               className="h-80 mx-auto"
             />
           </SwiperSlide>

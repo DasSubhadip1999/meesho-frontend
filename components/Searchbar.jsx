@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
-import { CiSearch } from "react-icons/ci";
+import { CiSearch, CiUser } from "react-icons/ci";
+import { BiMobile } from "react-icons/bi";
+import { BsCart2 } from "react-icons/bs";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -17,7 +19,7 @@ const Searchbar = () => {
   const { searchProducts, message, isLoading, isError, isSuccess, type } =
     useSelector((state) => state.product);
 
-  const { showSidebar } = useContext(ResponsiveContext);
+  const { showSidebar, width } = useContext(ResponsiveContext);
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -55,29 +57,56 @@ const Searchbar = () => {
   };
 
   return (
-    <div className="sticky -top-[2px] z-30 bg-white py-2 md:flex md:items-center md:px-3 md:pb-3 md:pt-4">
+    <div className="sticky -top-[2px] z-30 bg-white py-2 md:flex md:items-center md:px-3 md:pb-3 md:pt-4 2xl:px-24">
       <div className="hidden md:block">
-        <Image src={meeshoLogo} width={100} height={20} alt="meesho-logo" />
+        <Image
+          src={meeshoLogo}
+          width={width > 1500 ? 150 : 100}
+          height={20}
+          alt="meesho-logo"
+        />
       </div>
-      <div className="mx-3 border-[1px] border-[rgba(0,0,0,0.2)] p-2 rounded-md md:w-[80%]">
+      <div className="mx-3 border-[1px] border-[rgba(0,0,0,0.2)] p-2 rounded-md md:w-[80%] 2xl:w-[30%]">
         <CiSearch size={25} className="absolute md:top-8" />
         <form className="relative" onSubmit={onSubmit}>
           <input
-            className="text-[12px] w-[80%] border-none outline-none ml-8 md:text-xl md:py-1"
-            type="search"
+            className="text-[12px] w-[80%] border-none outline-none ml-8 md:text-xl 2xl:text-lg md:py-1 2xl:py-0"
+            type={width > 786 ? "text" : "search"}
             placeholder="Search by keyword or Product ID"
             value={searchKeyword}
             onChange={(e) => setSearchKeyword(e.target.value)}
           />
           <button
             type="submit"
-            className="bg-[#f43397] text-white px-1 text-sm rounded-md md:absolute md:right-1 md:px-6 md:py-2"
+            className="bg-[#f43397] text-white px-1 text-sm rounded-md md:absolute md:right-1 md:px-6 md:py-2 2xl:hidden"
           >
             Go
           </button>
         </form>
       </div>
-      <div className="hidden md:block" onClick={() => showSidebar(true)}>
+      <div className="hidden 2xl:flex 2xl:border-[1px]">
+        <div className="border-r-[1px] px-6 flex items-center py-2">
+          {" "}
+          <BiMobile size={20} /> <span>Download app</span>
+        </div>
+        <div className="border-r-[1px] px-6 py-2 flex items-center">
+          Become a supplier
+        </div>
+        <div className="px-6 flex items-center gap-5 py-2">
+          <div className="flex flex-col items-center">
+            <CiUser />
+            <span>Profile</span>
+          </div>
+          <div className="flex flex-col items-center">
+            <BsCart2 />
+            <span>Cart</span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="hidden md:block 2xl:hidden"
+        onClick={() => showSidebar(true)}
+      >
         <RxHamburgerMenu size={30} />
       </div>
     </div>

@@ -16,7 +16,7 @@ import Image from "next/image";
 
 export default function BannerSwiper() {
   return (
-    <div className="w-full">
+    <div className="w-full 2xl:hidden">
       <Swiper
         spaceBetween={0}
         centeredSlides={true}
@@ -34,6 +34,7 @@ export default function BannerSwiper() {
               height={200}
               alt="banner image 1"
               className="w-full h-40 md:h-64   rounded-md"
+              priority
             />
           </div>
         </SwiperSlide>
@@ -45,6 +46,7 @@ export default function BannerSwiper() {
               height={200}
               alt="banner image 2"
               className="w-full h-40 md:h-64 rounded-md"
+              priority
             />
           </div>
         </SwiperSlide>
@@ -56,6 +58,7 @@ export default function BannerSwiper() {
               height={200}
               alt="banner image 2"
               className="w-full h-40 md:h-64 rounded-md"
+              priority
             />
           </div>
         </SwiperSlide>
@@ -67,6 +70,7 @@ export default function BannerSwiper() {
               height={200}
               alt="banner image 2"
               className="w-full h-40 md:h-64 rounded-md"
+              priority
             />
           </div>
         </SwiperSlide>

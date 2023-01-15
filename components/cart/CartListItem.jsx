@@ -45,12 +45,10 @@ const CartListItem = ({ product, cartId, userCart }) => {
     <div className="bg-white mb-3">
       <div className="flex px-4 py-3 border-b-[1px]">
         <Link href={`/products/${product._id}`}>
-          <Image
+          <img
             src={imageURL + product.images[0]}
             alt="cart product image"
-            width={80}
-            height={80}
-            className="rounded-md"
+            className="rounded-md w-20 h-20"
           />
         </Link>
         <div className="ml-3 text-[13px]">
