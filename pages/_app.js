@@ -7,6 +7,7 @@ import { CartProvider } from "../context/cartPriceContext";
 import AuthModal from "../components/modal/AuthModal";
 import AddressFormModal from "../components/modal/AddressFormModal";
 import CartConfirmModal from "../components/modal/CartConfirmModal";
+import DevStageModal from "../components/modal/DevStageModal";
 import { Provider } from "react-redux";
 import { store } from "../redux/app/store";
 import { ToastContainer } from "react-toastify";
@@ -32,6 +33,7 @@ function MyApp({ Component, pageProps }) {
                 <CartConfirmModal />
               </CartProvider>
             </ProgressStepsProvider>
+            <DevStageModal />
             <AddressFormModal />
             <AuthModal />
             <ToastContainer />
