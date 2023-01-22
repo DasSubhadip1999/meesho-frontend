@@ -120,7 +120,7 @@ const Searchbar = () => {
           <RxHamburgerMenu size={30} />
         </div>
       </div>
-      <div className="hidden sticky top-16 2xl:flex 2xl:px-24 border-t-[1px] border-b-[1px] py-4 justify-between font-semibold text-[rgba(0,0,0,0.7)] z-50 bg-white">
+      <div className="hidden sticky top-16 2xl:flex 2xl:px-24 border-t-[1px] border-b-[1px] justify-between font-semibold text-[rgba(0,0,0,0.7)] z-50 bg-white">
         {hoverMenuData.map((item) => (
           <HoverMenuItem key={uuidv4()} {...item} />
         ))}

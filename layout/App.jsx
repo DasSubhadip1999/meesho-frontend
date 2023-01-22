@@ -6,6 +6,7 @@ import Topbar from "../components/Topbar";
 import Sorting from "../components/Product Components/Sorting";
 import BannerSwiper from "../components/Product Components/BannerSwiper";
 import Sidebar from "../components/sidebar/Sidebar";
+import AddBanner from "../components/home/AddBanner";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
       <Sidebar />
       <Topbar />
       <Searchbar />
+      <AddBanner />
       <DeliveryLocation />
       <Catagories />
       <BannerSwiper />
