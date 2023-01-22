@@ -11,7 +11,9 @@ import {
 } from "../redux/feature/product/productSlice";
 
 const Search = () => {
-  const { searchProducts, isLoading } = useSelector((state) => state.product);
+  const { searchProducts, isLoading, isSuccess, isError } = useSelector(
+    (state) => state.product
+  );
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -21,8 +23,10 @@ const Search = () => {
     if (search) {
       dispatch(getProductsBySearch(search));
     }
-
-    dispatch(reset());
+    if ((isSuccess || isError) && type === "products/search") {
+      console.log("search reset");
+      dispatch(reset());
+    }
   }, [search, dispatch]);
 
   if (isLoading || search === undefined) {

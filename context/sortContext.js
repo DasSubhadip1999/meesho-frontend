@@ -21,14 +21,15 @@ export const SortProvider = ({ children }) => {
   useEffect(() => {
     if (isError && type === "products/sort") {
       toast.error(message);
+      dispatch(reset());
     }
 
     if (isSuccess && type === "products/sort") {
       sortModalRef.current.checked = false;
       genderModalRef.current.checked = false;
+      dispatch(reset());
     }
 
-    dispatch(reset());
     setSort("");
     // eslint-disable-next-line
   }, [isError, isSuccess]);

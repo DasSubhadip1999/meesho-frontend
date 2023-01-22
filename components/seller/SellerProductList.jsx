@@ -16,9 +16,12 @@ const SellerProductList = () => {
   useEffect(() => {
     if (isError && type === "seller") {
       toast.error(message);
+      dispatch(reset());
     }
 
-    dispatch(reset());
+    if (isSuccess && type === "seller") {
+      dispatch(reset());
+    }
 
     // eslint-disable-next-line
   }, [isError, isSuccess, dispatch, type]);

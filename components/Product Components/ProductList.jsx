@@ -7,19 +7,19 @@ import { getProduct, reset } from "../../redux/feature/product/productSlice";
 import { toast } from "react-toastify";
 
 const ProductList = () => {
-  const { isLoading, products, isSuccess, isError, message } = useSelector(
-    (state) => state.product
-  );
+  const { isLoading, products, isSuccess, isError, message, type } =
+    useSelector((state) => state.product);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isError) {
+    if (isError && type === "products/getAll") {
       toast.error(message);
       dispatch(reset());
     }
 
-    if (isSuccess) {
+    if (isSuccess && type === "products/getAll") {
+      //console.log("product reset");
       dispatch(reset());
     }
   }, [isError, isSuccess]);
@@ -28,7 +28,7 @@ const ProductList = () => {
     dispatch(getProduct());
   }, []);
 
-  if (isLoading) {
+  if (isLoading && type === "products/getAll") {
     return <HashLoaderComponent />;
   }
   return (

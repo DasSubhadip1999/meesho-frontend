@@ -23,13 +23,13 @@ const ProductListItem = ({ product }) => {
   useEffect(() => {
     if (isError && type == "seller/delete") {
       toast.error(message);
+      dispatch(reset());
     }
 
     if (isSuccess && type == "seller/delete") {
       dispatch(getSellerProducts());
+      dispatch(reset());
     }
-
-    dispatch(reset());
 
     // eslint-disable-next-line
   }, [isError, isSuccess, dispatch]);
