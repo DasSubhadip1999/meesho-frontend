@@ -1,34 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
 body {
-    font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .address-input + label {
-    transition: all 0.15s ease-out 0s;
+  transition: all 0.15s ease-out 0s;
 }
 
-.address-input:focus{
-    border-bottom: 2px solid #f43397;
+.address-input:focus {
+  border-bottom: 2px solid #f43397;
 }
 .address-input:focus + label {
-    bottom: 1.7rem;
-    font-size: 14px;
-    color: #3A75BC;
+  bottom: 1.7rem;
+  font-size: 14px;
+  color: #3a75bc;
 }
 .address-input.hasValue + label {
-    bottom: 1.7rem;
+  bottom: 1.7rem;
 }
 
 .address-input.error {
-    border-bottom: 2px solid red;
+  border-bottom: 2px solid red;
 }
 .address-input.error + label {
-    color: red;
+  color: red;
+}
+
+/* custom scroll bar css */
+.customScrollbar::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+
+.customScrollbar::-webkit-scrollbar {
+  width: 8px;
+  background-color: #f5f5f5;
+}
+
+.customScrollbar::-webkit-scrollbar-thumb {
+  border-radius: 0 3px 3px 0;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
-

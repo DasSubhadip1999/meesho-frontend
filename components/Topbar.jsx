@@ -9,7 +9,7 @@ const Topbar = () => {
   const { userName } = useContext(ResponsiveContext);
 
   return (
-    <div className="flex justify-between items-center p-3 md:hidden">
+    <div className="flex justify-between items-center px-3 pt-3 pb-1 md:hidden">
       <div className="flex justify-between items-center w-[40%]">
         <Image src="/user.png" width={38} height={38} alt="avatar" />
         <div className="text-sm">{userName}</div>

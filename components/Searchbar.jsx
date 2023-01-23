@@ -62,7 +62,7 @@ const Searchbar = () => {
 
   return (
     <>
-      <div className="sticky -top-[2px] 2xl:top-0 z-30 bg-white py-2 md:flex md:items-center 2xl:flex 2xl:justify-between 2xl:items-center md:px-3 md:pb-3 md:pt-4 2xl:px-24 2xl:py-0">
+      <div className="sticky -top-[2px] 2xl:top-0 z-40 bg-white py-2 md:flex md:items-center 2xl:flex 2xl:justify-between 2xl:items-center md:px-3 md:pb-3 md:pt-4 2xl:px-24 2xl:py-0">
         <div className="2xl:flex 2xl:items-center 2xl:w-[40%] md:flex md:items-center">
           <div className="hidden md:block">
             <Link href="/">
@@ -120,7 +120,7 @@ const Searchbar = () => {
           <RxHamburgerMenu size={30} />
         </div>
       </div>
-      <div className="hidden sticky top-16 2xl:flex 2xl:px-24 border-t-[1px] border-b-[1px] justify-between font-semibold text-[rgba(0,0,0,0.7)] z-50 bg-white">
+      <div className="hidden sticky top-16 2xl:flex 2xl:px-24 border-t-[1px] border-b-[1px] justify-between font-semibold text-[rgba(0,0,0,0.7)] z-50 bg-white shadow-md">
         {hoverMenuData.map((item) => (
           <HoverMenuItem key={uuidv4()} {...item} />
         ))}

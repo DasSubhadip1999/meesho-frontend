@@ -19,10 +19,13 @@ const HoverMenuItem = ({ heading, list }) => {
         <div
           onMouseOver={() => setIsHover(true)}
           onMouseOut={() => setIsHover(false)}
-          className="absolute top-[3.5rem] left-24 w-[86.5vw] flex z-80 bg-white border-[1px] shadow-md p-3 transition-all "
+          className="absolute top-[3.5rem] left-24 w-[86.5vw] flex z-80 bg-white border-[1px] shadow-md px-3 transition-all "
         >
           {list.map(({ heading, items }) => (
-            <div key={uuidv4()} className="px-4 transition-all">
+            <div
+              key={uuidv4()}
+              className="px-4 transition-all even:bg-[#f9f9f9] py-4 mx-1"
+            >
               <h1 className="text-[#f43397]">{heading}</h1>
               <div className="flex flex-col mt-4">
                 {items.map((item) => (

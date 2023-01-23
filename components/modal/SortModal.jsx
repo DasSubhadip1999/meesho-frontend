@@ -21,7 +21,10 @@ const SortModal = () => {
             <div className="flex justify-between items-center border-b-[1px] pb-3 py-2 mb-3">
               <h1 className="text-sm md:text-xl font-bold">SORT</h1>
               <div className="modal-action mt-0">
-                <label htmlFor="sort-modal" className="text-2xl md:text-3xl">
+                <label
+                  htmlFor="sort-modal"
+                  className="text-2xl md:text-3xl cursor-pointer"
+                >
                   <RxCrossCircled />
                 </label>
               </div>

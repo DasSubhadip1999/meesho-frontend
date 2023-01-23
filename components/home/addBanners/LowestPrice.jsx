@@ -7,7 +7,7 @@ const LowestPrice = () => {
   return (
     <div className="flex mt-14">
       <div className="bg-[#f9f9f9] flex-1 flex flex-col justify-center px-12">
-        <h1 className="font-bold text-[3rem] leading-[3.3rem]">
+        <h1 className="font-bold text-[2.8rem] leading-[3.3rem]">
           Lowest Prices
           <br /> Best Quality Shopping
         </h1>
@@ -46,7 +46,7 @@ const LowestPrice = () => {
             </span>
           </div>
         </div>
-        <div className="flex justify-center items-center py-3 text-white font-bold rounded-md bg-[#f43397] w-[57%] my-4 cursor-pointer">
+        <div className="flex justify-center items-center py-3 text-white font-bold rounded-md bg-[#f43397] w-[57%] mb-3 mt-2   cursor-pointer">
           <img
             src="https://images.meesho.com/images/pow/playstoreSmallIcon.webp"
             alt="playstore"

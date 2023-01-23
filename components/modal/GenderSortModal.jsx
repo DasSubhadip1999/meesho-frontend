@@ -32,7 +32,7 @@ const GenderSortModal = () => {
           <div className="flex justify-between items-center border-b-[1px] pb-3 py-2 mb-3">
             <h1 className="text-sm font-bold">Gender</h1>
             <div className="modal-action mt-0">
-              <label htmlFor="gender-modal" className="text-2xl">
+              <label htmlFor="gender-modal" className="text-2xl cursor-pointer">
                 <RxCrossCircled />
               </label>
             </div>
