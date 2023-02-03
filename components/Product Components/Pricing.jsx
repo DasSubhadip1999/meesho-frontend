@@ -3,7 +3,7 @@ import { AiOutlineHeart, AiOutlineShareAlt } from "react-icons/ai";
 const Pricing = ({ product }) => {
   return (
     <>
-      <div className="flex justify-between items-center px-3 py-1 my-2">
+      <div className="flex justify-between items-center px-3 py-1 my-2 2xl:border-[1px] 2xl:rounded-md">
         <div className="flex flex-col">
           <p className="font-semibold text-[rgba(0,0,0,0.6)]">
             {product?.name}

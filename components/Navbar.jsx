@@ -14,6 +14,8 @@ import { useRouter } from "next/router";
 const Navbar = () => {
   const router = useRouter();
 
+  //console.log(process.env.BASE_URL);
+
   return (
     <>
       <Head>

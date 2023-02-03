@@ -6,7 +6,7 @@ import CartLogo from "../../assets/CartLogo";
 
 const ProductTopbar = () => {
   return (
-    <div className="flex justify-between items-center p-3 w-full fixed top-0 bg-white z-20">
+    <div className="flex justify-between items-center p-3 w-full fixed top-0 bg-white z-20 2xl:hidden">
       <Link href="/">
         <MdOutlineArrowBackIosNew />
       </Link>

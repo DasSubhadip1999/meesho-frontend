@@ -15,6 +15,7 @@ import { SortProvider } from "../context/sortContext";
 import SortModal from "../components/modal/SortModal";
 import GenderSortModal from "../components/modal/GenderSortModal";
 import { ResponsiveProvider } from "../context/responsiveContext";
+import ProductDetailsModal from "../components/modal/ProductDetailsModal";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -27,6 +28,7 @@ function MyApp({ Component, pageProps }) {
               <CartProvider>
                 <SortProvider>
                   <Component {...pageProps} />
+                  <ProductDetailsModal />
                   <GenderSortModal />
                   <SortModal />
                 </SortProvider>

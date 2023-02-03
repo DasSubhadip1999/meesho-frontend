@@ -11,7 +11,7 @@ const ProductListItem = ({ item }) => {
       href={`/products/${item._id}`}
       className="border-[1px] 2xl:rounded-md relative pb-3"
     >
-      <div className="absolute right-2 top-2 p-2 rounded-full bg-white">
+      <div className="absolute right-2 top-2 p-2 rounded-full bg-white shadow-md">
         <AiOutlineHeart />
       </div>
       <img

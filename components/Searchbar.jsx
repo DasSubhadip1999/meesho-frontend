@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { CiSearch, CiUser } from "react-icons/ci";
+import { HiOutlineShoppingBag } from "react-icons/hi";
 import { BiMobile } from "react-icons/bi";
 import { BsCart2 } from "react-icons/bs";
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -20,6 +21,7 @@ import HoverMenuItem from "./hoverMenu/HoverMenuItem";
 
 const Searchbar = () => {
   const [searchKeyword, setSearchKeyword] = useState("");
+  const [showHoverMenu, setShowHoverMenu] = useState(false);
   const { searchProducts, message, isLoading, isError, isSuccess, type } =
     useSelector((state) => state.product);
 
@@ -62,7 +64,13 @@ const Searchbar = () => {
 
   return (
     <>
-      <div className="sticky -top-[2px] 2xl:top-0 z-40 bg-white py-2 md:flex md:items-center 2xl:flex 2xl:justify-between 2xl:items-center md:px-3 md:pb-3 md:pt-4 2xl:px-24 2xl:py-0">
+      <div
+        className={`sticky -top-[2px] 2xl:top-0 z-50 bg-white py-2 md:flex md:items-center 2xl:flex 2xl:justify-between 2xl:items-center md:px-3 md:pb-3 md:pt-4 2xl:px-24 ${
+          router.pathname === "/register"
+            ? "2xl:py-2 2xl:shadow-md"
+            : "2xl:py-0"
+        }`}
+      >
         <div className="2xl:flex 2xl:items-center 2xl:w-[40%] md:flex md:items-center">
           <div className="hidden md:block">
             <Link href="/">
@@ -94,7 +102,7 @@ const Searchbar = () => {
           </div>
         </div>
 
-        <div className="hidden 2xl:flex">
+        <div className="hidden 2xl:flex py-2">
           <div className="border-r-[1px] px-6 flex items-center py-2">
             {" "}
             <BiMobile size={20} /> <span>Download app</span>
@@ -102,11 +110,48 @@ const Searchbar = () => {
           <div className="border-r-[1px] px-6 py-2 flex items-center">
             <Link href="/become-a-supplier">Become a Supplier</Link>
           </div>
-          <div className="px-6 flex items-center gap-8 py-2">
-            <div className="flex flex-col items-center">
+          <div
+            className={`px-6 items-center gap-8 ${
+              router.pathname === "/register" ? "hidden" : "flex"
+            }`}
+          >
+            <div
+              className="flex flex-col items-center cursor-pointer hover:text-[#f43397] transition-all hover:after:block after:hidden relative after:absolute after:w-[117%] after:h-[2px] after:bg-[#f43397] after:-bottom-2"
+              onMouseOver={() => setShowHoverMenu(true)}
+              onMouseOut={() => setShowHoverMenu(false)}
+            >
               <CiUser size={width > 1500 ? 24 : 20} />
               <span>Profile</span>
+              <div
+                className={`absolute bg-white text-black px-4 py-5 rounded-md top-[3rem] z-[200] hoverMenu w-[16rem] cursor-default ${
+                  showHoverMenu && "active"
+                }`}
+                onMouseOver={() => setShowHoverMenu(true)}
+                onMouseOut={() => setShowHoverMenu(false)}
+              >
+                <h1 className="font-semibold my-1">Hello User</h1>
+                <p className="text-xs my-[5px]">
+                  To access your Meesho account
+                </p>
+                <button className="bg-[#f43397] text-white w-full font-semibold py-3 my-1 rounded-md active:scale-[0.98] transition-all">
+                  <Link href="/register">Sign up</Link>
+                </button>
+                <div className="pt-3 px-2 mt-3 flex items-center gap-3 border-t-[1px] border-[rgba(0,0,0,0.2)] cursor-pointer">
+                  <HiOutlineShoppingBag />
+                  <span>My Orders</span>
+                </div>
+              </div>
             </div>
+            <style jsx>{`
+              .hoverMenu {
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                display: none;
+                transition: display 0.5s linear;
+              }
+              .hoverMenu.active {
+                display: block;
+              }
+            `}</style>
             <div className="flex flex-col items-center">
               <BsCart2 size={width > 1500 ? 24 : 20} />
               <span>Cart</span>
@@ -120,7 +165,11 @@ const Searchbar = () => {
           <RxHamburgerMenu size={30} />
         </div>
       </div>
-      <div className="hidden sticky top-16 2xl:flex 2xl:px-24 border-t-[1px] border-b-[1px] justify-between font-semibold text-[rgba(0,0,0,0.7)] z-50 bg-white shadow-md">
+      <div
+        className={`hidden sticky top-16 2xl:${
+          router.pathname === "/register" ? "hidden" : "flex"
+        }  2xl:px-24 border-t-[1px] border-b-[1px] justify-between font-semibold text-[rgba(0,0,0,0.7)] z-40 bg-white shadow-sm`}
+      >
         {hoverMenuData.map((item) => (
           <HoverMenuItem key={uuidv4()} {...item} />
         ))}

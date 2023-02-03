@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
 const ResponsiveContext = createContext();
@@ -8,6 +8,7 @@ export const ResponsiveProvider = ({ children }) => {
   const [sidebar, showSidebar] = useState(false);
   const { user } = useSelector((state) => state.auth);
   const [userName, setUserName] = useState("");
+  const productDetailsRef = useRef(null);
 
   useEffect(() => {
     if (user) {
@@ -29,7 +30,7 @@ export const ResponsiveProvider = ({ children }) => {
 
   return (
     <ResponsiveContext.Provider
-      value={{ width, sidebar, showSidebar, userName }}
+      value={{ width, sidebar, showSidebar, userName, productDetailsRef }}
     >
       {children}
     </ResponsiveContext.Provider>

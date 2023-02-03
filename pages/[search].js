@@ -11,7 +11,7 @@ import {
 } from "../redux/feature/product/productSlice";
 
 const Search = () => {
-  const { searchProducts, isLoading, isSuccess, isError } = useSelector(
+  const { searchProducts, isLoading, isSuccess, isError, type } = useSelector(
     (state) => state.product
   );
   const router = useRouter();
@@ -20,14 +20,19 @@ const Search = () => {
   const { search } = router.query;
 
   useEffect(() => {
+    if ((isSuccess || isError) && type === "products/search") {
+      dispatch(reset());
+    }
+    // eslint-disable-next-line
+  }, [isSuccess, isError]);
+
+  useEffect(() => {
     if (search) {
       dispatch(getProductsBySearch(search));
     }
-    if ((isSuccess || isError) && type === "products/search") {
-      console.log("search reset");
-      dispatch(reset());
-    }
-  }, [search, dispatch]);
+
+    // eslint-disable-next-line
+  }, [search]);
 
   if (isLoading || search === undefined) {
     return <HashLoaderComponent />;

@@ -15,7 +15,7 @@ import { v4 as uuidv4 } from "uuid";
 export default function ProductImageSlider({ images }) {
   const { imageURL } = useContext(CartContext);
   return (
-    <div className="">
+    <div className="2xl:w-[30%] border-2">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -27,7 +27,7 @@ export default function ProductImageSlider({ images }) {
             <img
               src={imageURL + image}
               alt="single product image"
-              className="h-80 mx-auto"
+              className="h-80 2xl:h-[28rem] mx-auto"
             />
           </SwiperSlide>
         ))}

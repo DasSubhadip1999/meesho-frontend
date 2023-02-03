@@ -4,7 +4,7 @@ import {
   setItemToStorage,
 } from "../../../assets/localstorage";
 
-const PROXY = "https://meesho-backend.onrender.com/";
+const PROXY = "https://zany-gray-toad-sari.cyclic.app/";
 
 //@route api/products/get/:id/add-to-cart
 export const addToCartService = async (productId, userCart, token) => {
