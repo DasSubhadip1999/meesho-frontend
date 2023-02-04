@@ -8,6 +8,7 @@ const initialState = {
   isError: false,
   isLoading: false,
   message: "",
+  type: "",
 };
 
 export const addAddress = createAsyncThunk(
@@ -71,11 +72,13 @@ export const addressSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.address = action.payload;
+        state.type = "address/add";
       })
       .addCase(addAddress.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
+        state.type = "address/add";
       })
       .addCase(getAddress.pending, (state) => {
         state.isLoading = true;

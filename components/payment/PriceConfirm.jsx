@@ -44,18 +44,19 @@ const PriceConfirm = () => {
   useEffect(() => {
     if (orderIsError) {
       toast.error(orderMessage);
+      dispatch(reset());
     }
 
     if (orderIsSuccess && Object.keys(order).length) {
       toast.success("Order Placed");
+
+      dispatch(reset());
 
       dispatch(deleteAllCartItems());
 
       backToCart();
       router.push("/my-orders");
     }
-
-    dispatch(reset());
 
     // eslint-disable-next-line
   }, [orderIsSuccess, orderIsError]);

@@ -4,7 +4,10 @@ import { HiOutlineLocationMarker } from "react-icons/hi";
 import { RxCrossCircled } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { addAddress } from "../../redux/feature/address/addressSlice";
+import {
+  addAddress,
+  getAddress,
+} from "../../redux/feature/address/addressSlice";
 import { reset } from "../../redux/feature/address/addressSlice";
 
 const AddressFormModal = () => {
@@ -32,18 +35,20 @@ const AddressFormModal = () => {
     nearByLocation,
   } = formData;
 
-  const { address, addresses, isError, isLoading, isSuccess, message } =
+  const { address, addresses, isError, isLoading, isSuccess, message, type } =
     useSelector((state) => state.address);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isError) {
+    if (isError && type === "address/add") {
       toast.error(message);
     }
 
-    if (isSuccess && address && addresses.length === 0) {
+    if (isSuccess && address && type === "address/add") {
       toast.success("Delivery added");
       formModalRef.current.checked = false;
+
+      dispatch(getAddress());
     }
 
     dispatch(reset());
