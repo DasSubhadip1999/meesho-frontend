@@ -18,6 +18,7 @@ import {
   reset,
 } from "../../redux/feature/product/productSlice";
 import { toast } from "react-toastify";
+import { v4 as uuidv4 } from "uuid";
 import ProductImageSlider from "../../components/singleProduct/ProductImageSlider";
 import Searchbar from "../../components/Searchbar";
 import ResponsiveContext from "../../context/responsiveContext";
@@ -142,7 +143,7 @@ const Product = () => {
                   <span>Size:</span>
                   <span className="ml-1">
                     {product?.sizes?.map((size) => (
-                      <span>{size},</span>
+                      <span key={uuidv4()}>{size},</span>
                     ))}
                   </span>
                 </div>

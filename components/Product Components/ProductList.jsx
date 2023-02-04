@@ -23,10 +23,13 @@ const ProductList = () => {
       //console.log("product reset");
       dispatch(reset());
     }
+    // eslint-disable-next-line
   }, [isError, isSuccess]);
 
   useEffect(() => {
     dispatch(getProduct());
+
+    // eslint-disable-next-line
   }, []);
 
   if (isLoading) {
