@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const ADD_PRODUCT_URL =
-  "https://zany-gray-toad-sari.cyclic.app/api/products/add";
-const GET_PRODUCT_URL =
-  "https://zany-gray-toad-sari.cyclic.app/api/products/get";
+const PROXY = "https://meesho-backend.onrender.com";
+
+const ADD_PRODUCT_URL = PROXY + "/api/products/add";
+const GET_PRODUCT_URL = PROXY + "/api/products/get";
 
 export const addProductService = async (product, token) => {
   console.log("service product", product);
@@ -30,8 +30,7 @@ export const getSingleProductService = async (id) => {
   return res.data;
 };
 
-const GET_SELLER_PRODUCTS =
-  "https://zany-gray-toad-sari.cyclic.app/api/sellers/get-products";
+const GET_SELLER_PRODUCTS = PROXY + "/api/sellers/get-products";
 
 export const getSellerProductsService = async (token) => {
   const config = {
@@ -45,8 +44,7 @@ export const getSellerProductsService = async (token) => {
   return res.data;
 };
 
-const DELETE_SELLER_PRODUCT =
-  "https://zany-gray-toad-sari.cyclic.app/api/products/delete/";
+const DELETE_SELLER_PRODUCT = PROXY + "/api/products/delete/";
 
 export const deleteProductService = async (token, id) => {
   const config = {

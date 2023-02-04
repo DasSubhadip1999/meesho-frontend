@@ -4,7 +4,7 @@ import {
   setItemToStorage,
 } from "../../../assets/localstorage";
 
-const PROXY = "https://zany-gray-toad-sari.cyclic.app/";
+const PROXY = "https://meesho-backend.onrender.com";
 
 //@route api/products/get/:id/add-to-cart
 export const addToCartService = async (productId, userCart, token) => {
@@ -15,7 +15,7 @@ export const addToCartService = async (productId, userCart, token) => {
   };
 
   const res = await axios.post(
-    PROXY + `api/products/get/${productId}/add-to-cart`,
+    PROXY + `/api/products/get/${productId}/add-to-cart`,
     userCart,
     config
   );
@@ -32,7 +32,7 @@ export const getCartItemsService = async (token) => {
     },
   };
 
-  const res = await axios.get(PROXY + `api/products/cart-products`, config);
+  const res = await axios.get(PROXY + `/api/products/cart-products`, config);
 
   //console.log("service get", res);
   setItemToStorage("cart", res.data);
@@ -49,7 +49,7 @@ export const deleteCartItemService = async (cartId, token) => {
   };
 
   const res = await axios.delete(
-    PROXY + `api/products/get/${cartId}/delete-cart-product`,
+    PROXY + `/api/products/get/${cartId}/delete-cart-product`,
     config
   );
 
@@ -67,7 +67,7 @@ export const deleteAllCartItemsService = async (token) => {
   };
 
   const res = await axios.delete(
-    PROXY + "api/products/cart-products/delete-all",
+    PROXY + "/api/products/cart-products/delete-all",
     config
   );
 

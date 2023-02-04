@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const PROXY = "https://zany-gray-toad-sari.cyclic.app/";
+const PROXY = "https://meesho-backend.onrender.com";
 
 //@route api/orders/my-orders
 export const placeOrderService = async (token) => {
@@ -10,7 +10,7 @@ export const placeOrderService = async (token) => {
     },
   };
 
-  const res = await axios.post(PROXY + "api/orders/my-orders", {}, config);
+  const res = await axios.post(PROXY + "/api/orders/my-orders", {}, config);
 
   return res.data;
 };
@@ -23,7 +23,7 @@ export const getMyOrdersService = async (token) => {
     },
   };
 
-  const res = await axios.get(PROXY + "api/orders/my-orders", config);
+  const res = await axios.get(PROXY + "/api/orders/my-orders", config);
 
   return res.data;
 };

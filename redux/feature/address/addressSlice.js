@@ -61,6 +61,7 @@ export const addressSlice = createSlice({
       state.isError = false;
       state.isLoading = false;
       state.message = "";
+      state.type = "";
     },
   },
   extraReducers: (builder) => {

@@ -17,22 +17,25 @@ const CartList = () => {
   useEffect(() => {
     if (isError) {
       toast.error(message);
+      dispatch(reset());
     }
-    dispatch(reset());
+
+    if (isSuccess) {
+      dispatch(reset());
+    }
 
     // eslint-disable-next-line
   }, [isError]);
 
   // useEffect(() => {
-  //   //console.log("use effect occurring");
   //   dispatch(getCartItems());
+
+  //   // eslint-disable-next-line
   // }, []);
 
   if (isLoading) {
     return <HashLoaderComponent />;
   } else {
-    //console.log(123);
-    // console.log(allCartItems);
     return (
       <div className="bg-[#e6ebf8]">
         {allCartItems.length &&
