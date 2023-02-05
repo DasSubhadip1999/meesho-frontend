@@ -25,7 +25,7 @@ const CartList = () => {
     }
 
     // eslint-disable-next-line
-  }, [isError]);
+  }, [isError, isSuccess]);
 
   // useEffect(() => {
   //   dispatch(getCartItems());

@@ -4,7 +4,10 @@ import CartContext from "../../context/cartPriceContext";
 import ProgressStepsContext from "../../context/progressStepsContext";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteAllCartItems } from "../../redux/feature/cart/cartSlice";
+import {
+  deleteAllCartItems,
+  deleteCart,
+} from "../../redux/feature/cart/cartSlice";
 import { placeOrder, reset } from "../../redux/feature/order/orderSlice";
 
 const PriceConfirm = () => {
@@ -53,6 +56,8 @@ const PriceConfirm = () => {
       dispatch(reset());
 
       dispatch(deleteAllCartItems());
+
+      dispatch(deleteCart());
 
       backToCart();
       router.push("/my-orders");
