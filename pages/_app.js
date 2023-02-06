@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import "../styles/globals.css";
 import "react-toastify/dist/ReactToastify.css";
+import "react-loading-skeleton/dist/skeleton.css";
 import { AuthProvider } from "../context/authContext";
 import { ProgressStepsProvider } from "../context/progressStepsContext";
 import { CartProvider } from "../context/cartPriceContext";

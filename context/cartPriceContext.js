@@ -15,7 +15,7 @@ export const CartProvider = ({ children }) => {
 
   const [sellerId, setSellerId] = useState("");
 
-  const imageURL = "https://zany-gray-toad-sari.cyclic.app/";
+  const imageURL = "https://meesho-backend.onrender.com/";
 
   const { products } = useSelector((state) => state.product);
 
