@@ -15,6 +15,9 @@ export const CartProvider = ({ children }) => {
 
   const [sellerId, setSellerId] = useState("");
 
+  //to change bg of size selector
+  const [sizeSelected, setSizeSelected] = useState(true);
+
   const imageURL = "https://meesho-backend.onrender.com/";
 
   const { products } = useSelector((state) => state.product);
@@ -51,6 +54,8 @@ export const CartProvider = ({ children }) => {
         sellerId,
         sellerProducts,
         imageURL,
+        sizeSelected,
+        setSizeSelected,
         sendCurrentProduct,
         setSellerId,
         setConfirmCart,

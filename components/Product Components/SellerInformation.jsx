@@ -7,7 +7,7 @@ const SellerInformation = ({ seller }) => {
   const { sellerProducts } = useContext(CartContext);
 
   return (
-    <div className="p-3 bg-white">
+    <div className="p-3 bg-white lg:border-[1px] lg:rounded-md lg:mt-3">
       <h1 className="font-bold text-lg mb-3">Sold By</h1>
       <div className="flex justify-between py-1 items-center">
         <div className="bg-[#ece1e7] p-3 rounded-full text-[#f43397]">

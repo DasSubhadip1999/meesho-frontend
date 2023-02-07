@@ -11,7 +11,7 @@ const LGSorting = () => {
     "py-3 px-4 hover:bg-[#f9f9f9] cursor-pointer font-semibold text-[rgba(0,0,0,0.6)] text-[15px] rounded-sm";
 
   return (
-    <div className="hidden 2xl:flex flex-col 2xl:w-[40%]">
+    <div className="hidden lg:flex flex-col lg:w-[40%]">
       <h1 className="text-3xl font-bold">Products For You</h1>
       <div
         className="relative border-[1px] px-3 py-2 my-4 rounded-md cursor-pointer"

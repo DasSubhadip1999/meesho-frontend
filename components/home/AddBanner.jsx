@@ -7,7 +7,7 @@ import TopCatagories from "./addBanners/TopCatagories";
 
 const AddBanner = () => {
   return (
-    <div className="px-[13rem] hidden 2xl:block">
+    <div className="px-[13rem] hidden lg:block">
       <LowestPrice />
       <TopCatagories />
       <Essential />

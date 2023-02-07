@@ -37,9 +37,9 @@ const ProductList = () => {
   }
   return (
     <>
-      <div className="2xl:mt-14 2xl:mb-8 2xl:mx-20 2xl:flex 2xl:gap-6">
+      <div className="lg:mt-14 lg:mb-8 lg:mx-20 lg:flex lg:gap-6">
         <LGSorting />
-        <div className="grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 2xl:gap-4 2xl:p-6 px-1 md:px-2 pb-16 2xl:border-[1px] rounded-md">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-4 lg:p-6 px-1 md:px-2 pb-16 lg:border-[1px] rounded-md">
           {products &&
             products.map((item) => (
               <ProductListItem item={item} key={uuidv4()} />

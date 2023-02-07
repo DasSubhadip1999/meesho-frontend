@@ -16,7 +16,7 @@ import Image from "next/image";
 
 export default function BannerSwiper() {
   return (
-    <div className="w-full 2xl:hidden">
+    <div className="w-full lg:hidden">
       <Swiper
         spaceBetween={0}
         centeredSlides={true}

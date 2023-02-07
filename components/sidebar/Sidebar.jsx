@@ -13,7 +13,7 @@ const Sidebar = () => {
   const style =
     "flex gap-3 border-[1px] rounded-md border-[#f43397] my-2 p-3 items-center text-[#f43397] text-lg font-semibold";
   const containerStyle =
-    "fixed z-40 hidden 2xl:hidden md:flex flex-col w-[45%] h-full bg-white px-6 pt-16";
+    "fixed z-40 hidden lg:hidden md:flex flex-col w-[45%] h-full bg-white px-6 pt-16";
 
   return (
     <div

@@ -11,11 +11,12 @@ import { Pagination } from "swiper";
 import { useContext } from "react";
 import CartContext from "../../context/cartPriceContext";
 import { v4 as uuidv4 } from "uuid";
+import AddToCart from "./AddToCart";
 
-export default function ProductImageSlider({ images }) {
+export default function ProductImageSlider({ images, handleAddToCart }) {
   const { imageURL } = useContext(CartContext);
   return (
-    <div className="2xl:w-[30%] border-2">
+    <div className="lg:w-[30%] lg:border-[1px] lg:mt-2 lg:rounded-md lg:max-h-[34rem] lg:py-3">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -27,11 +28,12 @@ export default function ProductImageSlider({ images }) {
             <img
               src={imageURL + image}
               alt="single product image"
-              className="h-80 2xl:h-[28rem] mx-auto"
+              className="h-80 lg:h-[28rem] mx-auto"
             />
           </SwiperSlide>
         ))}
       </Swiper>
+      <AddToCart handleAddToCart={handleAddToCart} />
     </div>
   );
 }

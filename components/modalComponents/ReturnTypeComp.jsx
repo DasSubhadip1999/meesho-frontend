@@ -76,6 +76,7 @@ const ReturnTypeComp = () => {
 
     if (isLoggedIn) {
       if (!size || !confirmBuyingPrice) {
+        toast.error("Please select size or price");
         console.log("Size or price error");
       } else {
         dispatch(

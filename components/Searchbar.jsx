@@ -69,13 +69,11 @@ const Searchbar = () => {
   return (
     <>
       <div
-        className={`sticky -top-[2px] 2xl:top-0 z-50 bg-white py-2 md:flex md:items-center 2xl:flex 2xl:justify-between 2xl:items-center md:px-3 md:pb-3 md:pt-4 2xl:px-24 ${
-          router.pathname === "/register"
-            ? "2xl:py-2 2xl:shadow-md"
-            : "2xl:py-0"
+        className={`sticky -top-[2px] lg:top-0 z-50 bg-white py-2 md:flex md:items-center lg:flex lg:justify-between lg:items-center md:px-3 md:pb-3 md:pt-4 lg:px-24 ${
+          router.pathname === "/register" ? "lg:py-2 lg:shadow-md" : "lg:py-0"
         }`}
       >
-        <div className="2xl:flex 2xl:items-center 2xl:w-[40%] md:flex md:items-center">
+        <div className="lg:flex lg:items-center lg:w-[40%] md:flex md:items-center">
           <div className="hidden md:block">
             <Link href="/">
               <Image
@@ -86,11 +84,11 @@ const Searchbar = () => {
               />
             </Link>
           </div>
-          <div className="mx-3 border-[1px] border-[rgba(0,0,0,0.2)] p-2 rounded-md md:w-[80%] 2xl:w-full">
-            <CiSearch size={25} className="absolute md:top-8 2xl:top-5" />
+          <div className="mx-3 border-[1px] border-[rgba(0,0,0,0.2)] p-2 rounded-md md:w-[80%] lg:w-full">
+            <CiSearch size={25} className="absolute md:top-8 lg:top-5" />
             <form className="relative" onSubmit={onSubmit}>
               <input
-                className="text-[12px] w-[80%] border-none outline-none ml-8 md:text-xl 2xl:text-[16px] md:py-1 2xl:py-0"
+                className="text-[12px] w-[80%] border-none outline-none ml-8 md:text-xl lg:text-[16px] md:py-1 lg:py-0"
                 type={width > 786 ? "text" : "search"}
                 placeholder="Search by keyword or Product ID"
                 value={searchKeyword}
@@ -98,7 +96,7 @@ const Searchbar = () => {
               />
               <button
                 type="submit"
-                className="bg-[#f43397] text-white px-1 text-sm rounded-md md:absolute md:right-1 md:px-6 md:py-2 2xl:hidden"
+                className="bg-[#f43397] text-white px-1 text-sm rounded-md md:absolute md:right-1 md:px-6 md:py-2 lg:hidden"
               >
                 Go
               </button>
@@ -106,7 +104,7 @@ const Searchbar = () => {
           </div>
         </div>
 
-        <div className="hidden 2xl:flex py-2">
+        <div className="hidden lg:flex py-2">
           <div className="border-r-[1px] px-6 flex items-center py-2">
             {" "}
             <BiMobile size={20} /> <span>Download app</span>
@@ -193,16 +191,16 @@ const Searchbar = () => {
           </div>
         </div>
         <div
-          className="hidden md:block 2xl:hidden"
+          className="hidden md:block lg:hidden"
           onClick={() => showSidebar(true)}
         >
           <RxHamburgerMenu size={30} />
         </div>
       </div>
       <div
-        className={`hidden sticky top-16 2xl:${
+        className={`hidden sticky top-16 lg:${
           router.pathname === "/register" ? "hidden" : "flex"
-        }  2xl:px-24 border-t-[1px] border-b-[1px] justify-between font-semibold text-[rgba(0,0,0,0.7)] z-40 bg-white shadow-sm`}
+        }  lg:px-24 border-t-[1px] border-b-[1px] justify-between font-semibold text-[rgba(0,0,0,0.7)] z-40 bg-white shadow-sm`}
       >
         {hoverMenuData.map((item) => (
           <HoverMenuItem key={uuidv4()} {...item} />

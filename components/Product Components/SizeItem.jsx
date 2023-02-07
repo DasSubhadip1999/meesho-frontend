@@ -9,10 +9,10 @@ const SizeItem = ({ sizeProp, handleClick }) => {
   return (
     <li
       onClick={() => handleClick(sizeProp)}
-      className={`px-3 rounded-2xl transition-all ${
+      className={`px-3 rounded-2xl transition-all cursor-pointer ${
         sizeProp == size
           ? "border-[#e65082] border-2 text-[#e65082] font-bold bg-[#f8dde6]"
-          : "border-black border-[1px]"
+          : "border-black border-[1px] bg-white"
       }`}
     >
       {sizeProp}

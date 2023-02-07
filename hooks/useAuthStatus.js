@@ -5,7 +5,7 @@ const useAuthStatus = (type) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    if (type) {
+    if (type?.isVerified) {
       setIsLoggedIn(true);
     } else {
       setIsLoggedIn(false);

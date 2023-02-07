@@ -1,11 +1,7 @@
-import Image from "next/image";
 import Size from "../../components/Product Components/Size";
 import DeliveryLocation from "../../components/DeliveryLocation";
 import ProductTopbar from "../../components/Product Components/ProductTopbar";
 import HashLoaderComponent from "../../assets/HashLoaderComponent";
-import axios from "axios";
-import { BsCart2 } from "react-icons/bs";
-import { RxCaretRight } from "react-icons/rx";
 import Pricing from "../../components/Product Components/Pricing";
 import SellerInformation from "../../components/Product Components/SellerInformation";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,6 +18,8 @@ import { v4 as uuidv4 } from "uuid";
 import ProductImageSlider from "../../components/singleProduct/ProductImageSlider";
 import Searchbar from "../../components/Searchbar";
 import ResponsiveContext from "../../context/responsiveContext";
+import AddToCart from "../../components/singleProduct/AddToCart";
+import { addToCart, getCartItems } from "../../redux/feature/cart/cartSlice";
 
 const Product = () => {
   const { user } = useSelector((state) => state.auth);
@@ -36,6 +34,7 @@ const Product = () => {
   const { checking, isLoggedIn } = useAuthStatus(user);
   const { isLoading } = useSelector((state) => state.cart);
   const {
+    setSizeSelected,
     imageURL,
     cartModalRef,
     confirmCart,
@@ -43,7 +42,7 @@ const Product = () => {
     setSellerId,
     setConfirmCart,
   } = useContext(CartContext);
-  const { productDetailsRef } = useContext(ResponsiveContext);
+  const { productDetailsRef, width } = useContext(ResponsiveContext);
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -86,16 +85,27 @@ const Product = () => {
   //add products to cart
   const handleAddToCart = () => {
     if (isLoggedIn) {
-      cartModalRef.current.checked = true;
-      sendCurrentProduct(product);
-    } else {
+      if (width < 1024) {
+        cartModalRef.current.checked = true;
+        sendCurrentProduct(product);
+      } else {
+        if (!size) {
+          setSizeSelected(false);
+        } else {
+          dispatch(
+            addToCart({ productId: product?._id, userCart: confirmCart })
+          );
+          setTimeout(() => {
+            dispatch(getCartItems());
+          }, 500);
+        }
+      }
+    } else if (width < 1024) {
       router.push("/account");
+    } else {
+      router.push("/register");
     }
   };
-
-  //styles
-  const button =
-    "px-3 py-2 w-[48%] mb-1 rounded-md flex items-center justify-center";
 
   if (
     isLoading ||
@@ -107,28 +117,31 @@ const Product = () => {
   return (
     <div>
       {/* large screens */}
-      <div className="hidden 2xl:block sticky top-0 z-50">
+      <div className="hidden lg:block sticky top-0 z-50">
         <Searchbar />
       </div>
       {/* small screens */}
       <ProductTopbar />
-      <div className="pt-14 2xl:pt-4"></div>
+      <div className="pt-14 lg:pt-4"></div>
       <DeliveryLocation />
-      <div className="z-10 border-2 flex flex-col 2xl:flex-row justify-center">
-        <div className="hidden 2xl:block border-[1px] rounded-md px-1 h-[4.2rem] border-black mr-8 mt-8">
+      <div className="z-10 flex flex-col lg:flex-row justify-center">
+        <div className="hidden lg:block border-[1px] rounded-md px-1 h-[4.2rem] border-black mr-8 mt-8">
           <img
             src={product?.images && imageURL + product?.images[0]}
             className="w-14 h-16"
             alt="small_product_img"
           />
         </div>
-        <ProductImageSlider images={product?.images} />
-        <div className=" flex flex-col 2xl:ml-3">
+        <ProductImageSlider
+          images={product?.images}
+          handleAddToCart={handleAddToCart}
+        />
+        <div className=" flex flex-col lg:ml-3">
           <Pricing product={product} />
-          <div className="bg-[#e6ebf8] 2xl:bg-white py-2">
+          <div className="bg-[#e6ebf8] lg:bg-white py-2">
             <Size sizes={product?.sizes} />
             {/* product details */}
-            <div className="hidden 2xl:flex 2xl:flex-col">
+            <div className="hidden lg:flex lg:flex-col lg:border-[1px] lg:rounded-md lg:p-3 lg:mt-3">
               <h1 className="my-3 text-xl font-bold">Product Details</h1>
               <div className="text-[15px]">
                 <div>
@@ -162,23 +175,12 @@ const Product = () => {
       </div>
 
       {/*  */}
-      <div className="pb-16">gap</div>
-      <section className="fixed bottom-0 z-20 bg-white w-full flex">
-        <ul className="text-[#e65082] flex w-full justify-between items-center px-3 pt-3 pb-2">
-          <li
-            className={`${button} border-[1px] border-black text-black`}
-            onClick={handleAddToCart}
-          >
-            <BsCart2 size={23} className="mr-1" />
-            Add to cart
-          </li>
-          <li className={`${button} bg-[#f43397] text-white`}>
-            {" "}
-            <RxCaretRight size={25} />
-            Buy Now
-          </li>
-        </ul>
-      </section>
+      <div className="pb-16 lg:hidden">gap</div>
+      {/* buying operation */}
+
+      <div className="lg:hidden">
+        <AddToCart handleAddToCart={handleAddToCart} />
+      </div>
     </div>
   );
 };
