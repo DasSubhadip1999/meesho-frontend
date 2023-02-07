@@ -17,6 +17,7 @@ const initialState = {
   isError: false,
   isSuccess: false,
   message: "",
+  type: "",
 };
 
 export const registerUser = createAsyncThunk(
@@ -100,6 +101,7 @@ export const authSlice = createSlice({
       state.isLoading = false;
       state.isSuccess = false;
       state.message = "";
+      state.type = "";
     },
     userLogout: (state) => {
       //console.log("user", 123);
@@ -119,11 +121,13 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.user = action.payload;
         state.isSuccess = true;
+        state.type = "user-register";
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
+        state.type = "user-register";
       })
       .addCase(loginUser.pending, (state) => {
         state.isLoading = true;
@@ -132,11 +136,13 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.user = action.payload;
+        state.type = "user-login";
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
+        state.type = "user-login";
       })
       .addCase(registerSeller.pending, (state) => {
         state.isLoading = true;

@@ -5,6 +5,8 @@ import { FiEyeOff } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser, reset } from "../../redux/feature/auth/authSlice";
 import { useEffect } from "react";
+import ClipLoaderComponent from "../../assets/ClipLoaderComponent";
+import { useRef } from "react";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -17,20 +19,31 @@ const Signup = () => {
 
   const { name, email, password, password2 } = formData;
 
-  const { user, isSuccess, isError, isLoading, message } = useSelector(
+  const { user, isSuccess, isError, isLoading, message, type } = useSelector(
     (state) => state.auth
   );
+
+  const nameInput = useRef(null);
+  const emailInput = useRef(null);
+  const passwordInput = useRef(null);
+  const password2Input = useRef(null);
+
+  let allInput = [nameInput, emailInput, password2Input, passwordInput];
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isSuccess && user) {
-      toast.success("Sign up completed");
+    if (isSuccess && user && type === "user-register") {
+      toast.success(user.message);
       setFormData({ name: "", email: "", password: "", password2: "" });
+      allInput.forEach((item) => item.current.classList.remove("active"));
+      dispatch(reset());
     }
 
-    if (isError) {
+    if (isError && type === "user-register") {
+      console.log("from sign up");
       toast.error(message);
+      dispatch(reset());
     }
 
     // eslint-disable-next-line
@@ -47,7 +60,7 @@ const Signup = () => {
     } else if (password !== password2) {
       toast.error("Confirm password doesn't match");
     } else {
-      //console.log({ name, email, password });
+      // console.log({ name, email, password });
       dispatch(registerUser({ name, email, password }));
     }
   };
@@ -68,8 +81,9 @@ const Signup = () => {
   const inputs =
     "py-[0.5rem] outline-none px-[0.8rem] form-input w-full text-[rgba(0,0,0,0.8)] rounded-md text-sm";
   return (
-    <div className="px-8 py-5">
+    <div className="px-8 py-5 relative">
       <h1 className="my-2 text-lg font-bold">Sign Up to view your profile</h1>
+      {isLoading && <ClipLoaderComponent />}
       <form onSubmit={onSubmit}>
         <div className={formGroup}>
           <input
@@ -81,6 +95,7 @@ const Signup = () => {
             value={name}
             onChange={onChange}
             autoComplete="off"
+            ref={nameInput}
           />
           <span className={spans}>Name</span>
         </div>
@@ -94,6 +109,7 @@ const Signup = () => {
             value={email}
             onChange={onChange}
             autoComplete="off"
+            ref={emailInput}
           />
           <span className={spans}>Email</span>
         </div>
@@ -107,6 +123,7 @@ const Signup = () => {
             value={password}
             onChange={onChange}
             autoComplete="off"
+            ref={passwordInput}
           />
           <span className={spans}>Password</span>
           {showPassword ? (
@@ -135,12 +152,15 @@ const Signup = () => {
             value={password2}
             onChange={onChange}
             autoComplete="off"
+            ref={password2Input}
           />
           <span className={spans}>Confirm Password</span>
         </div>
         <button
           type="submit"
-          className="bg-[#f43397] w-full py-2 text-white rounded-md active:scale-[0.98] hover:bg-[#e33991] transition-all"
+          className={`bg-[#f43397] w-full py-2 text-white rounded-md active:scale-[0.98] hover:bg-[#e33991] transition-all ${
+            isLoading && "pointer-events-none"
+          }`}
         >
           Sign up
         </button>

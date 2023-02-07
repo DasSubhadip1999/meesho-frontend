@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { CiSearch, CiUser } from "react-icons/ci";
+import { BiLogOut } from "react-icons/bi";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { BiMobile } from "react-icons/bi";
 import { BsCart2 } from "react-icons/bs";
@@ -18,12 +19,15 @@ import Link from "next/link";
 import hoverMenuData from "../data/hoverMenuData";
 import { v4 as uuidv4 } from "uuid";
 import HoverMenuItem from "./hoverMenu/HoverMenuItem";
+import { userLogout } from "../redux/feature/auth/authSlice";
+import { removeItemFromStorage } from "../assets/localstorage";
 
 const Searchbar = () => {
   const [searchKeyword, setSearchKeyword] = useState("");
   const [showHoverMenu, setShowHoverMenu] = useState(false);
   const { searchProducts, message, isLoading, isError, isSuccess, type } =
     useSelector((state) => state.product);
+  const { user } = useSelector((state) => state.auth);
 
   const { showSidebar, width } = useContext(ResponsiveContext);
 
@@ -129,17 +133,47 @@ const Searchbar = () => {
                 onMouseOver={() => setShowHoverMenu(true)}
                 onMouseOut={() => setShowHoverMenu(false)}
               >
-                <h1 className="font-semibold my-1">Hello User</h1>
-                <p className="text-xs my-[5px]">
-                  To access your Meesho account
-                </p>
-                <button className="bg-[#f43397] text-white w-full font-semibold py-3 my-1 rounded-md active:scale-[0.98] transition-all">
-                  <Link href="/register">Sign up</Link>
-                </button>
-                <div className="pt-3 px-2 mt-3 flex items-center gap-3 border-t-[1px] border-[rgba(0,0,0,0.2)] cursor-pointer">
+                {user?.isVerified ? (
+                  <div className="flex items-center gap-2">
+                    <img
+                      src="/user.png"
+                      alt="user avatar"
+                      className="w-9 h-9"
+                    />
+                    <div>
+                      <h1 className="font-semibold">{user?.name}</h1>
+                      <p className="text-[13px]">{user?.email}</p>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <h1 className="font-semibold my-1">Hello User</h1>
+                    <p className="text-xs my-[5px]">
+                      To access your Meesho account
+                    </p>
+                    <button className="bg-[#f43397] text-white w-full font-semibold py-3 my-1 rounded-md active:scale-[0.98] transition-all">
+                      <Link href="/register">Sign up</Link>
+                    </button>
+                  </>
+                )}
+                <div className="pt-3 px-2 mt-3 flex items-center gap-3 border-t-[1px] border-[rgba(0,0,0,0.2)]">
                   <HiOutlineShoppingBag />
-                  <span>My Orders</span>
+                  <span className="cursor-pointer">My Orders</span>
                 </div>
+                {user?.isVerified && (
+                  <div className="flex items-center px-1 mt-3 gap-3 border-t-[1px] border-[rgba(0,0,0,0.2)] pt-3">
+                    <BiLogOut />
+                    <span
+                      className="cursor-pointer"
+                      onClick={() => {
+                        dispatch(userLogout());
+                        removeItemFromStorage("user");
+                      }}
+                    >
+                      Log out
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
             <style jsx>{`
