@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import { getProduct, reset } from "../../redux/feature/product/productSlice";
 import { toast } from "react-toastify";
 import LGSorting from "./LGSorting";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const ProductList = () => {
   const { isLoading, products, isSuccess, isError, message, type } =
@@ -33,29 +32,18 @@ const ProductList = () => {
     // eslint-disable-next-line
   }, []);
 
-  // if (isLoading) {
-  //   return <HashLoaderComponent />;
-  // }
+  if (isLoading) {
+    return <HashLoaderComponent />;
+  }
   return (
     <>
       <div className="2xl:mt-14 2xl:mb-8 2xl:mx-20 2xl:flex 2xl:gap-6">
-        {isLoading ? (
-          <div className="hidden 2xl:block">
-            <Skeleton />
-          </div>
-        ) : (
-          <LGSorting />
-        )}
+        <LGSorting />
         <div className="grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 2xl:gap-4 2xl:p-6 px-1 md:px-2 pb-16 2xl:border-[1px] rounded-md">
-          {products ? (
+          {products &&
             products.map((item) => (
               <ProductListItem item={item} key={uuidv4()} />
-            ))
-          ) : (
-            <div className="hidden 2xl:block">
-              <Skeleton />
-            </div>
-          )}
+            ))}
         </div>
       </div>
     </>
