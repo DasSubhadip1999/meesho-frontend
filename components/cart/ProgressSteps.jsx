@@ -31,7 +31,7 @@ const ProgressSteps = () => {
 
   //return
   return (
-    <div className="border-b-[1px] border-[rgba(0,0,0,0.2)] py-2 px-6 text-[13px] relative">
+    <div className="border-b-[1px] lg:border-none lg:w-[28%] border-[rgba(0,0,0,0.2)] py-2 px-6 text-[13px] relative">
       <ul className="flex justify-between items-center pb-6 pt-1 z-20 relative">
         <li
           className={`${eachCircle} ${

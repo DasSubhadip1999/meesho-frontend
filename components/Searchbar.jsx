@@ -28,6 +28,7 @@ const Searchbar = () => {
   const { searchProducts, message, isLoading, isError, isSuccess, type } =
     useSelector((state) => state.product);
   const { user } = useSelector((state) => state.auth);
+  const { allCartItems } = useSelector((state) => state.cart);
 
   const { showSidebar, width } = useContext(ResponsiveContext);
 
@@ -156,7 +157,12 @@ const Searchbar = () => {
                 )}
                 <div className="pt-3 px-2 mt-3 flex items-center gap-3 border-t-[1px] border-[rgba(0,0,0,0.2)]">
                   <HiOutlineShoppingBag />
-                  <span className="cursor-pointer">My Orders</span>
+                  <span
+                    className="cursor-pointer"
+                    onClick={() => router.push("/my-orders")}
+                  >
+                    My Orders
+                  </span>
                 </div>
                 {user?.isVerified && (
                   <div className="flex items-center px-1 mt-3 gap-3 border-t-[1px] border-[rgba(0,0,0,0.2)] pt-3">
@@ -184,9 +190,17 @@ const Searchbar = () => {
                 display: block;
               }
             `}</style>
-            <div className="flex flex-col items-center">
+            <div
+              className="flex flex-col items-center cursor-pointer hover:text-[#f43397] transition-all relative"
+              onClick={() => router.push("/cart")}
+            >
               <BsCart2 size={width > 1500 ? 24 : 20} />
               <span>Cart</span>
+              {allCartItems.length !== 0 && (
+                <span className="absolute -right-2 -top-1 w-5 h-5 text-[12px] grid place-items-center bg-[#f43397] text-white rounded-full">
+                  {allCartItems.length}
+                </span>
+              )}
             </div>
           </div>
         </div>

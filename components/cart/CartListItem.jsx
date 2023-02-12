@@ -42,7 +42,7 @@ const CartListItem = ({ product, cartId, userCart }) => {
   };
 
   return (
-    <div className="bg-white mb-3">
+    <div className="bg-white mb-3 lg:border-[1px] lg:rounded-md">
       <div className="flex px-4 py-3 border-b-[1px]">
         <Link href={`/products/${product._id}`}>
           <img
@@ -63,7 +63,7 @@ const CartListItem = ({ product, cartId, userCart }) => {
           </div>
           {!summary.pending && (
             <h2
-              className="my-2 flex items-center font-semibold"
+              className="my-2 flex items-center font-semibold cursor-pointer lg:text-[17px] lg:text-[#f43397]"
               onClick={handleDeleteCartItem}
             >
               <RxCross2 size={17} className="mr-1" /> Remove

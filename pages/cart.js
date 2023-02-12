@@ -1,7 +1,7 @@
 import useAuthStatus from "../hooks/useAuthStatus";
 import HashLoaderComponent from "../assets/HashLoaderComponent";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProgressSteps from "../components/cart/ProgressSteps";
 import CartList from "../components/cart/CartList";
 import EmptyCart from "../components/cart/EmptyCart";
@@ -23,6 +23,7 @@ const Cart = () => {
     progress: { cart, address, payment, summary },
   } = useContext(ProgressStepsContext);
   const router = useRouter();
+  const dispatch = useDispatch();
 
   if (checking || isLoading || cartIsLoading) {
     return <HashLoaderComponent />;
@@ -38,7 +39,9 @@ const Cart = () => {
         <CartTopbar />
         {allCartItems.length ? (
           <>
-            <ProgressSteps />
+            <div className="lg:hidden">
+              <ProgressSteps />
+            </div>
             {cart.pending && <CartList />}
             {address.pending && <AddressPage />}
             {payment.pending && <PaymentPage />}

@@ -63,7 +63,7 @@ const AddressFormModal = () => {
     }
   };
 
-  const onMouseOut = (e) => {
+  const onBlur = (e) => {
     if (e.target.value !== "") {
       e.target.classList.add("hasValue");
     } else {
@@ -138,7 +138,7 @@ const AddressFormModal = () => {
                     id="addressName"
                     value={addressName}
                     onChange={onChange}
-                    onMouseOut={onMouseOut}
+                    onBlur={onBlur}
                     className={inpuStyle}
                   />
                   <label htmlFor="addressName" className={labelStyle}>
@@ -152,7 +152,7 @@ const AddressFormModal = () => {
                     type="number"
                     onChange={onChange}
                     value={phoneNumber}
-                    onMouseOut={onMouseOut}
+                    onBlur={onBlur}
                     className={inpuStyle}
                   />
                   <label htmlFor="phoneNumber" className={labelStyle}>
@@ -174,7 +174,7 @@ const AddressFormModal = () => {
                     value={houseNo}
                     onChange={onChange}
                     className={inpuStyle}
-                    onMouseOut={onMouseOut}
+                    onBlur={onBlur}
                   />{" "}
                   <label htmlFor="houseNo" className={labelStyle}>
                     House no./Building Name
@@ -188,7 +188,7 @@ const AddressFormModal = () => {
                     value={area}
                     onChange={onChange}
                     className={inpuStyle}
-                    onMouseOut={onMouseOut}
+                    onBlur={onBlur}
                   />{" "}
                   <label htmlFor="area" className={labelStyle}>
                     Road Name / Area / Colony
@@ -202,7 +202,7 @@ const AddressFormModal = () => {
                     value={pincode}
                     onChange={onChange}
                     className={inpuStyle}
-                    onMouseOut={onMouseOut}
+                    onBlur={onBlur}
                   />{" "}
                   <label htmlFor="pincode" className={labelStyle}>
                     Pin Code
@@ -217,7 +217,7 @@ const AddressFormModal = () => {
                       value={city}
                       onChange={onChange}
                       className={`${inpuStyle} w-[90%]`}
-                      onMouseOut={onMouseOut}
+                      onBlur={onBlur}
                     />{" "}
                     <label htmlFor="city" className={labelStyle}>
                       City
@@ -231,7 +231,7 @@ const AddressFormModal = () => {
                       value={state}
                       onChange={onChange}
                       className={`${inpuStyle} w-[90%]`}
-                      onMouseOut={onMouseOut}
+                      onBlur={onBlur}
                     />{" "}
                     <label htmlFor="state" className={labelStyle}>
                       State
@@ -246,10 +246,10 @@ const AddressFormModal = () => {
                     value={nearByLocation}
                     onChange={onChange}
                     className={inpuStyle}
-                    onMouseOut={onMouseOut}
+                    onBlur={onBlur}
                   />{" "}
                   <label htmlFor="nearByLocation" className={labelStyle}>
-                    State
+                    Landmark
                   </label>{" "}
                 </div>
               </div>

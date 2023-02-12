@@ -26,7 +26,9 @@ const OrderList = () => {
   }, [isError, isSuccess]);
 
   useEffect(() => {
-    dispatch(getMyOrders());
+    if (!orders.length) {
+      dispatch(getMyOrders());
+    }
 
     // eslint-disable-next-line
   }, []);

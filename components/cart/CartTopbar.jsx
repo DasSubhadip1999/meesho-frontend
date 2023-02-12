@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useContext } from "react";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import ProgressStepsContext from "../../context/progressStepsContext";
+import ProgressSteps from "./ProgressSteps";
 
 const CartTopbar = () => {
   const {
@@ -54,9 +55,12 @@ const CartTopbar = () => {
 
   ////
   return (
-    <header className="flex items-center gap-3 border-2 p-3">
+    <header className="flex items-center gap-3 border-2 p-3 lg:pl-20">
       {navigate}
-      <span className="text-sm font-semibold">{headingText}</span>
+      <span className="font-semibold">{headingText}</span>
+      <div className="hidden lg:flex lg:w-[82%] justify-center">
+        <ProgressSteps />
+      </div>
     </header>
   );
 };

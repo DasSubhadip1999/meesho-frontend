@@ -27,7 +27,9 @@ const ProductList = () => {
   }, [isError, isSuccess]);
 
   useEffect(() => {
-    dispatch(getProduct());
+    if (!products.length) {
+      dispatch(getProduct());
+    }
 
     // eslint-disable-next-line
   }, []);

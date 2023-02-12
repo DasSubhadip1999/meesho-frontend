@@ -11,6 +11,7 @@ import {
   getCartItems,
 } from "../../redux/feature/cart/cartSlice";
 import { toast } from "react-toastify";
+import ResponsiveContext from "../../context/responsiveContext";
 
 const ReturnTypeComp = () => {
   const { user } = useSelector((state) => state.auth);
@@ -27,6 +28,7 @@ const ReturnTypeComp = () => {
 
   const { currentProduct, setConfirmCart, confirmCart, cartModalRef } =
     useContext(CartContext);
+  const { width } = useContext(ResponsiveContext);
 
   const { size, buyingPrice: confirmBuyingPrice } = confirmCart;
 
@@ -61,7 +63,7 @@ const ReturnTypeComp = () => {
 
     if (isError) {
       toast.error(message);
-      if (isLoggedIn) {
+      if (isLoggedIn && width < 1024) {
         cartModalRef.current.checked = true;
       }
     }
