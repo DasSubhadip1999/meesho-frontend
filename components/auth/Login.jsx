@@ -8,6 +8,8 @@ import { useEffect } from "react";
 import ClipLoaderComponent from "../../assets/ClipLoaderComponent";
 import { useRef } from "react";
 import { useRouter } from "next/router";
+import { useContext } from "react";
+import ResponsiveContext from "../../context/responsiveContext";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -21,6 +23,8 @@ const Login = () => {
   const { user, isSuccess, isError, isLoading, message, type } = useSelector(
     (state) => state.auth
   );
+
+  const { routeHistory } = useContext(ResponsiveContext);
 
   const emailInput = useRef(null);
   const passwordInput = useRef(null);
@@ -36,7 +40,11 @@ const Login = () => {
       setFormData({ email: "", password: "" });
       allInput.forEach((item) => item.current.classList.remove("active"));
       dispatch(reset());
-      router.push("/");
+      if (!routeHistory) {
+        router.push("/");
+      } else {
+        router.push(routeHistory);
+      }
     }
 
     if (isError && type === "user-login") {

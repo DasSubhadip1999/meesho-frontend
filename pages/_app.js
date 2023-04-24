@@ -16,8 +16,30 @@ import SortModal from "../components/modal/SortModal";
 import GenderSortModal from "../components/modal/GenderSortModal";
 import { ResponsiveProvider } from "../context/responsiveContext";
 import ProductDetailsModal from "../components/modal/ProductDetailsModal";
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
+import ClipLoaderComponent from "../assets/ClipLoaderComponent";
 
 function MyApp({ Component, pageProps }) {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadRender = async () => {
+      setIsLoading(true);
+      const res = await axios.get("https://meesho-backend.onrender.com");
+      if (res) {
+        setIsLoading(false);
+      }
+    };
+
+    loadRender();
+  }, []);
+
+  if (isLoading) {
+    return <ClipLoaderComponent />;
+  }
+
   return (
     <>
       <Provider store={store}>

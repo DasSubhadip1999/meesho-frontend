@@ -10,7 +10,7 @@ const CashPayment = () => {
         <span className="text-[11px] font-semibold">PAY IN CASH</span>{" "}
         <div className="h-[1px] w-[76%] bg-[rgba(0,0,0,0.1)]"></div>
       </div>
-      <div className="flex items-center gap-4 pt-2 pb-4 px-4 relative shadow-md">
+      <div className="flex items-center gap-4 pt-2 pb-4 px-4 relative shadow-md lg:shadow-none">
         <FaRegMoneyBillAlt size={23} />
         <span className="text-sm font-semibold">Cash on Delivery</span>
         <span className="absolute right-5 top-[18%]">

@@ -12,7 +12,7 @@ const PaymentPage = () => {
         <div className="flex gap-1 items-center">
           <MdVerifiedUser size={23} className="text-[#f43397]" />
           <span className="text-[rgba(0,0,0,0.4)] text-[10px] font-bold">
-            100% SAFE <br />
+            100% SAFE <br className="lg:hidden" />
             PAYMENTS
           </span>
         </div>
@@ -23,9 +23,13 @@ const PaymentPage = () => {
           Pay online and get EXTRA $25 off
         </span>
       </div>
-      <OnlinePayment />
-      <CashPayment />
-      <PriceConfirm />
+      <div className="flex flex-col lg:flex-row lg:justify-center lg:gap-3 border-2">
+        <div>
+          <OnlinePayment />
+          <CashPayment />
+        </div>
+        <PriceConfirm />
+      </div>
     </div>
   );
 };

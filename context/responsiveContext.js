@@ -1,5 +1,6 @@
 import { createContext, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 
 const ResponsiveContext = createContext();
 
@@ -9,6 +10,7 @@ export const ResponsiveProvider = ({ children }) => {
   const { user } = useSelector((state) => state.auth);
   const [userName, setUserName] = useState("");
   const productDetailsRef = useRef(null);
+  const [routeHistory, setRouteHistory] = useState("");
 
   useEffect(() => {
     if (user) {
@@ -30,7 +32,15 @@ export const ResponsiveProvider = ({ children }) => {
 
   return (
     <ResponsiveContext.Provider
-      value={{ width, sidebar, showSidebar, userName, productDetailsRef }}
+      value={{
+        width,
+        sidebar,
+        routeHistory,
+        showSidebar,
+        userName,
+        productDetailsRef,
+        setRouteHistory,
+      }}
     >
       {children}
     </ResponsiveContext.Provider>

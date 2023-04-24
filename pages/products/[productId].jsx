@@ -42,7 +42,8 @@ const Product = () => {
     setSellerId,
     setConfirmCart,
   } = useContext(CartContext);
-  const { productDetailsRef, width } = useContext(ResponsiveContext);
+  const { productDetailsRef, width, setRouteHistory } =
+    useContext(ResponsiveContext);
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -66,6 +67,7 @@ const Product = () => {
   //get the single product
   useEffect(() => {
     dispatch(getSingleProduct(router.query.productId));
+    setRouteHistory(router.asPath);
 
     // eslint-disable-next-line
   }, [router.query]);

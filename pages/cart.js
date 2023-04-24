@@ -11,6 +11,7 @@ import ProgressStepsContext from "../context/progressStepsContext";
 import AddressPage from "../components/cart/AddressPage";
 import PaymentPage from "../components/payment/PaymentPage";
 import OrderSummaryPage from "../components/orderSummary/OrderSummaryPage";
+import ResponsiveContext from "../context/responsiveContext";
 
 const Cart = () => {
   const { user } = useSelector((state) => state.auth);
@@ -22,6 +23,7 @@ const Cart = () => {
   const {
     progress: { cart, address, payment, summary },
   } = useContext(ProgressStepsContext);
+  const { width } = useContext(ResponsiveContext);
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -29,8 +31,12 @@ const Cart = () => {
     return <HashLoaderComponent />;
   }
 
-  if (!isLoggedIn) {
+  if (!isLoggedIn && width < 1024) {
     router.push("/account");
+  }
+
+  if (!isLoggedIn && width >= 1024) {
+    router.push("/register");
   }
 
   if (isLoggedIn) {
