@@ -1,7 +1,7 @@
 import axios from "axios";
 import { setItemToStorage } from "../../../assets/localstorage";
 
-const PROXY = "https://meesho-backend.onrender.com";
+const PROXY = "https://zany-gray-toad-sari.cyclic.app";
 
 const REGISTER_URL = PROXY + "/api/users/register";
 const LOGIN_URL = PROXY + "/api/users/login";

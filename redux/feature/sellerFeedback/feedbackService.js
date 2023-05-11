@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const PROXY = "https://meesho-backend.onrender.com";
+const PROXY = "https://zany-gray-toad-sari.cyclic.app";
 
 const FEEDBACK_URL = PROXY;
 ("/api/sellers/feedbacks");

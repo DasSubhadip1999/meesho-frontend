@@ -18,7 +18,7 @@ export const CartProvider = ({ children }) => {
   //to change bg of size selector
   const [sizeSelected, setSizeSelected] = useState(true);
 
-  const imageURL = "https://meesho-backend.onrender.com/";
+  const imageURL = "https://zany-gray-toad-sari.cyclic.app/";
 
   const { products } = useSelector((state) => state.product);
 
